@@ -638,11 +638,11 @@ h1.slogan span{color:var(--e2)}
     <nav id="site-nav" aria-label="Main">
       <ul>
         <li><a href="#news">News</a>
-          <ul class="sub"><li><a href="#news/list">Latest news</a></li><li><a href="#news/publications">Selected publications</a></li></ul></li>
+          <ul class="sub"><li><a href="#news/list">Latest news</a></li></ul></li>
         <li><a href="#professor">Professor</a>
           <ul class="sub"><li><a href="#professor/journey">Academic journey</a></li><li><a href="#professor/impact">Research impact</a></li><li><a href="#professor/awards">Awards &amp; honors</a></li></ul></li>
         <li><a href="#research">Research</a>
-          <ul class="sub"><li><a href="#research/map">Research landscape</a></li><li><a href="#research/battery">Batteries &amp; electrolytes</a></li><li><a href="#research/thermal">Thermal management materials</a></li><li><a href="#research/emi">EMI shielding materials</a></li><li><a href="#research/hem">High-entropy nanomaterials</a></li><li><a href="#research/facilities">Facilities &amp; methods</a></li><li><a href="#research/publications">Publications</a></li></ul></li>
+          <ul class="sub"><li><a href="#research/selected">Selected publications</a></li><li><a href="#research/map">Research landscape</a></li><li><a href="#research/battery">Batteries &amp; electrolytes</a></li><li><a href="#research/thermal">Thermal management materials</a></li><li><a href="#research/emi">EMI shielding materials</a></li><li><a href="#research/hem">High-entropy nanomaterials</a></li><li><a href="#research/facilities">Facilities &amp; methods</a></li><li><a href="#research/publications">Publications</a></li></ul></li>
         <li><a href="#members">HE3 Team</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#join">Join us</a></li>
@@ -689,17 +689,13 @@ h1.slogan span{color:var(--e2)}
   <div class="wrap"><div class="news-grid" id="news-cards"></div>
     <p class="news-more"><button class="btn ghost" type="button" id="news-more">Show older news</button></p></div>
 
-  <div class="sec-title wrap" id="news-publications"><h2>Selected Publications</h2><p>Ten highlights in Q1 journals, with journal H-index and subject ranking. Click a card to read the paper.</p></div>
-  <div class="wrap">
-    <div class="sel-grid" id="selected"></div>
-  </div>
-  <div class="wrap" style="text-align:center;margin-top:28px"><a class="btn ghost" href="#research/publications">See all publications</a></div>
+
 
   <div class="wrap">
     <div class="partners">
       <h4>Past affiliations and collaborating institutions</h4>
       <ul>
-        <li>University of Chicago</li><li>University of Newcastle</li><li>Korea National University of Transportation</li><li>[Add partners / funding agencies]</li>
+        <li>University of Chicago</li><li>University of Newcastle</li><li>Korea National University of Transportation</li>
       </ul>
     </div>
   </div>
@@ -750,7 +746,14 @@ h1.slogan span{color:var(--e2)}
 <section data-page="research" id="research" class="page">
   <div class="sec-title wrap"><h2>Research</h2><p>From heat-conducting polymers to safer batteries and high-entropy chemistries.</p></div>
   <div class="wrap">
-    <div class="subnav"><a href="#research/map">Research landscape</a><a href="#research/battery">Batteries &amp; electrolytes</a><a href="#research/thermal">Thermal management materials</a><a href="#research/emi">EMI shielding materials</a><a href="#research/hem">High-entropy nanomaterials</a><a href="#research/facilities">Facilities &amp; methods</a><a href="#research/publications">Publications</a></div>
+    <div class="subnav"><a href="#research/selected">Selected publications</a><a href="#research/map">Research landscape</a><a href="#research/battery">Batteries &amp; electrolytes</a><a href="#research/thermal">Thermal management materials</a><a href="#research/emi">EMI shielding materials</a><a href="#research/hem">High-entropy nanomaterials</a><a href="#research/facilities">Facilities &amp; methods</a><a href="#research/publications">Publications</a></div>
+  </div>
+  <div class="wrap"><h2 class="section-title" id="research-selected" style="margin-top:8px">Selected publications</h2><p class="section-sub">Ten highlights in Q1 journals, with journal H-index and subject ranking. Click a card to read the paper.</p></div>
+  <div class="wrap">
+    <div class="sel-grid" id="selected"></div>
+  </div>
+  <div class="wrap" style="text-align:center;margin-top:28px"><a class="btn ghost" href="#research/publications">See all publications ↓</a></div>
+  <div class="wrap">
     <div class="donut-wrap" id="research-map">
       <div class="donut-col">
         <div class="donut" id="donut"></div>
@@ -1296,7 +1299,7 @@ h1.slogan span{color:var(--e2)}
   var pages=[].slice.call(document.querySelectorAll('main > section[data-page]'));
   var topLinks=[].slice.call(document.querySelectorAll('nav > ul > li > a'));
   var nav=document.getElementById('site-nav'),btn=document.querySelector('.menu-btn');
-  var ALIAS={home:'news',publications:'news',allpubs:'research/publications',members:'members'};
+  var ALIAS={home:'news',publications:'research/selected',allpubs:'research/publications',members:'members'};
   function go(){
     var h=location.hash.slice(1)||'news';if(ALIAS[h.split('/')[0]]&&!h.split('/')[1])h=ALIAS[h.split('/')[0]];
     var parts=h.split('/'),id=parts[0],sub=parts[1];
