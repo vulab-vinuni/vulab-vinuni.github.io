@@ -619,6 +619,65 @@ h1.slogan span{color:var(--e2)}
 .ntag{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#fff;background:var(--c);border-radius:999px;padding:3px 10px}
 .nb p{margin:0;font-size:.98rem;max-width:none}
 .news-more{text-align:center;margin-top:24px}
+
+/* hover drum wheels */
+.impact{position:relative}
+.wheel-trigger{position:relative;cursor:pointer;z-index:5}
+.wheel-trigger:hover,.wheel-trigger:focus-within{z-index:70}
+.money.wheel-trigger{overflow:visible}
+.money.wheel-trigger svg.bg{right:14px;top:14px;width:170px}
+.tile.wheel-trigger{transform:none!important}
+.tiles{position:relative;z-index:4}
+.tiles:hover,.tiles:focus-within{z-index:80}
+.money.wheel-trigger::after{content:"Hover to see the 11 projects →";position:absolute;right:20px;bottom:14px;font-size:.75rem;font-weight:700;color:var(--e2);opacity:.85}
+.tile.wheel-trigger::after{content:"← details";position:absolute;right:10px;top:10px;font-size:.68rem;font-weight:700;color:var(--muted)}
+.hwheel{position:absolute;top:50%;z-index:60;width:min(470px,90vw);height:450px;transform:translateY(-50%) scale(.92);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 60px rgba(19,33,59,.28);display:flex;flex-direction:column;overflow:hidden;cursor:default;color:var(--ink);text-align:left}
+.hwheel.open{opacity:1;pointer-events:auto;transform:translateY(-50%) scale(1)}
+.hwheel.right{left:calc(100% + 18px)}
+.hwheel.left{right:calc(100% + 18px)}
+.hw-head{padding:14px 18px;font-size:.92rem;border-bottom:1px solid var(--line);background:var(--bg)}
+.hw-head b{font-family:var(--serif);font-size:1.05rem}
+.hw-foot{padding:8px;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--line)}
+.hw-drum{position:relative;flex:1;perspective:900px;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 20%,#000 80%,transparent);mask-image:linear-gradient(transparent,#000 20%,#000 80%,transparent)}
+.hw-drum ol{list-style:none;margin:0;padding:0;position:absolute;inset:0;transform-style:preserve-3d}
+.hw-item{position:absolute;left:14px;right:14px;top:50%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);will-change:transform,opacity;transition:background .3s,color .3s,box-shadow .3s;cursor:pointer}
+.hw-item.on{background:linear-gradient(135deg,var(--accent),var(--e4));color:#fff;border-color:transparent;box-shadow:0 14px 30px rgba(14,124,134,.35)}
+.pats .hw-item.on{background:linear-gradient(135deg,#B07A12,var(--e6))}
+.hw-row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hw-amt{font-family:var(--serif);font-weight:700;font-size:1.35rem;color:var(--e2)}
+.hw-item.on .hw-amt{color:#FFE08A}
+.hw-item.on .hw-c{color:#fff;opacity:1}
+.hw-c{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;border:1px solid currentColor;border-radius:999px;padding:1px 8px;opacity:.8;white-space:nowrap}
+.hw-t{font-weight:700;font-size:.88rem;line-height:1.3;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hw-m{font-size:.76rem;opacity:.8;margin-top:3px;line-height:1.3}
+@media (max-width:860px){
+  .hwheel.right,.hwheel.left{left:0;right:auto;top:calc(100% + 10px);transform:none}
+  .hwheel.open{transform:none}
+  .money.wheel-trigger::after{content:"Tap to see the 11 projects"}
+}
+
+/* trapezoid zoom panels */
+.hwheel{width:min(560px,calc(100vw - 40px));height:480px;border:0;border-radius:0;background:linear-gradient(135deg,#13213B 0%,#175F80 100%);color:#fff;box-shadow:none;filter:drop-shadow(0 24px 40px rgba(19,33,59,.35))}
+.hwheel.right{left:calc(100% + 64px);clip-path:polygon(0 8%,100% 0,100% 100%,0 92%)}
+.hwheel.left{right:calc(100% + 64px);clip-path:polygon(0 0,100% 8%,100% 92%,0 100%)}
+.hw-head{background:rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.12);color:#DCE6F2;padding:18px 26px}
+.hwheel .hw-head{padding-top:28px}.hwheel.right .hw-head{padding-left:72px;text-align:right;padding-right:24px}.hwheel.left .hw-head{padding-right:72px}
+.hw-head b{color:#fff}
+.hw-foot{border-top:1px solid rgba(255,255,255,.12);color:#9FB4CB}
+.hwheel .hw-foot{padding-bottom:22px}.hwheel.right .hw-foot{text-align:right;padding-right:24px}.hwheel.left .hw-foot{text-align:left;padding-left:24px}
+.hw-item{left:26px;right:26px;padding:14px 18px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);color:#E7ECF3}
+.hw-amt{color:#F0BE3A}
+.hw-m{opacity:.75}
+.funds .hw-item.on{background:linear-gradient(90deg,#F0BE3A,#E39B2A);color:#13213B;box-shadow:0 14px 30px rgba(240,190,58,.35)}
+.funds .hw-item.on .hw-amt{color:#13213B}
+.pats .hw-item.on{background:linear-gradient(90deg,#7FD6E0,#3FB8C2);color:#0F2236;box-shadow:0 14px 30px rgba(63,184,194,.35)}
+.pats .hw-item.on .hw-amt{color:#0F2236}
+.hw-item.on .hw-c{color:inherit;opacity:1}
+.hw-link{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:59;opacity:0;transition:opacity .35s}
+.hw-link.open{opacity:1}
+.hw-link line{stroke:#175F80;stroke-width:2;stroke-dasharray:7 6}
+.money .hw-link line{stroke:#3FB8C2}
+@media (max-width:860px){.hwheel.right,.hwheel.left{clip-path:none;border-radius:14px}.hw-link{display:none}}
 </style>
 </head>
 <body>
@@ -1019,11 +1078,17 @@ h1.slogan span{color:var(--e2)}
     {y:2016,tag:"Thermal",title:"Thermal conductivity improvement by Cu surface treatments and incorporation of PMMA beads on the Cu/epoxy composites",a:"Y.H. Bae, G.D. Park, H.O. Jung, <mark>M.C. Vu</mark>, S.R. Kim",j:"Polymer (Korea)",v:"40 (2016) 148–153",url:"http://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE06600047"}
   ];
   var patents = [
-    {y:2022,t:"Hybrid thermal management film and method of fabrication for the same",a:"S.R. Kim, M.C. Vu",n:"US Patent Application 17/398,959"},
-    {y:2020,t:"Surface modified carbon flakes and the carbon brush motor using thereof",a:"M.C. Vu, Y.M. Kang, S.R. Kim",n:"Korean Patent No. 10-2098193"},
-    {y:2020,t:"Manufacturing method of SiC sheet and thermally conductive composites using thereof",a:"M.C. Vu, S.R. Kim",n:"Korean Patent No. 10-2098090"},
-    {y:2020,t:"Multi-functional bioinspired paper for thermal management and electromagnetic interference shielding, method of fabrication for the same",a:"M.C. Vu, S.R. Kim",n:"Korean Patent Application No. 10-2020-0124849"}
+    {y:2020,t:"Surface modified carbon flakes and the carbon brush motor using thereof",a:"S.R. Kim, M.C. Vu, Y.M. Kang",n:"Korean Patent 10-2018-0028868",st:"Granted · KR"},
+    {y:2020,t:"Manufacturing method of SiC sheet and thermally conductive composites using thereof",a:"S.R. Kim, M.C. Vu",n:"Korean Patent 10-2018-0077307",st:"Granted · KR"},
+    {y:2020,t:"Multi-functional bioinspired paper for thermal management and electromagnetic interference shielding, method of fabrication for the same",a:"S.R. Kim, M.C. Vu",n:"Korean Patent 10-2020-0124849",st:"Granted · KR"},
+    {y:2020,t:"Hybrid heat-radiating film and its manufacturing method",a:"S.R. Kim, M.C. Vu",n:"Korean Patent 10-2020-0100099",st:"Granted · KR"},
+    {y:2021,t:"Paper with aramid nanofiber / graphene fluoride / aramid nanofiber structure with excellent mass production and high-temperature capacitive energy storage capability",a:"S.R. Kim, M.C. Vu",n:"Korean patent",st:"Granted · KR"},
+    {y:2021,t:"High heat-dissipating electromagnetic wave shielding film manufactured by cross-linking graphene nanoplate and aramid nanofiber, and its manufacturing method",a:"S.R. Kim, M.C. Vu",n:"Korean patent",st:"Granted · KR"},
+    {y:2022,t:"Hybrid thermal management film and method of fabrication for the same",a:"S.R. Kim, M.C. Vu",n:"US 2022/0041912 A1",st:"US"},
+    {y:2023,t:"Energy storage film and method of manufacturing same",a:"S.R. Kim, M.C. Vu",n:"US 2023/0127153 A1",st:"US"},
+    {y:2025,t:"A transition-metal-and-solvent-free dual-graphite battery for long duration storage enabled by a fluorosulfonyl imide-based molten salt electrolyte",a:"C.V. Amanchukwu, M.C. Vu, H. Srinivasan",n:"US 25-T-043",st:"Filed · US"}
   ];
+  window.PATENTS=patents;
   pubs.sort(function(a,b){return b.y-a.y});
   window.PUBS=pubs;
   var chapters = [
@@ -1466,14 +1531,68 @@ h1.slogan span{color:var(--e2)}
   var impactHTML='<div class="impact">'+
     '<div class="money"><svg class="bg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="6"/><text x="50" y="66" text-anchor="middle" font-size="48" font-weight="700" fill="currentColor">$</text></svg>'+
       '<div><div class="big" data-count="2.0" data-dec="1" data-pre="$" data-suf="M">$0M</div><div class="lbl">USD in competitive research funding</div></div>'+
-      '<div><div class="projects"><strong data-count="11">0</strong><span>funded projects as PI or key researcher, supported by the governments of</span></div>'+
-      '<div class="ctry-row"><span>United States</span><span>South Korea</span><span>Vietnam</span></div></div></div>'+
+      '<div><div class="projects"><strong data-count="11">0</strong><span>funded projects as PI, CI or participant investigator, supported by agencies in</span></div>'+
+      '<div class="ctry-row"><span>United States</span><span>South Korea</span><span>Vietnam</span><span>Australia</span></div></div></div>'+
     '<div class="tiles">'+
       [['63','journal articles','doc','var(--e4)'],['9','patents','bulb','var(--e2)'],['3','book chapters','book','var(--e3)'],['1800','citations (Scopus)','quote','var(--e5)','+'],['24','h-index (Scopus)','bars','var(--e1)'],['70','scientific outputs in total','spark','var(--e6)','+']]
       .map(function(t){return '<div class="tile" style="--c:'+t[3]+'">'+ic[t[2]]+'<strong data-count="'+t[0]+'" data-suf="'+(t[4]||'')+'">0</strong><span>'+t[1]+'</span></div>'}).join('')+
       '<div class="tile wide" style="--c:var(--accent)">'+ic.globe+'<div><strong data-count="111">0</strong><span>co-authors</span></div><div><strong data-count="54">0</strong><span>institutions</span></div><div><strong data-count="14">0</strong><span>countries</span></div></div>'+
     '</div></div>';
   document.querySelectorAll('[data-impact]').forEach(function(box){box.innerHTML=impactHTML;});
+  /* ---------- Hover drum-wheels: funding projects & patents ---------- */
+  var FUNDS=[
+    {amt:500000,t:"Enabling energy-dense grid-scale batteries with earth-abundant materials",f:"U.S. Department of Energy",r:"Participant Investigator",y:"2022 – 2025",c:"USA"},
+    {amt:387000,t:"Thermally conductive yet electrically insulating pressure-sensitive adhesives using 3D nanostructures",f:"Korean Ministry of Education",r:"PI",y:"2017 – 2022",c:"Korea"},
+    {amt:332000,t:"Thermally conductive film and bonding materials for display devices (in-plane 300 W/mK)",f:"Korean Ministry of Trade, Industry & Energy",r:"PI",y:"",c:"Korea"},
+    {amt:210000,t:"Solvent-free adhesives (peel strength 3,500 g/inch) for electronic applications",f:"Korean Ministry of Trade, Industry & Energy",r:"PI",y:"2020 – 2022",c:"Korea"},
+    {amt:165000,t:"Transparent medical patch using nanostructures",f:"Korean Ministry of Education",r:"PI",y:"2016 – 2019",c:"Korea"},
+    {amt:110000,t:"Stretchable thermally conductive pressure-sensitive adhesives for flexible displays",f:"Korean Ministry of SMEs and Startups",r:"PI",y:"2018 – 2019",c:"Korea"},
+    {amt:110000,t:"Carrier-less flexible adhesive films for curved displays (contact angle > 100°)",f:"Korean Ministry of SMEs and Startups",r:"PI",y:"2018 – 2019",c:"Korea"},
+    {amt:94000,t:"Thermally conductive EMI shielding materials based on 2D materials for 5G electronics",f:"NAFOSTED, Vietnam",r:"CI",y:"",c:"Vietnam"},
+    {amt:38000,t:"Stretchable thermal interfacial materials based on graphene fluoride",f:"Vietnamese Ministry of Education and Training",r:"co-CI",y:"",c:"Vietnam"},
+    {amt:30000,t:"Australia–USA Battery Exchange Program",f:"Australia–USA Battery Exchange",r:"Chief Investigator",y:"2025",c:"Australia · USA"},
+    {amt:15000,t:"PILOT Scheme Program",f:"University of Newcastle",r:"CI",y:"",c:"Australia"}
+  ];
+  function money$(v){return v>=1000000?'$'+(v/1e6).toFixed(1)+'M':'$'+Math.round(v/1000)+'K';}
+  function makeWheel(trigger,side,title,items,render,cls){
+    trigger.classList.add('wheel-trigger');trigger.setAttribute('tabindex','0');
+    var panel=document.createElement('div');panel.className='hwheel '+side+' '+(cls||'');
+    panel.innerHTML='<div class="hw-head">'+title+'</div><div class="hw-drum"><ol></ol></div><div class="hw-foot">scroll or wait · '+items.length+' items</div>';
+    trigger.appendChild(panel);
+    var lk=document.createElementNS('http://www.w3.org/2000/svg','svg');lk.setAttribute('class','hw-link '+side);trigger.appendChild(lk);
+    function link(){var tr=trigger.getBoundingClientRect(),pr=panel.getBoundingClientRect(),cut=.08*pr.height;
+      var nx=side==='right'?pr.left-tr.left:pr.right-tr.left,ex=side==='right'?tr.width:0;
+      var y1=pr.top-tr.top+cut,y2=pr.bottom-tr.top-cut;
+      lk.innerHTML='<line x1="'+ex+'" y1="0" x2="'+nx+'" y2="'+y1+'"/><line x1="'+ex+'" y1="'+tr.height+'" x2="'+nx+'" y2="'+y2+'"/>';}
+    var ol=panel.querySelector('ol');ol.innerHTML=items.map(function(it,i){return '<li class="hw-item">'+render(it,i)+'</li>'}).join('');
+    var lis=[].slice.call(ol.children),N=lis.length,pos=0,target=0,raf=null,timer=null,open=false,ST=118;
+    function lay(){
+      lis.forEach(function(li,i){var d=((i-pos)%N+N)%N;if(d>N/2)d-=N;var ad=Math.abs(d);
+        li.style.transform='translateY(calc(-50% + '+(d*ST).toFixed(1)+'px)) rotateX('+(-d*18).toFixed(1)+'deg) translateZ('+(-ad*40).toFixed(1)+'px) scale('+Math.max(.72,1-ad*.12).toFixed(3)+')';
+        li.style.opacity=Math.max(0,1-ad*.34).toFixed(2);li.style.zIndex=String(100-Math.round(ad*10));li.style.visibility=ad>2.8?'hidden':'visible';
+        li.classList.toggle('on',ad<.5);});
+    }
+    function tick(){pos+=(target-pos)*.06;if(Math.abs(target-pos)<.002)pos=target;lay();raf=Math.abs(target-pos)>.002?requestAnimationFrame(tick):null;}
+    function go(k){target+=k;if(!raf)raf=requestAnimationFrame(tick);}
+    function show(){if(open)return;open=true;panel.classList.add('open');lk.classList.add('open');lay();if(!reduce)timer=setInterval(function(){go(1)},3800);link();}
+    function hide(){open=false;panel.classList.remove('open');lk.classList.remove('open');clearInterval(timer);}
+    var hideT;
+    trigger.addEventListener('mouseenter',function(){clearTimeout(hideT);show();});
+    trigger.addEventListener('mouseleave',function(){hideT=setTimeout(hide,250);});
+    trigger.addEventListener('focus',show);trigger.addEventListener('blur',function(){hideT=setTimeout(hide,250);});
+    trigger.addEventListener('click',function(e){if(e.target.closest('.hwheel'))return;open?hide():show();});
+    panel.addEventListener('wheel',function(e){e.preventDefault();clearInterval(timer);go(e.deltaY>0?1:-1);timer=reduce?null:setInterval(function(){go(1)},3800);},{passive:false});
+    panel.addEventListener('click',function(e){var li=e.target.closest('.hw-item');if(li){var i=lis.indexOf(li),cur=Math.round(pos),d=((i-cur)%N+N)%N;if(d>N/2)d-=N;go(d);}});
+    lay();
+  }
+  document.querySelectorAll('[data-impact]').forEach(function(box){
+    var mon=box.querySelector('.money');
+    if(mon)makeWheel(mon,'right','<b>11 funded projects</b> · total ≈ $2.0M',FUNDS,function(f,i){
+      return '<div class="hw-row"><span class="hw-amt">'+money$(f.amt)+'</span><span class="hw-c">'+f.c+'</span></div><div class="hw-t">'+f.t+'</div><div class="hw-m">'+f.f+' · <b>'+f.r+'</b>'+(f.y?' · '+f.y:'')+'</div>';},'funds');
+    var pt=[].filter.call(box.querySelectorAll('.tile'),function(t){var s=t.querySelector('strong');return s&&s.dataset.count==='9'})[0];
+    if(pt)makeWheel(pt,'left','<b>9 patents</b> · Korea &amp; USA',window.PATENTS||[],function(p,i){
+      return '<div class="hw-row"><span class="hw-amt">#'+(i+1)+' · '+p.y+'</span><span class="hw-c">'+p.st+'</span></div><div class="hw-t">'+p.t+'</div><div class="hw-m">'+p.n+' · '+p.a+'</div>';},'pats');
+  });
   function fmt(v,dec){return dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US');}
   function countUp(e){
     var to=parseFloat(e.dataset.count),dec=+(e.dataset.dec||0),pre=e.dataset.pre||'',suf=e.dataset.suf||'',t0=performance.now(),dur=reduce?0:1400;
