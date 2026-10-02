@@ -81,8 +81,8 @@ nav .sub a:hover{color:var(--ink);background:var(--bg)}
 }
 
 /* Pages */
-main section[data-page]{display:none}
-main section[data-page].active{display:block}
+main section[data-page]{display:block}
+
 .page{padding:0 0 88px}
 .page-head{background:var(--band);color:var(--band-ink);padding:44px 0 40px;margin-bottom:48px}
 .page-head p{color:var(--band-muted);margin:0}
@@ -384,6 +384,37 @@ nav a{white-space:nowrap}
 .person dl{text-align:left;border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
 .person dd a{word-break:break-all}
 .person.open{display:grid;place-content:center;min-height:200px}
+
+.page{padding:0 0 72px}
+main > section{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 70px)}
+main > section.page:nth-of-type(even){background:var(--surface)}
+main > section.page:nth-of-type(even) .card,main > section.page:nth-of-type(even) .person,main > section.page:nth-of-type(even) .tile,main > section.page:nth-of-type(even) .award:not(.star),main > section.page:nth-of-type(even) .stop{background:var(--bg)}
+.sec-title{text-align:center;padding-top:64px;padding-bottom:36px}
+.pubs .auth,.pubs .venue{display:block;margin-top:2px}.pubs .badges{display:inline}
+.pubs .badge{margin-left:8px}
+.sec-title h2{font-family:var(--sans);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(2rem,4.6vw,3.2rem);color:var(--e4);margin-bottom:.3em}
+.sec-title p{margin:0 auto;color:var(--muted)}
+.sub-h{font-size:1.5rem;margin:8px 0 18px}
+.sel-wrap{display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:start}
+@media (max-width:1000px){.sel-wrap{grid-template-columns:1fr}}
+.sel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:26px 20px}
+.sel{text-decoration:none;color:var(--ink);display:block}
+.ga{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);transition:transform .35s cubic-bezier(.2,.8,.3,1.2),box-shadow .35s}
+.ga svg,.ga img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ga img{object-fit:cover;background:#fff}
+.sel:hover .ga,.sel:focus-visible .ga{transform:translateY(-8px) scale(1.02);box-shadow:0 18px 34px rgba(19,33,59,.18)}
+.sel .cap{text-align:center;font-size:1.3rem;margin-top:14px;font-weight:500}
+.sel .ttl{text-align:center;font-size:.82rem;color:var(--muted);line-height:1.35;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-side h2{font-family:var(--sans);text-transform:uppercase;font-weight:700;color:var(--e4);font-size:2rem;text-align:center;margin-bottom:10px}
+.news-side ul{list-style:none;margin:0;padding:0}
+.news-side li{padding:16px 0;border-bottom:1px solid var(--line)}
+.news-side time{color:var(--e4);font-weight:700}
+.news-side p{margin:4px 0 0;font-size:.98rem}
+@media (min-width:1001px){.news-side{position:sticky;top:96px;max-height:calc(100vh - 120px);overflow:auto}}
+.more-btn{display:block;margin:24px auto 0}
+.pubs a.title{color:var(--ink);text-decoration:none}
+.pubs a.title:hover{color:var(--accent);text-decoration:underline}
+.hero-band{padding-top:56px}
 </style>
 </head>
 <body>
@@ -406,16 +437,14 @@ nav a{white-space:nowrap}
     <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" aria-label="Main">
       <ul>
+        <li><a href="#publications">Publications</a>
+          <ul class="sub"><li><a href="#publications">Selected publications</a></li><li><a href="#news">News</a></li><li><a href="#allpubs">All publications</a></li><li><a href="#allpubs/patents">Patents</a></li></ul></li>
+        <li><a href="#research">Research</a>
+          <ul class="sub"><li><a href="#research/map">Research landscape</a></li><li><a href="#research/battery">Batteries &amp; electrolytes</a></li><li><a href="#research/thermal">Polymer composites &amp; thermal</a></li><li><a href="#research/emi">EMI shielding</a></li><li><a href="#research/hem">High-entropy materials (new)</a></li></ul></li>
         <li><a href="#professor">Professor</a>
           <ul class="sub"><li><a href="#professor/journey">Academic journey</a></li><li><a href="#professor/impact">Research impact</a></li><li><a href="#professor/awards">Awards &amp; honors</a></li><li><a href="#professor/teaching">Teaching</a></li></ul></li>
-        <li><a href="#research">Research</a>
-          <ul class="sub"><li><a href="#research/map">Research landscape</a></li><li><a href="#research/battery">Batteries &amp; electrolytes</a></li><li><a href="#research/thermal">Polymer composites &amp; thermal</a></li><li><a href="#research/emi">EMI shielding</a></li><li><a href="#research/hem">High-entropy materials (new)</a></li><li><a href="#research/facilities">Facilities &amp; methods</a></li></ul></li>
-        <li><a href="#members">Members</a>
-          <ul class="sub"><li><a href="#members/pi">Professor</a></li><li><a href="#members/postdoc">Postdoctoral researchers</a></li><li><a href="#members/ra">Research assistants</a></li><li><a href="#members/students">Students</a></li><li><a href="#members/alumni">Alumni</a></li></ul></li>
-        <li><a href="#publications">Publications</a>
-          <ul class="sub"><li><a href="#publications/journals">Journal articles</a></li><li><a href="#publications/patents">Patents</a></li><li><a href="#publications/chapters">Book chapters</a></li><li><a href="#publications/covers">Cover gallery</a></li></ul></li>
-        <li><a href="#board">Board</a>
-          <ul class="sub"><li><a href="#board/news">News</a></li><li><a href="#board/gallery">Gallery</a></li><li><a href="#board/seminar">Seminar</a></li></ul></li>
+        <li><a href="#members">Members</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#join">Join us</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -425,8 +454,7 @@ nav a{white-space:nowrap}
 
 <main>
 
-<!-- HOME -->
-<section data-page="home">
+<section data-page="home" id="home">
   <div class="hero-band">
     <div class="wrap hero">
       <div>
@@ -458,17 +486,6 @@ nav a{white-space:nowrap}
 
     <div data-impact style="margin-top:56px"></div>
 
-    <div class="home-grid">
-      <div>
-        <div class="sec-head"><h3>Lab news</h3><a href="#board/news">More</a></div>
-        <ul class="news-list" id="home-news"></ul>
-      </div>
-      <div>
-        <div class="sec-head"><h3>Recent publications</h3><a href="#publications">More</a></div>
-        <ul class="recent-pubs" id="home-pubs"></ul>
-      </div>
-    </div>
-
     <div class="partners">
       <h4>Past affiliations and collaborating institutions</h4>
       <ul>
@@ -478,57 +495,17 @@ nav a{white-space:nowrap}
   </div>
 </section>
 
-<!-- PROFESSOR -->
-<section data-page="professor" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Professor</div><h1>Professor</h1><p>Principal Investigator</p></div></div>
-  <div class="wrap">
-    <div class="subnav"><a href="#professor/journey">Journey</a><a href="#professor/impact">Impact</a><a href="#professor/awards">Awards</a><a href="#professor/teaching">Teaching</a></div>
-
-    <div class="pi-intro" id="professor-bio">
-      <div class="portrait" data-photo>MCV</div>
-      <div>
-        <h2 style="margin-bottom:.2em">Asst. Prof. Vu Minh Canh, PhD</h2>
-        <p class="muted" style="margin-bottom:14px">Assistant Professor of Materials Science · CECS &amp; CMIT, VinUniversity</p>
-        <p class="one">Electrochemistry and batteries: from safer electrolytes to polymer composites that keep devices cool.</p>
-        <div class="tagline"><span>Batteries</span><span>Electrolytes</span><span>Polymer Composites</span><span>Thermal management</span><span>EMI shielding</span><span style="border-color:var(--e1);color:var(--accent)">High-entropy materials · new</span></div>
-        <div class="links-row">
-          <a class="btn" href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
-          <a class="btn ghost" href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener">ORCID</a>
-          <a class="btn ghost" href="https://vinuni.edu.vn/people/vu-minh-canh/" target="_blank" rel="noopener">VinUni profile</a>
-        </div>
-      </div>
-    </div>
-
-    <h2 class="section-title" id="professor-journey">Academic journey</h2>
-    <p class="section-sub">Scroll or hover over each stop to follow the path across four countries.</p>
-    <div class="journey">
-      <div class="map-stick">
-        <div class="map-frame">
-          <svg id="journey-map" viewBox="0 0 1000 560" role="img" aria-label="Map showing Vietnam, South Korea, the United States and Australia with the professor's study and work locations"></svg>
-          <div class="callout" id="callout" aria-live="polite"></div>
-        </div>
-      </div>
-      <ol class="stops" id="stops"></ol>
-    </div>
-
-    <h2 class="section-title" id="professor-impact">Research impact</h2>
-    <p class="section-sub">Hover over the numbers.</p>
-    <div data-impact></div>
-
-    <h2 class="section-title" id="professor-awards">Awards and honors</h2>
-    <p class="section-sub">Hover over a medal for details.</p>
-    <div class="awards" id="awards"></div>
-
-    <h2 class="section-title" id="professor-teaching">Teaching</h2>
-    <div class="teach" style="margin-top:20px">
-      <span>Polymer Science</span><span>Advanced Functional Materials</span><span>High-Entropy Materials</span><span>Nanomaterials</span><span>Electrochemical Energy Storage</span><span>Battery Materials &amp; Interfaces</span><span>Composite Materials</span><span>Flexible Electronics</span><span>Additive Manufacturing</span>
-    </div>
+<section data-page="publications" id="publications" class="page sel-sec">
+  <div class="sec-title wrap"><h2>Selected Publications</h2><p>Twelve highlights. Click a card to read the paper.</p></div>
+  <div class="wrap sel-wrap">
+    <div class="sel-grid" id="selected"></div>
+    <aside class="news-side" id="news" aria-label="News"><h2>News</h2><ul id="news-side"></ul></aside>
   </div>
+  <div class="wrap" style="text-align:center;margin-top:28px"><a class="btn ghost" href="#allpubs">See all publications</a></div>
 </section>
 
-<!-- RESEARCH -->
-<section data-page="research" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Research</div><h1>Research</h1><p>How composition and interfaces set the properties of functional materials, and how to design them on purpose.</p></div></div>
+<section data-page="research" id="research" class="page">
+  <div class="sec-title wrap"><h2>Research</h2><p>How composition and interfaces set the properties of functional materials, and how to design them on purpose.</p></div>
   <div class="wrap">
     <div class="donut-wrap" id="research-map">
       <div class="donut" id="donut"></div>
@@ -591,9 +568,55 @@ nav a{white-space:nowrap}
   </div>
 </section>
 
-<!-- MEMBERS -->
-<section data-page="members" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Members</div><h1>Members</h1><p>The people behind the lab.</p></div></div>
+<section data-page="professor" id="professor" class="page">
+  <div class="sec-title wrap"><h2>Professor</h2><p>Principal Investigator</p></div>
+  <div class="wrap">
+    <div class="subnav"><a href="#professor/journey">Journey</a><a href="#professor/impact">Impact</a><a href="#professor/awards">Awards</a><a href="#professor/teaching">Teaching</a></div>
+
+    <div class="pi-intro" id="professor-bio">
+      <div class="portrait" data-photo>MCV</div>
+      <div>
+        <h2 style="margin-bottom:.2em">Asst. Prof. Vu Minh Canh, PhD</h2>
+        <p class="muted" style="margin-bottom:14px">Assistant Professor of Materials Science · CECS &amp; CMIT, VinUniversity</p>
+        <p class="one">Electrochemistry and batteries: from safer electrolytes to polymer composites that keep devices cool.</p>
+        <div class="tagline"><span>Batteries</span><span>Electrolytes</span><span>Polymer Composites</span><span>Thermal management</span><span>EMI shielding</span><span style="border-color:var(--e1);color:var(--accent)">High-entropy materials · new</span></div>
+        <div class="links-row">
+          <a class="btn" href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a class="btn ghost" href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener">ORCID</a>
+          <a class="btn ghost" href="https://vinuni.edu.vn/people/vu-minh-canh/" target="_blank" rel="noopener">VinUni profile</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="professor-journey">Academic journey</h2>
+    <p class="section-sub">Scroll or hover over each stop to follow the path across four countries.</p>
+    <div class="journey">
+      <div class="map-stick">
+        <div class="map-frame">
+          <svg id="journey-map" viewBox="0 0 1000 560" role="img" aria-label="Map showing Vietnam, South Korea, the United States and Australia with the professor's study and work locations"></svg>
+          <div class="callout" id="callout" aria-live="polite"></div>
+        </div>
+      </div>
+      <ol class="stops" id="stops"></ol>
+    </div>
+
+    <h2 class="section-title" id="professor-impact">Research impact</h2>
+    <p class="section-sub">Hover over the numbers.</p>
+    <div data-impact></div>
+
+    <h2 class="section-title" id="professor-awards">Awards and honors</h2>
+    <p class="section-sub">Hover over a medal for details.</p>
+    <div class="awards" id="awards"></div>
+
+    <h2 class="section-title" id="professor-teaching">Teaching</h2>
+    <div class="teach" style="margin-top:20px">
+      <span>Polymer Science</span><span>Advanced Functional Materials</span><span>High-Entropy Materials</span><span>Nanomaterials</span><span>Electrochemical Energy Storage</span><span>Battery Materials &amp; Interfaces</span><span>Composite Materials</span><span>Flexible Electronics</span><span>Additive Manufacturing</span>
+    </div>
+  </div>
+</section>
+
+<section data-page="members" id="members" class="page">
+  <div class="sec-title wrap"><h2>Members</h2><p>The people behind the lab.</p></div>
   <div class="wrap">
     <div class="subnav"><a href="#members/pi">Professor</a><a href="#members/postdoc">Postdocs</a><a href="#members/ra">Research assistants</a><a href="#members/students">Students</a><a href="#members/alumni">Alumni</a></div>
     <div id="members-root"></div>
@@ -603,53 +626,39 @@ nav a{white-space:nowrap}
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section data-page="publications" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Publications</div><h1>Publications</h1><p>Selected journal articles. Full list on <a href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener" style="color:var(--band-ink)">Google Scholar</a>. Underlined: lab PI.</p></div></div>
+<section data-page="allpubs" id="allpubs" class="page">
+  <div class="sec-title wrap"><h2>All Publications</h2><p>Newest first. Full record on <a href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p></div>
   <div class="wrap">
-    <div class="subnav"><a href="#publications/journals">Journal articles</a><a href="#publications/patents">Patents</a><a href="#publications/chapters">Book chapters</a><a href="#publications/covers">Cover gallery</a></div>
-    <h2 id="publications-journals">Journal articles</h2>
+    <h3 id="allpubs-journals" class="sub-h">Journal articles</h3>
     <div class="pub-tools" role="group" aria-label="Filter publications" id="pub-filters">
       <input class="search" id="pub-search" type="search" placeholder="Search title, author, journal" aria-label="Search publications">
     </div>
     <div id="pub-list"></div>
+    <button class="btn ghost more-btn" id="pub-more" type="button">Show all</button>
 
-    <h2 id="publications-patents" style="margin-top:56px">Patents</h2>
-    <div class="placeholder-box">9 patents. Add each as: inventors, title, country and patent number, year.</div>
-    <h2 id="publications-chapters" style="margin-top:44px">Book chapters</h2>
-    <div class="placeholder-box">3 book chapters. Add each as: authors, chapter title, book title, publisher, year.</div>
-    <h2 id="publications-covers" style="margin-top:44px">Cover gallery</h2>
-    <div class="gallery">
-      <div class="album"><div class="ph">Journal cover image</div><b>[Journal, volume, year]</b></div>
-      <div class="album"><div class="ph">Journal cover image</div><b>[Journal, volume, year]</b></div>
-    </div>
+    <h3 id="allpubs-patents" class="sub-h" style="margin-top:56px">Patents</h3>
+    <ol class="pubs" id="patent-list"></ol>
   </div>
 </section>
 
-<!-- BOARD -->
-<section data-page="board" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Board</div><h1>Board</h1><p>News, photos and seminars from the lab.</p></div></div>
+<section data-page="gallery" id="gallery" class="page">
+  <div class="sec-title wrap"><h2>Gallery</h2><p>Life in the lab.</p></div>
   <div class="wrap">
-    <div class="subnav"><a href="#board/news">News</a><a href="#board/gallery">Gallery</a><a href="#board/seminar">Seminar</a></div>
-    <h2 id="board-news">News</h2>
-    <div class="tbl-wrap"><table class="board"><thead><tr><th>No.</th><th>Title</th><th>Date</th></tr></thead><tbody id="news-table"></tbody></table></div>
-
-    <h2 id="board-gallery" style="margin-top:56px">Gallery</h2>
+    
     <div class="gallery">
       <div class="album"><div class="ph">Add group photo</div><b>Lab opening at VinUniversity</b><time>[2026.xx.xx]</time></div>
       <div class="album"><div class="ph">Add photo</div><b>[Conference / award ceremony]</b><time>[yyyy.mm.dd]</time></div>
       <div class="album"><div class="ph">Add photo</div><b>[Lab dinner / outing]</b><time>[yyyy.mm.dd]</time></div>
     </div>
 
-    <h2 id="board-seminar" style="margin-top:56px">Seminar</h2>
+    <h2 id="gallery-seminar" style="margin-top:56px">Seminar</h2>
     <div class="tbl-wrap"><table class="board"><thead><tr><th>No.</th><th>Speaker and topic</th><th>Date</th></tr></thead>
       <tbody><tr><td>1</td><td>[Speaker, affiliation] — [Seminar title]</td><td>[yyyy.mm.dd]</td></tr></tbody></table></div>
   </div>
 </section>
 
-<!-- JOIN -->
-<section data-page="join" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Join us</div><h1>Join us</h1><p>We welcome materials scientists, chemists, physicists and engineers, experimental and computational.</p></div></div>
+<section data-page="join" id="join" class="page">
+  <div class="sec-title wrap"><h2>Join us</h2><p>We welcome materials scientists, chemists, physicists and engineers, experimental and computational.</p></div>
   <div class="wrap">
     <div class="positions">
       <div class="card" style="--c:var(--e1)"><h3>Postdoctoral researchers</h3><ul><li>PhD in materials science, chemistry, physics or chemical engineering</li><li>Experience in batteries, composites or high-entropy materials</li></ul></div>
@@ -666,9 +675,8 @@ nav a{white-space:nowrap}
   </div>
 </section>
 
-<!-- CONTACT -->
-<section data-page="contact" class="page">
-  <div class="page-head"><div class="wrap"><div class="crumb"><a href="#home">Home</a> / Contact</div><h1>Contact</h1><p>Visit or write to us.</p></div></div>
+<section data-page="contact" id="contact" class="page">
+  <div class="sec-title wrap"><h2>Contact</h2><p>Visit or write to us.</p></div>
   <div class="wrap contact-grid">
     <div>
       <dl>
@@ -711,17 +719,50 @@ nav a{white-space:nowrap}
     {d:"2025",t:"“Electrolytomics” published in Chemistry of Materials."},
     {d:"2024",t:"Best Poster Award at the 11th International Workshop on Advanced Materials Science and Nanotech."}
   ];
+  /* Full publication list, newest first. tag: Batteries | Thermal | EMI | Other.
+     first:1 = Prof. Vu first author; corr:1 = corresponding author; sel:N = position in Selected Publications (1-12);
+     ga = graphical abstract file in the images/ folder of the website (falls back to a drawn illustration). */
   var pubs = [
-    {y:2025,tag:"Batteries",title:"Electrolytomics: A unified big data approach for electrolyte design and discovery",a:"R. Kumar, <mark>M.C. Vu</mark>, P. Ma, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 2720–2734"},
-    {y:2025,tag:"Batteries",title:"Molecular structure optimization of fluorinated ether electrolyte for all-temperature fast-charging lithium-ion battery",a:"P. Ma, C. Xue, K.H. Wang, P. Mirmira, O. Rivera, <mark>M.C. Vu</mark>, C.V. Amanchukwu",j:"ACS Energy Letters",v:"9 (2025) 6144–6152"},
-    {y:2024,tag:"Batteries",title:"Phase morphology dependence of ionic conductivity and oxidative stability in fluorinated ether solid-state electrolytes",a:"E.S. Doyle, P. Mirmira, P. Ma, <mark>M.C. Vu</mark>, T. Hixson-Wells, R. Kumar, C.V. Amanchukwu",j:"Chemistry of Materials",v:"36 (2024) 5063–5076"},
-    {y:2023,tag:"Batteries",first:1,title:"Low melting alkali-based molten salt electrolytes for solvent-free lithium-metal batteries",a:"<mark>M.C. Vu</mark>, P. Mirmira, R.J. Gomes, P. Ma, E.S. Doyle, H.S. Srinivasan, C.V. Amanchukwu",j:"Matter",v:"6 (2023) 4357–4375"},
-    {y:2022,tag:"Thermal",first:1,title:"Nacre-inspired nanocomposite papers of graphene fluoride integrated 3D aramid nanofibers towards heat-dissipating applications",a:"<mark>M.C. Vu</mark>, D. Mani, T.H. Jeong, J.B. Kim, C.S. Lim, H. Kang, M.A. Islam, O.C. Lee, P.J. Park, S.R. Kim",j:"Chemical Engineering Journal",v:"429 (2022) 132182"},
-    {y:2021,tag:"Thermal",first:1,title:"Scalable ultrarobust thermoconductive nonflammable bioinspired papers of graphene nanoplatelet crosslinked aramid nanofibers for thermal management and electromagnetic shielding",a:"<mark>M.C. Vu</mark>, P.J. Park, S.R. Bae, S.Y. Kim, Y.M. Kang, W.K. Choi, M.A. Islam, J.C. Won, M. Park, S.R. Kim",j:"Journal of Materials Chemistry A",v:"9 (2021) 8527–8540"},
-    {y:2021,tag:"EMI",first:1,title:"Hybrid shell of MXene and reduced graphene oxide assembled on PMMA bead core towards tunable thermoconductive and EMI shielding nanocomposites",a:"<mark>M.C. Vu</mark>, D. Mani, J.B. Kim, T.H. Jeong, S. Park, G. Murali, I. In, J.C. Won, D. Losic, C.S. Lim, S.R. Kim",j:"Composites Part A",v:"149 (2021) 106574"},
-    {y:2020,tag:"Thermal",first:1,title:"High thermal conductivity enhancement of polymer composites with vertically aligned silicon carbide sheet scaffolds",a:"<mark>M.C. Vu</mark>, W.K. Choi, S.G. Lee, P.J. Park, D.H. Kim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 23388–23398"},
-    {y:2020,tag:"Thermal",first:1,title:"Highly flexible graphene derivative hybrid film: an outstanding nonflammable thermally conductive yet electrically insulating material for efficient thermal management",a:"<mark>M.C. Vu</mark>, I.H. Kim, W.K. Choi, C.S. Lim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 26413–26423"},
-    {y:2020,tag:"Thermal",first:1,title:"Ultrathin thermally conductive yet electrically insulating exfoliated graphene fluoride film for high performance heat dissipation",a:"<mark>M.C. Vu</mark>, N.A. Thi Thieu, J.H. Lim, W.K. Choi, J.C. Won, M.A. Islam, S.R. Kim",j:"Carbon",v:"157 (2020) 741–749"}
+    {y:2025,tag:"Batteries",pre:1,first:1,title:"A transition-metal- and solvent-free dual-graphite battery for long duration storage",a:"<mark>M.C. Vu</mark>, H.S. Srinivasan, P. Mirmira, E.S. Doyle, C.V. Amanchukwu",j:"ChemRxiv (under revision)",v:"2025",url:"https://doi.org/10.26434/chemrxiv-2025-lhxgk"},
+    {y:2025,tag:"Batteries",sel:3,short:"Chem. Mater. 2025",motif:"data",title:"Electrolytomics: A unified big data approach for electrolyte design and discovery",a:"R. Kumar, <mark>M.C. Vu</mark>, P. Ma, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 2720–2734",url:"https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c03196"},
+    {y:2025,tag:"Batteries",sel:4,short:"Chem. Mater. 2025",motif:"sulfide",title:"In situ inorganic and polymer synthesis for conformal hybrid sulfide-type solid state electrolytes",a:"P. Mirmira, E.S. Doyle, P. Ma, A. Garcia, Z. Umlauf, <mark>M.C. Vu</mark>, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 1069–1082",url:"https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c02835"},
+    {y:2024,tag:"Batteries",sel:2,short:"ACS Energy Lett. 2024",motif:"ether",title:"Molecular structure optimization of fluorinated ether electrolyte for all-temperature fast-charging lithium-ion battery",a:"P. Ma, C. Xue, K.H. Wang, P. Mirmira, <mark>M.C. Vu</mark>, O. Rivera, C.V. Amanchukwu",j:"ACS Energy Letters",v:"9 (2024) 6144–6152",url:"https://pubs.acs.org/doi/abs/10.1021/acsenergylett.4c01999"},
+    {y:2024,tag:"Batteries",sel:5,short:"Chem. Mater. 2024",motif:"phase",title:"Phase morphology dependence of ionic conductivity and oxidative stability in fluorinated ether solid-state electrolytes",a:"E.S. Doyle, P. Mirmira, P. Ma, <mark>M.C. Vu</mark>, T. Hixson-Wells, R. Kumar, C.V. Amanchukwu",j:"Chemistry of Materials",v:"36 (2024) 5063–5076",url:"https://pubs.acs.org/doi/10.1021/acs.chemmater.4c00199"},
+    {y:2024,tag:"Batteries",sel:6,short:"J. Mater. Chem. A 2024",motif:"borate",title:"Fluorination promotes lithium salt dissolution in borate esters for lithium metal batteries",a:"P. Ma, R. Kumar, <mark>M.C. Vu</mark>, K.H. Wang, P. Mirmira, C.V. Amanchukwu",j:"Journal of Materials Chemistry A",v:"12 (2024) 2479–2490",url:"https://pubs.rsc.org/en/content/articlelanding/2024/ta/d3ta06228g"},
+    {y:2024,tag:"Batteries",title:"Probing the influence of steric hindrance in nonfluorinated ether electrolytes for lithium metal batteries",a:"P. Ma, U. Le, K.H. Wang, <mark>M.C. Vu</mark>, P. Mirmira, C.V. Amanchukwu",j:"Journal of The Electrochemical Society",v:"171 (2024) 120536",url:"https://iopscience.iop.org/article/10.1149/1945-7111/ad9cca/meta"},
+    {y:2024,tag:"Batteries",title:"Impact of processing methodology on the performance of hybrid sulfide-polymer solid state electrolytes for lithium metal batteries",a:"P. Mirmira, C. Fuschi, Z. Umlauf, P. Ma, E.S. Doyle, <mark>M.C. Vu</mark>, C.V. Amanchukwu",j:"Journal of The Electrochemical Society",v:"171 (2024) 030508",url:"https://iopscience.iop.org/article/10.1149/1945-7111/ad2d3e/meta"},
+    {y:2023,tag:"Batteries",first:1,sel:1,short:"Matter 2023",motif:"salt",title:"Low melting alkali-based molten salt electrolytes for solvent-free lithium-metal batteries",a:"<mark>M.C. Vu</mark>, P. Mirmira, R.J. Gomes, P. Ma, E.S. Doyle, H.S. Srinivasan, C.V. Amanchukwu",j:"Matter",v:"6 (2023) 4357–4375",url:"https://www.cell.com/matter/fulltext/S2590-2385(23)00518-0"},
+    {y:2022,tag:"Thermal",first:1,sel:8,short:"Chem. Eng. J. 2022",motif:"nacre",title:"Nacre-inspired nanocomposite papers of graphene fluoride integrated 3D aramid nanofibers towards heat-dissipating applications",a:"<mark>M.C. Vu</mark>, D. Mani, T.H. Jeong, J.B. Kim, C.S. Lim, H. Kang, M.A. Islam, O.C. Lee, P.J. Park, S.R. Kim",j:"Chemical Engineering Journal",v:"429 (2022) 132182",url:"https://www.sciencedirect.com/science/article/pii/S138589472103761X"},
+    {y:2021,tag:"EMI",first:1,sel:7,short:"J. Mater. Chem. A 2021",motif:"paper",title:"Scalable ultrarobust thermoconductive nonflammable bioinspired papers of graphene nanoplatelet crosslinked aramid nanofibers for thermal management and electromagnetic shielding",a:"<mark>M.C. Vu</mark>, P.J. Park, S.R. Bae, S.Y. Kim, Y.M. Kang, W.K. Choi, M.A. Islam, J.C. Won, M. Park, S.R. Kim",j:"Journal of Materials Chemistry A",v:"9 (2021) 8527–8540",url:"https://pubs.rsc.org/en/content/articlehtml/2021/ta/d0ta12306d"},
+    {y:2021,tag:"EMI",first:1,sel:12,short:"Composites A 2021",motif:"shell",title:"Hybrid shell of MXene and reduced graphene oxide assembled on PMMA bead core towards tunable thermoconductive and EMI shielding nanocomposites",a:"<mark>M.C. Vu</mark>, D. Mani, J.B. Kim, T.H. Jeong, S. Park, G. Murali, I. In, J.C. Won, D. Losic, C.S. Lim, S.R. Kim",j:"Composites Part A",v:"149 (2021) 106574",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21002955"},
+    {y:2021,tag:"Thermal",title:"3D structured graphene fluoride-based epoxy composites with high thermal conductivity and electrical insulation",a:"D. Mani, <mark>M.C. Vu</mark>, T.H. Jeong, J.B. Kim, C.S. Lim, J.H. Lim, K.M. Kim, S.R. Kim",j:"Composites Part A",v:"149 (2021) 106585",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21003055"},
+    {y:2021,tag:"EMI",corr:1,title:"Silver nanowires decorated recycled cigarette filters based epoxy composites with high through-plane thermal conductivity and efficient electromagnetic interference shielding",a:"T.T.T. Vi, D.V.N. Vo, S.T. Nguyen, <mark>M.C. Vu</mark>*",j:"Composites Part A",v:"149 (2021) 106485",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21002074"},
+    {y:2021,tag:"EMI",corr:1,title:"In situ sintered silver decorated 3D structure of cellulose scaffold for highly thermoconductive electromagnetic interference shielding epoxy nanocomposites",a:"T.T.T. Vi, D.V.N. Vo, S.T. Nguyen, S.D.N. Luu, M. Mofijur, <mark>M.C. Vu</mark>*",j:"Journal of Applied Polymer Science",v:"138 (2021) 51193",url:"https://onlinelibrary.wiley.com/doi/full/10.1002/app.51193"},
+    {y:2021,tag:"Thermal",first:1,title:"3D printing of copper particles and poly(methyl methacrylate) beads containing poly(lactic acid) composites for enhancing thermo-mechanical properties",a:"<mark>M.C. Vu</mark>, T.H. Jeong, J.B. Kim, D.H. Kim, W.K. Choi, M.A. Islam, S.R. Kim",j:"Journal of Applied Polymer Science",v:"138 (2021) 49776",url:"https://onlinelibrary.wiley.com/doi/abs/10.1002/app.49776"},
+    {y:2020,tag:"Thermal",first:1,sel:9,short:"ACS AMI 2020",motif:"aligned",title:"High thermal conductivity enhancement of polymer composites with vertically aligned silicon carbide sheet scaffolds",a:"<mark>M.C. Vu</mark>, W.K. Choi, S.G. Lee, P.J. Park, D.H. Kim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 23388–23398",url:"https://pubs.acs.org/doi/10.1021/acsami.0c02421"},
+    {y:2020,tag:"Thermal",first:1,sel:10,short:"ACS AMI 2020",motif:"film",title:"Highly flexible graphene derivative hybrid film: an outstanding nonflammable thermally conductive yet electrically insulating material for efficient thermal management",a:"<mark>M.C. Vu</mark>, I.H. Kim, W.K. Choi, C.S. Lim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 26413–26423",url:"https://pubs.acs.org/doi/abs/10.1021/acsami.0c02427"},
+    {y:2020,tag:"Thermal",first:1,sel:11,short:"Carbon 2020",motif:"sheets",title:"Ultrathin thermally conductive yet electrically insulating exfoliated graphene fluoride film for high performance heat dissipation",a:"<mark>M.C. Vu</mark>, N.A.T. Thieu, J.H. Lim, W.K. Choi, J.C. Won, M.A. Islam, S.R. Kim",j:"Carbon",v:"157 (2020) 741–749",url:"https://www.sciencedirect.com/science/article/abs/pii/S0008622319310978"},
+    {y:2020,tag:"Thermal",first:1,title:"Ultralight covalently interconnected silicon carbide aerofoam for high performance thermally conductive epoxy composites",a:"<mark>M.C. Vu</mark>, N.A.T. Thieu, W.K. Choi, M.A. Islam, S.R. Kim",j:"Composites Part A",v:"138 (2020) 106028",url:"https://www.sciencedirect.com/science/article/pii/S1359835X20302670"},
+    {y:2020,tag:"Thermal",title:"Effect of aspect ratio of vertically aligned copper nanowires in the presence of cellulose nanofibers on the thermal conductivity of epoxy composites",a:"N.A.T. Thieu, <mark>M.C. Vu</mark>, D.H. Kim, W.K. Choi, S.R. Kim",j:"Polymers for Advanced Technologies",v:"31 (2020) 2351–2359",url:"https://onlinelibrary.wiley.com/doi/abs/10.1002/pat.4954"},
+    {y:2019,tag:"Thermal",first:1,title:"3D interconnected structure of PMMA microbeads coated with copper nanoparticles for highly thermal conductive epoxy composites",a:"<mark>M.C. Vu</mark>, Q.V. Bach, D.D. Nguyen, T.S. Tran, M. Goodarzi",j:"Composites Part B",v:"175 (2019) 107105",url:"https://www.sciencedirect.com/science/article/abs/pii/S1359836819316415"},
+    {y:2019,tag:"Thermal",title:"Copper flake-coated cellulose scaffold to construct segregated network for enhancing thermal conductivity of epoxy composites",a:"V.C. Doan, <mark>M.C. Vu</mark>, M.A. Islam, S.R. Kim",j:"Composites Part B",v:"165 (2019) 772–778",url:"https://www.sciencedirect.com/science/article/abs/pii/S1359836818345608"},
+    {y:2019,tag:"Thermal",title:"Enhancement of thermal conductivity of poly(methyl methacrylate) composites at low loading of copper nanowires",a:"N.A.T. Thieu, <mark>M.C. Vu</mark>, E.S. Lee, V.C. Doan, S.R. Kim",j:"Macromolecular Research",v:"27 (2019) 1117–1123",url:"https://link.springer.com/article/10.1007/s13233-019-7155-8"},
+    {y:2019,tag:"Thermal",title:"Poly(methyl methacrylate)-functionalized reduced graphene oxide-based core–shell structured beads for thermally conductive epoxy composites",a:"V.C. Doan, <mark>M.C. Vu</mark>, M.A. Islam, S.R. Kim",j:"Journal of Applied Polymer Science",v:"136 (2019) 47377",url:"https://onlinelibrary.wiley.com/doi/abs/10.1002/app.47377"},
+    {y:2019,tag:"Thermal",first:1,title:"Thermally conductive adhesives from covalent-bonding of reduced graphene oxide to acrylic copolymer",a:"<mark>M.C. Vu</mark>, Y.H. Bae, M.J. Yu, W.K. Choi, M.A. Islam, S.R. Kim",j:"The Journal of Adhesion",v:"95 (2019) 887–910",url:"https://www.tandfonline.com/doi/abs/10.1080/00218464.2018.1451331"},
+    {y:2019,tag:"Other",title:"Fabrication and characterization of the nano- and micro-particles applied dry adhesives",a:"M.J. Yu, <mark>M.C. Vu</mark>, H.J. Park, S.R. Kim",j:"Journal of Adhesion and Interface",v:"20 (2019) 23–28",url:"https://www.koreascience.or.kr/article/JAKO201917541683872.page"},
+    {y:2018,tag:"Thermal",first:1,title:"Self-assembly of carbon nanotubes and boron nitride via electrostatic interaction for high thermal conductivity and electrical resistivity epoxy composites",a:"<mark>M.C. Vu</mark>, T.S. Tran, Y.H. Bae, M.J. Yu, V.C. Doan, J.H. Lee, A.T. Kyu, S.R. Kim",j:"Macromolecular Research",v:"26 (2018) 521–528",url:"https://link.springer.com/article/10.1007/s13233-018-6076-2"},
+    {y:2018,tag:"Thermal",first:1,title:"Core-shell structured carbon nanotube-PMMA beads as thermoconductive filler in epoxy composites",a:"<mark>M.C. Vu</mark>, Y.H. Bae, M.J. Yu, M.A. Islam, S.R. Kim",j:"Composites Part A",v:"109 (2018) 55–62",url:"https://www.sciencedirect.com/science/article/pii/S1359835X18300629"},
+    {y:2018,tag:"Thermal",first:1,title:"Synergistic effects of segregated network on PMMA beads and sintering of copper nanoparticles on thermal and electrical properties of epoxy composites",a:"<mark>M.C. Vu</mark>, Y.H. Bae, M.J. Yu, M.A. Islam, S.R. Kim",j:"Composites Science and Technology",v:"155 (2018) 144–150",url:"https://www.sciencedirect.com/science/article/abs/pii/S0266353817323631"},
+    {y:2018,tag:"Other",title:"Effects of carbon-based nanofillers on the structure and property of phenolic foam",a:"M.J. Yu, T.S. Kwon, Y.H. Bae, <mark>M.C. Vu</mark>, S.R. Kim",j:"Polymer (Korea)",v:"42 (2018) 133–139",url:"https://doi.org/10.7317/pk.2018.42.1.133"},
+    {y:2016,tag:"Thermal",first:1,title:"Enhanced thermal conductivity of pressure-sensitive adhesive using hybrid fillers of SiC microparticle and SiC nanoparticle grafted graphene oxide",a:"<mark>M.C. Vu</mark>, G.D. Park, Y.H. Bae, S.R. Kim",j:"Polymer (Korea)",v:"40 (2016) 804–812",url:"https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE07021665&amp;language=ko_KR"},
+    {y:2016,tag:"Thermal",first:1,title:"Pressure-sensitive adhesive composites with a hydrophobic form of graphene oxide for enhanced thermal conductivity",a:"<mark>M.C. Vu</mark>, G.D. Park, Y.H. Bae, M.J. Yu, T.K. An, S.G. Lee, S.R. Kim",j:"Macromolecular Research",v:"24 (2016) 1070–1076",url:"https://link.springer.com/article/10.1007/s13233-016-4151-0"},
+    {y:2016,tag:"Thermal",title:"Thermal conductivity improvement by Cu surface treatments and incorporation of PMMA beads on the Cu/epoxy composites",a:"Y.H. Bae, G.D. Park, <mark>M.C. Vu</mark>, O.H. Jung, S.R. Kim",j:"Polymer (Korea)",v:"40 (2016) 148–153",url:"http://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE06600047"}
+  ];
+  var patents = [
+    {y:2021,t:"Hybrid thermal management film and method of fabrication for the same",a:"M.C. Vu, T.H. Jeong, J.B. Kim, D.H. Kim, W.K. Choi, M.A. Islam, S.R. Kim",n:"US patent application (filed)"},
+    {y:2020,t:"Surface modified carbon flakes and the carbon brush motor using thereof",a:"M.C. Vu, Y.M. Kang, S.R. Kim",n:"Korean Patent No. 10-2098193"},
+    {y:2020,t:"Manufacturing method of SiC sheet and thermally conductive composites using thereof",a:"M.C. Vu, S.R. Kim",n:"Korean Patent No. 10-2098090"},
+    {y:2020,t:"Multi-functional bioinspired paper for thermal management and electromagnetic interference shielding, method of fabrication for the same",a:"M.C. Vu, S.R. Kim",n:"Korean Patent Application No. 10-2020-0124849"}
   ];
   var members = [
     {id:"pi",title:"Professor",list:[{n:"Vu Minh Canh",r:"Assistant Professor",f:"Batteries, electrolytes, polymer composites",c:"var(--e4)",i:"MCV",photo:1}]},
@@ -732,12 +773,6 @@ nav a{white-space:nowrap}
     {id:"students",title:"Students",list:[],open:true}
   ];
 
-  /* ---------- Home ---------- */
-  function newsLi(n){return '<li><time>'+n.d+'</time><span>'+n.t+'</span></li>';}
-  document.getElementById('home-news').innerHTML = news.slice(0,4).map(newsLi).join('');
-  document.getElementById('home-pubs').innerHTML = pubs.slice(0,3).map(function(p){return '<li><b>'+p.title+'</b><i>'+p.j+'</i> '+p.v+'</li>';}).join('');
-  document.getElementById('news-table').innerHTML = news.map(function(n,i){return '<tr><td>'+(news.length-i)+'</td><td>'+n.t+'</td><td>'+n.d+'</td></tr>';}).join('');
-
   /* ---------- Members ---------- */
   document.getElementById('members-root').innerHTML = members.map(function(g){
     var cards = g.list.map(function(m){return '<div class="person"><div class="avatar" style="background:'+m.c+'">'+(m.photo?'<img src="'+PHOTO+'" alt="">':(m.ph?'<img src="'+MPH[m.ph]+'" alt="Photo of '+m.n+'">':m.i))+'</div><div><b>'+m.n+'</b><span class="r">'+m.r+'</span>'+((m.f||m.e)?'<dl>'+(m.f?'<dt>Field: </dt><dd>'+m.f+'</dd>':'')+(m.e?'<dt>Email: </dt><dd><a href="mailto:'+m.e+'">'+m.e+'</a></dd>':'')+'</dl>':'')+'</div></div>';}).join('');
@@ -745,26 +780,71 @@ nav a{white-space:nowrap}
     return '<h3 class="group-title" id="members-'+g.id+'">'+g.title+' <small>'+(g.list.length||'')+'</small></h3><div class="people">'+cards+'</div>';
   }).join('');
 
-  /* ---------- Publications ---------- */
-  var labels={All:"All",Batteries:"Batteries & electrolytes",Thermal:"Thermal management",EMI:"EMI shielding"}, cur="All", q="";
-  var tools=document.getElementById('pub-filters'), search=document.getElementById('pub-search');
+  /* ---------- Selected publications ---------- */
+  var TINT={Batteries:["var(--e2)","var(--e4)"],Thermal:["var(--e3)","var(--e6)"],EMI:["var(--e5)","var(--e3)"],Other:["var(--e7)","var(--e4)"]};
+  function motif(m,c1,c2){
+    var s='',i,j;
+    function C(x,y,r,f,o){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+f+'"'+(o?' opacity="'+o+'"':'')+'/>';}
+    switch(m){
+      case 'salt': for(i=0;i<6;i++)for(j=0;j<4;j++){var big=(i+j)%2;s+=C(60+i*56,50+j*48,big?17:9,big?c1:c2);}
+        s+='<rect x="30" y="250" width="340" height="18" rx="4" fill="'+c2+'" opacity=".7"/>';break;
+      case 'ether': var px=40,py=150;for(i=0;i<8;i++){var nx=px+44,ny=i%2?150:110;s+='<line x1="'+px+'" y1="'+py+'" x2="'+nx+'" y2="'+ny+'" stroke="'+c2+'" stroke-width="5"/>';
+        if(i%2)s+='<line x1="'+nx+'" y1="'+ny+'" x2="'+nx+'" y2="'+(ny+46)+'" stroke="'+c1+'" stroke-width="4"/>'+C(nx,ny+52,11,c1);s+=C(nx,ny,9,c2);px=nx;py=ny;}
+        s+='<path d="M40 230h320" stroke="'+c1+'" stroke-width="3" stroke-dasharray="6 8"/>';break;
+      case 'data': var pts=[];for(i=0;i<16;i++)pts.push([50+((i*97)%300),40+((i*61)%210)]);
+        pts.forEach(function(p,k){var q=pts[(k*5+3)%16];s+='<line x1="'+p[0]+'" y1="'+p[1]+'" x2="'+q[0]+'" y2="'+q[1]+'" stroke="'+c2+'" stroke-width="2" opacity=".5"/>';});
+        pts.forEach(function(p,k){s+=C(p[0],p[1],k%3?7:12,k%3?c2:c1);});break;
+      case 'sulfide': s+='<path d="M20 200 Q100 160 200 200 T380 200" fill="none" stroke="'+c2+'" stroke-width="6" opacity=".5"/><path d="M20 120 Q100 80 200 120 T380 120" fill="none" stroke="'+c2+'" stroke-width="6" opacity=".5"/>';
+        [[80,150,34],[180,90,26],[260,170,38],[330,90,22],[130,230,20]].forEach(function(p){s+=C(p[0],p[1],p[2],c1)+'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(p[2]+7)+'" fill="none" stroke="'+c2+'" stroke-width="3"/>';});break;
+      case 'phase': [[100,110,60,40],[260,90,70,45],[180,200,90,50],[320,210,50,35]].forEach(function(p,k){s+='<ellipse cx="'+p[0]+'" cy="'+p[1]+'" rx="'+p[2]+'" ry="'+p[3]+'" fill="'+(k%2?c2:c1)+'" opacity=".75"/>';});
+        for(i=0;i<14;i++)s+=C(40+i*24,270-(i%3)*8,4,c2);break;
+      case 'borate': s+=C(200,150,26,c1);[[0,-1],[.87,.5],[-.87,.5]].forEach(function(d){var x=200+d[0]*95,y=150+d[1]*95;s+='<line x1="200" y1="150" x2="'+x+'" y2="'+y+'" stroke="'+c2+'" stroke-width="6"/>'+C(x,y,16,c2)+C(x+d[0]*34,y+d[1]*34-14,8,c1)+C(x+d[0]*34+12,y+d[1]*34+12,8,c1);});
+        s+=C(320,70,14,'var(--e1)');break;
+      case 'nacre': for(j=0;j<6;j++)for(i=0;i<5;i++){var off=j%2?35:0;s+='<rect x="'+(15+off+i*74)+'" y="'+(30+j*42)+'" width="66" height="30" rx="5" fill="'+(j%2?c1:c2)+'" opacity=".85"/>';}break;
+      case 'paper': for(j=0;j<6;j++)s+='<path d="M20 '+(70+j*30)+' Q110 '+(50+j*30)+' 200 '+(70+j*30)+' T380 '+(70+j*30)+'" fill="none" stroke="'+(j%2?c1:c2)+'" stroke-width="9" stroke-linecap="round"/>';
+        s+='<path d="M60 30 q20 -14 40 0 q20 14 40 0 q20 -14 40 0" fill="none" stroke="'+c1+'" stroke-width="4"/>';break;
+      case 'shell': [[110,150,48],[250,110,40],[280,215,34],[160,240,28]].forEach(function(p){s+=C(p[0],p[1],p[2],c2,.35);for(i=0;i<18;i++){var a=i/18*6.283;s+=C(p[0]+Math.cos(a)*p[2],p[1]+Math.sin(a)*p[2],5,c1);}});break;
+      case 'aligned': for(i=0;i<9;i++)s+='<rect x="'+(35+i*38)+'" y="60" width="16" height="190" rx="4" fill="'+c1+'" opacity="'+(.6+(i%3)*.15)+'"/>';
+        for(i=0;i<3;i++)s+='<path d="M'+(110+i*90)+' 50 v-26 m-10 10 l10 -10 l10 10" fill="none" stroke="'+c2+'" stroke-width="4" stroke-linecap="round"/>';break;
+      case 'film': s+='<path d="M30 200 Q200 120 370 200" fill="none" stroke="'+c1+'" stroke-width="22" stroke-linecap="round"/><path d="M30 200 Q200 120 370 200" fill="none" stroke="'+c2+'" stroke-width="6" stroke-linecap="round" opacity=".7"/>';
+        for(i=0;i<5;i++)s+='<path d="M'+(80+i*60)+' '+(140-Math.abs(2-i)*10)+' q-10 -18 0 -36 q10 -18 0 -36" fill="none" stroke="'+c2+'" stroke-width="4" stroke-linecap="round"/>';break;
+      default: for(i=0;i<9;i++){var x=70+(i%3)*120+(Math.floor(i/3)%2)*30,y=70+Math.floor(i/3)*80;s+='<polygon points="'+[0,1,2,3,4,5].map(function(k){var a=k*1.047;return (x+Math.cos(a)*44)+','+(y+Math.sin(a)*44)}).join(' ')+'" fill="'+(i%2?c1:c2)+'" opacity=".7"/>';}
+    }
+    return '<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="'+c1+'" opacity=".1"/>'+s+'</svg>';
+  }
+  var selected=pubs.filter(function(p){return p.sel}).sort(function(a,b){return a.sel-b.sel});
+  document.getElementById('selected').innerHTML=selected.map(function(p){
+    var t=TINT[p.tag],n=(p.sel<10?'0':'')+p.sel;
+    return '<a class="sel" href="'+p.url+'" target="_blank" rel="noopener"><div class="ga">'+motif(p.motif,t[0],t[1])+'<img src="images/ga-'+n+'.jpg" alt="Graphical abstract: '+p.title.replace(/"/g,'')+'" loading="lazy" onerror="this.remove()"></div><div class="cap">'+p.short+'</div><div class="ttl">'+p.title+'</div></a>';
+  }).join('');
+  document.getElementById('news-side').innerHTML=news.map(function(n){return '<li><time>'+n.d+'</time><p>'+n.t+'</p></li>';}).join('');
+
+  /* ---------- All publications ---------- */
+  var labels={All:"All",Batteries:"Batteries & electrolytes",Thermal:"Thermal management",EMI:"EMI shielding",Other:"Other"}, cur="All", q="", showAll=false;
+  var tools=document.getElementById('pub-filters'), search=document.getElementById('pub-search'), more=document.getElementById('pub-more');
   Object.keys(labels).forEach(function(k){
     var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=labels[k];b.setAttribute('aria-pressed',k===cur);
     b.addEventListener('click',function(){cur=k;tools.querySelectorAll('.chip').forEach(function(c){c.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');render();});
     tools.insertBefore(b,search);
   });
   search.addEventListener('input',function(){q=search.value.toLowerCase();render();});
+  more.addEventListener('click',function(){showAll=!showAll;render();});
   function render(){
     var list=pubs.filter(function(p){return (cur==="All"||p.tag===cur)&&(!q||(p.title+p.a+p.j).toLowerCase().indexOf(q)>-1)});
-    if(!list.length){document.getElementById('pub-list').innerHTML='<p class="empty">No publications match. Clear the search or pick another topic.</p>';return;}
-    var years=[];list.forEach(function(p){if(years.indexOf(p.y)<0)years.push(p.y)});
+    var box=document.getElementById('pub-list');
+    if(!list.length){box.innerHTML='<p class="empty">No publications match. Clear the search or pick another topic.</p>';more.hidden=true;return;}
+    var limit=(showAll||q||cur!=="All")?list.length:10, shown=list.slice(0,limit);
+    var years=[];shown.forEach(function(p){if(years.indexOf(p.y)<0)years.push(p.y)});
     var n=list.length;
-    document.getElementById('pub-list').innerHTML=years.map(function(y){
-      return '<div class="year-block"><h3>'+y+'</h3><ol class="pubs">'+list.filter(function(p){return p.y===y}).map(function(p){
-        return '<li><span class="no">['+(n--)+']</span><div><span class="title">'+p.title+(p.first?'<span class="badge">First author</span>':'')+'</span><span class="auth">'+p.a+'</span><br><span class="venue"><em>'+p.j+'</em> '+p.v+'</span></div></li>';}).join('')+'</ol></div>';
+    box.innerHTML=years.map(function(y){
+      return '<div class="year-block"><h3>'+y+'</h3><ol class="pubs">'+shown.filter(function(p){return p.y===y}).map(function(p){
+        return '<li><span class="no">['+(n--)+']</span><div><a class="title" href="'+p.url+'" target="_blank" rel="noopener">'+p.title+'</a><span class="badges">'+(p.first?'<span class="badge">First author</span>':'')+(p.corr?'<span class="badge">Corresponding</span>':'')+(p.pre?'<span class="badge">Preprint</span>':'')+'</span><span class="auth">'+p.a+'</span><span class="venue"><em>'+p.j+'</em> '+p.v+'</span></div></li>';}).join('')+'</ol></div>';
     }).join('');
+    more.hidden=(q||cur!=="All"||list.length<=10);
+    more.textContent=showAll?'Show fewer':'Show all '+list.length+' publications';
   }
   render();
+  document.getElementById('patent-list').innerHTML=patents.map(function(p){return '<li><span class="no">'+p.y+'</span><div><span class="title">'+p.t+'</span><span class="auth">'+p.a+'</span><span class="venue"><em>'+p.n+'</em></span></div></li>';}).join('');
 
   /* ---------- Lattice ---------- */
   var NS="http://www.w3.org/2000/svg", pal=["var(--e1)","var(--e2)","var(--e3)","var(--e4)","var(--e5)"];
@@ -792,22 +872,26 @@ nav a{white-space:nowrap}
   paint(small);paint(side);shuffle();
   document.getElementById('shuffle').addEventListener('click',shuffle);
 
-  /* ---------- Router: #page or #page/section ---------- */
-  var pages=[].slice.call(document.querySelectorAll('section[data-page]'));
+  /* ---------- One-page scrolling: #section or #section/sub ---------- */
+  var secs=[].slice.call(document.querySelectorAll('main > section[id]'));
   var topLinks=[].slice.call(document.querySelectorAll('nav > ul > li > a'));
   var nav=document.getElementById('site-nav'),btn=document.querySelector('.menu-btn');
-  function route(){
-    var parts=(location.hash||'#home').slice(1).split('/'),id=parts[0],sub=parts[1];
-    if(!pages.some(function(p){return p.dataset.page===id}))id='home';
-    pages.forEach(function(p){p.classList.toggle('active',p.dataset.page===id)});
-    topLinks.forEach(function(a){if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  function go(){
+    var parts=location.hash.slice(1).split('/'),id=parts[0],sub=parts[1];
+    var t=(sub&&document.getElementById(id+'-'+sub))||document.getElementById(id);
     nav.classList.remove('open');btn.setAttribute('aria-expanded','false');
     if(document.activeElement&&nav.contains(document.activeElement))document.activeElement.blur();
-    var target=sub&&document.getElementById(id+'-'+sub);
-    if(target)target.scrollIntoView();else window.scrollTo(0,0);
+    if(t)t.scrollIntoView({behavior:reduce0?'auto':'smooth'});
   }
-  window.addEventListener('hashchange',route);route();
+  var reduce0=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.addEventListener('hashchange',go);
+  if(location.hash)setTimeout(go,60);
   btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o);});
+  if('IntersectionObserver' in window){
+    var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id==='allpubs'?'publications':e.target.id;
+      topLinks.forEach(function(a){var h=a.getAttribute('href').slice(1).split('/')[0];if(h===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}});},{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){spy.observe(s)});
+  }
 })();
 </script>
 <script>
