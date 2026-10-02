@@ -472,6 +472,56 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
 .pub-years svg{width:100%;max-width:520px;height:auto;display:block}
 .pub-years .yb-n{font:700 11px var(--sans);fill:var(--ink)}
 .pub-years .yb-y{font:600 11px var(--sans);fill:var(--muted)}
+.cell-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 16px 18px}
+.cell-box svg#cell{display:block;width:100%;height:auto}
+#cell .lbl{font:600 12px var(--sans);fill:var(--band-ink);text-anchor:middle}
+#cell .lbl.sm{font-size:11px;fill:var(--band-muted)}
+#cell .lbl.dir{font-size:11.5px;fill:var(--e2)}
+#cell .term{font:700 20px var(--sans);fill:var(--band-ink);text-anchor:middle}
+#cell .ion-t{font:700 10px var(--sans);fill:#fff;text-anchor:middle;pointer-events:none}
+#cell .ion-t.dark{fill:#13213B}
+#cell .li .halo{fill:var(--e2);opacity:.18}
+#cell .li.mv .halo{opacity:.45}
+#cell .e-{fill:var(--e1);filter:drop-shadow(0 0 3px var(--e1))}
+#cell .cb-t{font:700 13px var(--sans);fill:var(--band-ink)}
+#cell .cb-s{font:500 10.5px var(--sans);fill:var(--band-muted)}
+#cell .show-discharge,#cell[data-mode="discharge"] .show-charge{display:none}
+#cell[data-mode="discharge"] .show-discharge{display:inline}
+.cell-ctrl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;justify-content:space-between;margin-top:8px}
+.mode{display:inline-flex;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px}
+.mode button{background:none;border:0;color:var(--band-muted);font:inherit;font-size:.86rem;font-weight:700;padding:6px 14px;border-radius:999px;cursor:pointer}
+.mode button[aria-pressed="true"]{background:var(--e2);color:#13213B}
+.soc{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--band-muted);flex:1 1 200px;justify-content:flex-end}
+.soc-bar{flex:0 1 140px;height:10px;border-radius:5px;border:1px solid rgba(255,255,255,.3);overflow:hidden}
+.soc-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--e5),var(--e2) 45%,#3FB86B);transition:width .1s linear}
+.soc b{color:var(--band-ink);min-width:3ch;text-align:right}
+.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.app{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:.72rem;line-height:1.2;color:var(--band-muted);padding:10px 4px;border-radius:10px;border:1px solid rgba(255,255,255,.1);transition:color .4s,border-color .4s,box-shadow .4s,transform .3s}
+.app svg{width:40px;height:28px}
+.apps.on .app{color:var(--band-ink);border-color:var(--e2);box-shadow:0 0 16px rgba(240,190,58,.25)}
+.apps.on .app:nth-child(1){animation:pulse 2.4s ease-in-out infinite}
+.apps.on .app:nth-child(2){animation:pulse 2.4s .3s ease-in-out infinite}
+.apps.on .app:nth-child(3){animation:pulse 2.4s .6s ease-in-out infinite}
+.apps.on .app:nth-child(4){animation:pulse 2.4s .9s ease-in-out infinite}
+@keyframes pulse{50%{transform:translateY(-3px)}}
+.app:hover{transform:translateY(-4px)}
+@media (max-width:480px){.apps{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion: reduce){.apps.on .app{animation:none}}
+.sec-title h2.long{font-size:clamp(1.6rem,3.4vw,2.5rem);max-width:22ch;margin-left:auto;margin-right:auto}
+
+.jm{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:8px;font-size:.72rem;color:var(--muted)}
+.jm span{border:1px solid var(--line);border-radius:999px;padding:2px 8px;background:var(--surface);white-space:nowrap}
+.jm b{color:var(--ink)}
+.jm .q{background:#2E8B57;border-color:#2E8B57;color:#fff;font-weight:700}
+.jm .rk{white-space:normal}
+.pubs .jm{justify-content:flex-start;margin:6px 0 2px}
+
+.donut-wrap{align-items:start;grid-template-columns:minmax(300px,1fr) minmax(0,1.1fr)}
+@media (max-width:820px){.donut-wrap{grid-template-columns:1fr}}
+.donut-col .donut{max-width:380px;margin:0 auto}
+.donut-col .pub-years{margin-top:24px}
+.donut-col .pub-years svg{max-width:none}
+.donut-col .donut-note{margin-top:8px}
 </style>
 </head>
 <body>
@@ -495,8 +545,8 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
         <li><a href="#research">Research</a>
           <ul class="sub"><li><a href="#research/map">Research landscape</a></li><li><a href="#research/battery">Batteries &amp; electrolytes</a></li><li><a href="#research/thermal">Polymer composites &amp; thermal</a></li><li><a href="#research/emi">EMI shielding</a></li><li><a href="#research/hem">High-entropy materials (new)</a></li></ul></li>
         <li><a href="#professor">Professor</a>
-          <ul class="sub"><li><a href="#professor/journey">Academic journey</a></li><li><a href="#professor/impact">Research impact</a></li><li><a href="#professor/awards">Awards &amp; honors</a></li><li><a href="#professor/teaching">Teaching</a></li></ul></li>
-        <li><a href="#members">Members</a></li>
+          <ul class="sub"><li><a href="#professor/journey">Academic journey</a></li><li><a href="#professor/impact">Research impact</a></li><li><a href="#professor/awards">Awards &amp; honors</a></li><li></li></ul></li>
+        <li><a href="#members">HE3 Team</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#join">Join us</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -519,12 +569,20 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
           <a class="btn ghost" href="#join">Open positions</a>
         </div>
       </div>
-      <figure class="lattice-box" style="margin:0">
-        <svg id="lattice" viewBox="0 0 420 300" role="img" aria-label="A lattice of atoms colored by five different elements, randomly distributed"></svg>
-        <div class="legend" id="legend"></div>
-        <div class="lattice-foot">
-          <span id="entropy-readout">Configurational entropy</span>
-          <button class="btn ghost" id="shuffle" type="button">Shuffle configuration</button>
+      <figure class="cell-box" style="margin:0">
+        <svg id="cell" viewBox="0 0 520 420" role="img" aria-label="Animated lithium-ion battery: lithium ions move between a graphite anode and a layered-oxide cathode through the electrolyte while electrons flow through the external circuit"></svg>
+        <div class="cell-ctrl">
+          <div class="mode" role="group" aria-label="Battery mode">
+            <button type="button" data-m="charge">⚡ Charge</button>
+            <button type="button" data-m="discharge">🚗 Discharge</button>
+          </div>
+          <div class="soc"><span>State of charge</span><div class="soc-bar"><i id="soc-fill"></i></div><b id="soc-val">0%</b></div>
+        </div>
+        <div class="apps" id="apps">
+          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 22v-6l5-7h20l7 7h4a2 2 0 0 1 2 2v4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M13 9l-3 7h28" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="23" r="4" fill="currentColor"/><circle cx="35" cy="23" r="4" fill="currentColor"/><path d="M24 11l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Electric vehicles</span></div>
+          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="8" y="5" width="18" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="29" y="9" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M26 23h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="17" cy="25" r="1.4" fill="currentColor"/></svg><span>Phones &amp; laptops</span></div>
+          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 15 17 6l11 9v13H6z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><rect x="31" y="12" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M35 12v-3h4v3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M38 15l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grid &amp; home storage</span></div>
+          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="17" y="4" width="14" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="21" y="10" width="6" height="12" rx="2" fill="currentColor"/><path d="M8 16h6M34 16h6M10 10l4 3M38 10l-4 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Wearables &amp; IoT</span></div>
         </div>
       </figure>
     </div>
@@ -549,7 +607,7 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
 </section>
 
 <section data-page="publications" id="publications" class="page sel-sec">
-  <div class="sec-title wrap"><h2>Selected Publications</h2><p>Twelve highlights. Click a card to read the paper.</p></div>
+  <div class="sec-title wrap"><h2>Selected Publications</h2><p>Ten highlights in Q1 journals, with journal H-index and subject ranking. Click a card to read the paper.</p></div>
   <div class="wrap sel-wrap">
     <div class="sel-grid" id="selected"></div>
     <aside class="news-side" id="news" aria-label="News"><h2>News</h2><ul id="news-side"></ul></aside>
@@ -561,13 +619,15 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
   <div class="sec-title wrap"><h2>Research</h2><p>How composition and interfaces set the properties of functional materials, and how to design them on purpose.</p></div>
   <div class="wrap">
     <div class="donut-wrap" id="research-map">
-      <div class="donut" id="donut"></div>
+      <div class="donut-col">
+        <div class="donut" id="donut"></div>
+        <div id="pub-years" class="pub-years"></div>
+        <p class="donut-note">Counts are computed from the articles listed in <a href="#allpubs">All Publications</a> on this site and update automatically when new papers are added.</p>
+      </div>
       <div>
         <h2>Research landscape</h2>
         <p class="muted">Journal articles by research area. Hover a piece for the numbers, click to jump to that research theme.</p>
         <ul class="fields" id="fields"></ul>
-        <div id="pub-years" class="pub-years"></div>
-        <p class="donut-note">Counts are computed from the articles listed in <a href="#allpubs">All Publications</a> on this site and update automatically when new papers are added.</p>
       </div>
     </div>
     <div class="subnav"><a href="#research/battery">Batteries &amp; electrolytes</a><a href="#research/thermal">Polymer composites &amp; thermal</a><a href="#research/emi">EMI shielding</a><a href="#research/hem">High-entropy materials (new)</a><a href="#research/facilities">Facilities &amp; methods</a></div>
@@ -625,7 +685,7 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
 <section data-page="professor" id="professor" class="page">
   <div class="sec-title wrap"><h2>Professor</h2><p>Principal Investigator</p></div>
   <div class="wrap">
-    <div class="subnav"><a href="#professor/journey">Journey</a><a href="#professor/impact">Impact</a><a href="#professor/awards">Awards</a><a href="#professor/teaching">Teaching</a></div>
+    <div class="subnav"><a href="#professor/journey">Journey</a><a href="#professor/impact">Impact</a><a href="#professor/awards">Awards</a></div>
 
     <div class="pi-intro" id="professor-bio">
       <div class="portrait" data-photo>MCV</div>
@@ -661,22 +721,14 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
     <h2 class="section-title" id="professor-awards">Awards and honors</h2>
     <p class="section-sub">Hover over a medal for details.</p>
     <div class="awards" id="awards"></div>
-
-    <h2 class="section-title" id="professor-teaching">Teaching</h2>
-    <div class="teach" style="margin-top:20px">
-      <span>Polymer Science</span><span>Advanced Functional Materials</span><span>High-Entropy Materials</span><span>Nanomaterials</span><span>Electrochemical Energy Storage</span><span>Battery Materials &amp; Interfaces</span><span>Composite Materials</span><span>Flexible Electronics</span><span>Additive Manufacturing</span>
-    </div>
   </div>
 </section>
 
 <section data-page="members" id="members" class="page">
-  <div class="sec-title wrap"><h2>Members</h2><p>The people behind the lab.</p></div>
+  <div class="sec-title wrap"><h2 class="long">High-Entropy Materials for Energy &amp; Electronics (HE3)</h2><p>The HE3 team.</p></div>
   <div class="wrap">
-    <div class="subnav"><a href="#members/pi">Professor</a><a href="#members/postdoc">Postdocs</a><a href="#members/ra">Research assistants</a><a href="#members/students">Students</a><a href="#members/alumni">Alumni</a></div>
+    <div class="subnav"><a href="#members/pi">Professor</a><a href="#members/postdoc">Postdocs</a><a href="#members/ra">Research assistants</a></div>
     <div id="members-root"></div>
-    <h3 class="group-title" id="members-alumni">Alumni</h3>
-    <div class="tbl-wrap"><table class="alumni"><thead><tr><th>Name</th><th>Position in lab</th><th>Period</th><th>Current position</th></tr></thead>
-      <tbody><tr><td>[Name]</td><td>[Research assistant]</td><td>[2026 – 2027]</td><td>[PhD student, University]</td></tr></tbody></table></div>
   </div>
 </section>
 
@@ -756,7 +808,7 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
   <div class="wrap">
     <div class="cols">
       <div><span class="foot-brand"><svg class="brand-mark foot-mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="3.5" y="12" width="52" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="3.4"/> <rect x="56.5" y="24.5" width="5" height="15" rx="2" fill="currentColor"/> <path d="M14.5 19.5 L26 44.5" stroke="var(--e4)" stroke-width="6" stroke-linecap="round"/> <path d="M44.5 19.5 L33 44.5" stroke="var(--e2)" stroke-width="6" stroke-linecap="round"/> <path d="M29.5 17.5 V47" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="2.2 2.2"/> <g class="ions"> <circle cx="23.6" cy="23.5" r="2.6" fill="var(--e1)"/> <circle cx="29.5" cy="23.5" r="2.8" fill="var(--e5)"/> <circle cx="35.4" cy="23.5" r="2.6" fill="var(--e3)"/> <circle cx="29.5" cy="32" r="2.2" fill="var(--e1)"/> </g></svg><b>Vu Lab</b></span><i class="foot-slogan">Safer energy. Smarter materials.</i>Electrochemical Energy &amp; Functional Materials Laboratory, College of Engineering &amp; Computer Science and Center for Materials Innovation and Technology, VinUniversity, Vinhomes Ocean Park, Gia Lam, Hanoi, Vietnam</div>
-      <div><b>Lab</b><ul><li><a href="#research">Research</a></li><li><a href="#members">Members</a></li><li><a href="#publications">Publications</a></li><li><a href="#join">Join us</a></li></ul></div>
+      <div><b>Lab</b><ul><li><a href="#research">Research</a></li><li><a href="#members">HE3 Team</a></li><li><a href="#publications">Publications</a></li><li><a href="#join">Join us</a></li></ul></div>
       <div><b>Links</b><ul><li><a href="https://vinuni.edu.vn" target="_blank" rel="noopener">VinUniversity</a></li><li><a href="https://cecs.vinuni.edu.vn/" target="_blank" rel="noopener">CECS</a></li><li><a href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener">ORCID</a></li></ul></div>
     </div>
     <div class="copy">© 2026 Electrochemical Energy &amp; Functional Materials Laboratory, VinUniversity. All rights reserved.</div>
@@ -799,24 +851,24 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
     {y:2026,tag:"Other",title:"Screen-to-bench design of sulfur-coordinated Cr sites in ReS<sub>2</sub> for selective ambient ammonia electrosynthesis",a:"X. Liu, J. Sun, N.T. Phuong, T.N.B. Thy, X. Ji, J. Liu, H. Jiang, P.T.V. Bac, …, <mark>M.C. Vu</mark>",j:"Chemical Engineering Journal",v:"(2026) 180980",url:"https://scholar.google.com/scholar?q=Screen-to-bench+design+of+sulfur-coordinated+Cr+sites+in+ReS2+for+selective+ambient+ammonia+electrosynthesis"},
     {y:2026,tag:"Batteries",first:1,conf:1,title:"Solvent-free alkali-based low melting molten salt electrolyte for dual-carbon battery",a:"<mark>M.C. Vu</mark>",j:"249th ECS Meeting (conference abstract)",v:"May 24–28, 2026",url:"https://scholar.google.com/scholar?q=Solvent-free+alkali-based+low+melting+molten+salt+electrolyte+for+dual-carbon+battery"},
     {y:2025,tag:"EMI",corr:1,title:"Flexible thermal conductive electromagnetic interference shielding of liquid metal-based silicon polymer composites: strain level effect",a:"V.C. Nguyen, T.L. Chau, C.T. Nguyen, H.A. Le Pham, S. Ghotekar, <mark>M.C. Vu</mark>",j:"Journal of Applied Polymer Science",v:"142 (2025) e57243",url:"https://scholar.google.com/scholar?q=Flexible+thermal+conductive+electromagnetic+interference+shielding+of+liquid+metal-based+silicon+polymer+composites%3A+strain+level+effect"},
-    {y:2025,tag:"Batteries",sel:3,short:"Chem. Mater. 2025",motif:"data",title:"Electrolytomics: A unified big data approach for electrolyte design and discovery",a:"R. Kumar, <mark>M.C. Vu</mark>, P. Ma, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 2720–2734",url:"https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c03196"},
-    {y:2025,tag:"Batteries",sel:4,short:"Chem. Mater. 2025",motif:"sulfide",title:"In situ inorganic and polymer synthesis for conformal hybrid sulfide-type solid state electrolytes",a:"P. Mirmira, E.S. Doyle, P. Ma, A. Garcia, Z. Umlauf, <mark>M.C. Vu</mark>, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 1069–1082",url:"https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c02835"},
-    {y:2024,tag:"Batteries",sel:2,short:"ACS Energy Lett. 2024",motif:"ether",title:"Molecular structure optimization of fluorinated ether electrolyte for all-temperature fast-charging lithium-ion battery",a:"P. Ma, C. Xue, K.H. Wang, P. Mirmira, <mark>M.C. Vu</mark>, O. Rivera, C.V. Amanchukwu",j:"ACS Energy Letters",v:"9 (2024) 6144–6152",url:"https://pubs.acs.org/doi/abs/10.1021/acsenergylett.4c01999"},
-    {y:2024,tag:"Batteries",sel:5,short:"Chem. Mater. 2024",motif:"phase",title:"Phase morphology dependence of ionic conductivity and oxidative stability in fluorinated ether solid-state electrolytes",a:"E.S. Doyle, P. Mirmira, P. Ma, <mark>M.C. Vu</mark>, T. Hixson-Wells, R. Kumar, C.V. Amanchukwu",j:"Chemistry of Materials",v:"36 (2024) 5063–5076",url:"https://pubs.acs.org/doi/10.1021/acs.chemmater.4c00199"},
-    {y:2024,tag:"Batteries",sel:6,short:"J. Mater. Chem. A 2024",motif:"borate",title:"Fluorination promotes lithium salt dissolution in borate esters for lithium metal batteries",a:"P. Ma, R. Kumar, <mark>M.C. Vu</mark>, K.H. Wang, P. Mirmira, C.V. Amanchukwu",j:"Journal of Materials Chemistry A",v:"12 (2024) 2479–2490",url:"https://pubs.rsc.org/en/content/articlelanding/2024/ta/d3ta06228g"},
+    {sel:10,ga:"03",q:"Q1",h:435,rk:"Top 10%",fld:"Chemistry",y:2025,tag:"Batteries",short:"Chem. Mater. 2025",motif:"data",title:"Electrolytomics: A unified big data approach for electrolyte design and discovery",a:"R. Kumar, <mark>M.C. Vu</mark>, P. Ma, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 2720–2734",url:"https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c03196"},
+    {y:2025,tag:"Batteries",short:"Chem. Mater. 2025",motif:"sulfide",title:"In situ inorganic and polymer synthesis for conformal hybrid sulfide-type solid state electrolytes",a:"P. Mirmira, E.S. Doyle, P. Ma, A. Garcia, Z. Umlauf, <mark>M.C. Vu</mark>, C.V. Amanchukwu",j:"Chemistry of Materials",v:"37 (2025) 1069–1082",url:"https://pubs.acs.org/doi/abs/10.1021/acs.chemmater.4c02835"},
+    {sel:8,ga:"02",q:"Q1",h:223,rk:"2/124",fld:"Chemistry",impf:"20.8",y:2024,tag:"Batteries",short:"ACS Energy Lett. 2024",motif:"ether",title:"Molecular structure optimization of fluorinated ether electrolyte for all-temperature fast-charging lithium-ion battery",a:"P. Ma, C. Xue, K.H. Wang, P. Mirmira, <mark>M.C. Vu</mark>, O. Rivera, C.V. Amanchukwu",j:"ACS Energy Letters",v:"9 (2024) 6144–6152",url:"https://pubs.acs.org/doi/abs/10.1021/acsenergylett.4c01999"},
+    {sel:9,ga:"05",q:"Q1",h:435,rk:"Top 10%",fld:"Chemistry",y:2024,tag:"Batteries",short:"Chem. Mater. 2024",motif:"phase",title:"Phase morphology dependence of ionic conductivity and oxidative stability in fluorinated ether solid-state electrolytes",a:"E.S. Doyle, P. Mirmira, P. Ma, <mark>M.C. Vu</mark>, T. Hixson-Wells, R. Kumar, C.V. Amanchukwu",j:"Chemistry of Materials",v:"36 (2024) 5063–5076",url:"https://pubs.acs.org/doi/10.1021/acs.chemmater.4c00199"},
+    {y:2024,tag:"Batteries",short:"J. Mater. Chem. A 2024",motif:"borate",title:"Fluorination promotes lithium salt dissolution in borate esters for lithium metal batteries",a:"P. Ma, R. Kumar, <mark>M.C. Vu</mark>, K.H. Wang, P. Mirmira, C.V. Amanchukwu",j:"Journal of Materials Chemistry A",v:"12 (2024) 2479–2490",url:"https://pubs.rsc.org/en/content/articlelanding/2024/ta/d3ta06228g"},
     {y:2024,tag:"Batteries",title:"Probing the influence of steric hindrance in nonfluorinated ether electrolytes for lithium metal batteries",a:"P. Ma, U. Le, K.H. Wang, <mark>M.C. Vu</mark>, P. Mirmira, C.V. Amanchukwu",j:"Journal of The Electrochemical Society",v:"171 (2024) 120536",url:"https://iopscience.iop.org/article/10.1149/1945-7111/ad9cca/meta"},
     {y:2024,tag:"Batteries",title:"Impact of processing methodology on the performance of hybrid sulfide-polymer solid state electrolytes for lithium metal batteries",a:"P. Mirmira, C. Fuschi, Z. Umlauf, P. Ma, E.S. Doyle, <mark>M.C. Vu</mark>, C.V. Amanchukwu",j:"Journal of The Electrochemical Society",v:"171 (2024) 030508",url:"https://iopscience.iop.org/article/10.1149/1945-7111/ad2d3e/meta"},
-    {y:2023,tag:"Batteries",first:1,sel:1,short:"Matter 2023",motif:"salt",title:"Low melting alkali-based molten salt electrolytes for solvent-free lithium-metal batteries",a:"<mark>M.C. Vu</mark>, P. Mirmira, R.J. Gomes, P. Ma, E.S. Doyle, H.S. Srinivasan, C.V. Amanchukwu",j:"Matter",v:"6 (2023) 4357–4375",url:"https://www.cell.com/matter/fulltext/S2590-2385(23)00518-0"},
-    {y:2022,tag:"Thermal",first:1,sel:8,short:"Chem. Eng. J. 2022",motif:"nacre",title:"Nacre-inspired nanocomposite papers of graphene fluoride integrated 3D aramid nanofibers towards heat-dissipating applications",a:"<mark>M.C. Vu</mark>, D. Mani, T.H. Jeong, J.B. Kim, C.S. Lim, H. Kang, M.A. Islam, O.C. Lee, P.J. Park, S.R. Kim",j:"Chemical Engineering Journal",v:"429 (2022) 132182",url:"https://www.sciencedirect.com/science/article/pii/S138589472103761X"},
-    {y:2021,tag:"EMI",first:1,sel:7,short:"J. Mater. Chem. A 2021",motif:"paper",title:"Scalable ultrarobust thermoconductive nonflammable bioinspired papers of graphene nanoplatelet crosslinked aramid nanofibers for thermal management and electromagnetic shielding",a:"<mark>M.C. Vu</mark>, P.J. Park, S.R. Bae, S.Y. Kim, Y.M. Kang, W.K. Choi, M.A. Islam, J.C. Won, M. Park, S.R. Kim",j:"Journal of Materials Chemistry A",v:"9 (2021) 8527–8540",url:"https://pubs.rsc.org/en/content/articlehtml/2021/ta/d0ta12306d"},
-    {y:2021,tag:"EMI",first:1,sel:12,short:"Composites A 2021",motif:"shell",title:"Hybrid shell of MXene and reduced graphene oxide assembled on PMMA bead core towards tunable thermoconductive and EMI shielding nanocomposites",a:"<mark>M.C. Vu</mark>, D. Mani, J.B. Kim, T.H. Jeong, S. Park, G. Murali, I. In, J.C. Won, D. Losic, C.S. Lim, S.R. Kim",j:"Composites Part A",v:"149 (2021) 106574",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21002955"},
+    {sel:1,ga:"01",q:"Q1",h:111,rk:"13/360",fld:"Materials Science",y:2023,tag:"Batteries",first:1,short:"Matter 2023",motif:"salt",title:"Low melting alkali-based molten salt electrolytes for solvent-free lithium-metal batteries",a:"<mark>M.C. Vu</mark>, P. Mirmira, R.J. Gomes, P. Ma, E.S. Doyle, H.S. Srinivasan, C.V. Amanchukwu",j:"Matter",v:"6 (2023) 4357–4375",url:"https://www.cell.com/matter/fulltext/S2590-2385(23)00518-0"},
+    {sel:2,q:"Q1",h:337,rk:"7/274",fld:"Chemical Engineering",y:2022,tag:"Thermal",first:1,short:"Chem. Eng. J. 2022",motif:"nacre",title:"Nacre-inspired nanocomposite papers of graphene fluoride integrated 3D aramid nanofibers towards heat-dissipating applications",a:"<mark>M.C. Vu</mark>, D. Mani, T.H. Jeong, J.B. Kim, C.S. Lim, H. Kang, M.A. Islam, O.C. Lee, P.J. Park, S.R. Kim",j:"Chemical Engineering Journal",v:"429 (2022) 132182",url:"https://www.sciencedirect.com/science/article/pii/S138589472103761X"},
+    {sel:3,ga:"07",q:"Q1",h:318,rk:"32/460",fld:"Materials Science",y:2021,tag:"EMI",first:1,short:"J. Mater. Chem. A 2021",motif:"paper",title:"Scalable ultrarobust thermoconductive nonflammable bioinspired papers of graphene nanoplatelet crosslinked aramid nanofibers for thermal management and electromagnetic shielding",a:"<mark>M.C. Vu</mark>, P.J. Park, S.R. Bae, S.Y. Kim, Y.M. Kang, W.K. Choi, M.A. Islam, J.C. Won, M. Park, S.R. Kim",j:"Journal of Materials Chemistry A",v:"9 (2021) 8527–8540",url:"https://pubs.rsc.org/en/content/articlehtml/2021/ta/d0ta12306d"},
+    {sel:4,q:"Q1",h:227,rk:"13/130",fld:"Ceramics & Composites",y:2021,tag:"EMI",first:1,short:"Composites A 2021",motif:"shell",title:"Hybrid shell of MXene and reduced graphene oxide assembled on PMMA bead core towards tunable thermoconductive and EMI shielding nanocomposites",a:"<mark>M.C. Vu</mark>, D. Mani, J.B. Kim, T.H. Jeong, S. Park, G. Murali, I. In, J.C. Won, D. Losic, C.S. Lim, S.R. Kim",j:"Composites Part A",v:"149 (2021) 106574",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21002955"},
     {y:2021,tag:"Thermal",title:"3D structured graphene fluoride-based epoxy composites with high thermal conductivity and electrical insulation",a:"D. Mani, <mark>M.C. Vu</mark>, T.H. Jeong, J.B. Kim, C.S. Lim, J.H. Lim, K.M. Kim, S.R. Kim",j:"Composites Part A",v:"149 (2021) 106585",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21003055"},
     {y:2021,tag:"EMI",corr:1,title:"Silver nanowires decorated recycled cigarette filters based epoxy composites with high through-plane thermal conductivity and efficient electromagnetic interference shielding",a:"T.T.V. Tran, D.V.N. Vo, S.T. Nguyen, <mark>M.C. Vu</mark>*",j:"Composites Part A",v:"149 (2021) 106485",url:"https://www.sciencedirect.com/science/article/pii/S1359835X21002074"},
     {y:2021,tag:"EMI",corr:1,title:"In situ sintered silver decorated 3D structure of cellulose scaffold for highly thermoconductive electromagnetic interference shielding epoxy nanocomposites",a:"T.T.V. Tran, D.V.N. Vo, S.T. Nguyen, S.D.N. Luu, M. Mofijur, <mark>M.C. Vu</mark>*",j:"Journal of Applied Polymer Science",v:"138 (2021) 51193",url:"https://onlinelibrary.wiley.com/doi/full/10.1002/app.51193"},
     {y:2020,tag:"Thermal",first:1,title:"3D printing of copper particles and poly(methyl methacrylate) beads containing poly(lactic acid) composites for enhancing thermo-mechanical properties",a:"<mark>M.C. Vu</mark>, T.H. Jeong, J.B. Kim, W.K. Choi, D.H. Kim, S.R. Kim",j:"Journal of Applied Polymer Science",v:"138 (2021) 49776",url:"https://onlinelibrary.wiley.com/doi/abs/10.1002/app.49776"},
-    {y:2020,tag:"Thermal",first:1,sel:9,short:"ACS AMI 2020",motif:"aligned",title:"High thermal conductivity enhancement of polymer composites with vertically aligned silicon carbide sheet scaffolds",a:"<mark>M.C. Vu</mark>, W.K. Choi, S.G. Lee, P.J. Park, D.H. Kim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 23388–23398",url:"https://pubs.acs.org/doi/10.1021/acsami.0c02421"},
-    {y:2020,tag:"Thermal",first:1,sel:10,short:"ACS AMI 2020",motif:"film",title:"Highly flexible graphene derivative hybrid film: an outstanding nonflammable thermally conductive yet electrically insulating material for efficient thermal management",a:"<mark>M.C. Vu</mark>, I.H. Kim, W.K. Choi, C.S. Lim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 26413–26423",url:"https://pubs.acs.org/doi/abs/10.1021/acsami.0c02427"},
-    {y:2020,tag:"Thermal",first:1,sel:11,short:"Carbon 2020",motif:"sheets",title:"Ultrathin thermally conductive yet electrically insulating exfoliated graphene fluoride film for high performance heat dissipation",a:"<mark>M.C. Vu</mark>, N.A.T. Thieu, J.H. Lim, W.K. Choi, J.C. Won, M.A. Islam, S.R. Kim",j:"Carbon",v:"157 (2020) 741–749",url:"https://www.sciencedirect.com/science/article/abs/pii/S0008622319310978"},
+    {sel:5,ga:"09",q:"Q1",h:334,rk:"Top 10% (14/460)",fld:"Materials Science",y:2020,tag:"Thermal",first:1,short:"ACS AMI 2020",motif:"aligned",title:"High thermal conductivity enhancement of polymer composites with vertically aligned silicon carbide sheet scaffolds",a:"<mark>M.C. Vu</mark>, W.K. Choi, S.G. Lee, P.J. Park, D.H. Kim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 23388–23398",url:"https://pubs.acs.org/doi/10.1021/acsami.0c02421"},
+    {sel:7,ga:"10",q:"Q1",h:334,rk:"Top 10% (14/460)",fld:"Materials Science",y:2020,tag:"Thermal",first:1,short:"ACS AMI 2020",motif:"film",title:"Highly flexible graphene derivative hybrid film: an outstanding nonflammable thermally conductive yet electrically insulating material for efficient thermal management",a:"<mark>M.C. Vu</mark>, I.H. Kim, W.K. Choi, C.S. Lim, M.A. Islam, S.R. Kim",j:"ACS Applied Materials &amp; Interfaces",v:"12 (2020) 26413–26423",url:"https://pubs.acs.org/doi/abs/10.1021/acsami.0c02427"},
+    {sel:6,ga:"11",q:"Q1",h:346,rk:"19/460",fld:"Chemistry",y:2020,tag:"Thermal",first:1,short:"Carbon 2020",motif:"sheets",title:"Ultrathin thermally conductive yet electrically insulating exfoliated graphene fluoride film for high performance heat dissipation",a:"<mark>M.C. Vu</mark>, N.A.T. Thieu, J.H. Lim, W.K. Choi, J.C. Won, M.A. Islam, S.R. Kim",j:"Carbon",v:"157 (2020) 741–749",url:"https://www.sciencedirect.com/science/article/abs/pii/S0008622319310978"},
     {y:2020,tag:"Thermal",first:1,title:"Ultralight covalently interconnected silicon carbide aerofoam for high performance thermally conductive epoxy composites",a:"<mark>M.C. Vu</mark>, N.A.T. Thieu, W.K. Choi, M.A. Islam, S.R. Kim",j:"Composites Part A",v:"138 (2020) 106028",url:"https://www.sciencedirect.com/science/article/pii/S1359835X20302670"},
     {y:2020,tag:"Thermal",title:"Effect of aspect ratio of vertically aligned copper nanowires in the presence of cellulose nanofibers on the thermal conductivity of epoxy composites",a:"N.A.T. Thieu, <mark>M.C. Vu</mark>, D.H. Kim, W.K. Choi, S.R. Kim",j:"Polymers for Advanced Technologies",v:"31 (2020) 2351–2359",url:"https://onlinelibrary.wiley.com/doi/abs/10.1002/pat.4954"},
     {y:2019,tag:"Thermal",first:1,title:"3D interconnected structure of PMMA microbeads coated with copper nanoparticles for highly thermal conductive epoxy composites",a:"<mark>M.C. Vu</mark>, Q.V. Bach, D.D. Nguyen, T.S. Tran, M. Goodarzi",j:"Composites Part B",v:"175 (2019) 107105",url:"https://www.sciencedirect.com/science/article/abs/pii/S1359836819316415"},
@@ -866,8 +918,7 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
       {n:"Duong Thanh Tung",r:"Research Assistant",f:"",e:"",c:"var(--e2)",i:"DT",ph:"tung",edu:[["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
       {n:"Vo Thi Cam Tien",r:"Research Assistant",f:"",e:"",c:"var(--e5)",i:"VT",ph:"tien",edu:[["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
       {n:"Le Tan Phat",r:"Research Assistant",f:"",e:"",c:"var(--e7)",i:"LP",edu:[["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
-      {n:"Bui Duc Hieu",r:"Research Assistant",f:"",e:"",c:"var(--e6)",i:"BH",edu:[["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]}]},
-    {id:"students",title:"Students",list:[],open:true}
+      {n:"Bui Duc Hieu",r:"Research Assistant",f:"",e:"",c:"var(--e6)",i:"BH",edu:[["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]}]}
   ];
 
   /* ---------- Members ---------- */
@@ -920,10 +971,11 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
     }
     return '<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="400" height="300" fill="'+c1+'" opacity=".1"/>'+s+'</svg>';
   }
+  function metrics(p){if(!p.q)return '';return '<div class="jm"><span class="q">'+p.q+'</span><span>H-index <b>'+p.h+'</b></span>'+(p.impf?'<span>IF <b>'+p.impf+'</b></span>':'')+'<span class="rk">Rank <b>'+p.rk+'</b> · '+p.fld+'</span></div>';}
   var selected=pubs.filter(function(p){return p.sel}).sort(function(a,b){return a.sel-b.sel});
   document.getElementById('selected').innerHTML=selected.map(function(p){
-    var t=TINT[p.tag],n=(p.sel<10?'0':'')+p.sel;
-    return '<a class="sel" href="'+p.url+'" target="_blank" rel="noopener"><div class="ga">'+motif(p.motif,t[0],t[1])+'<img src="'+(GA[n]||('images/ga-'+n+'.jpg'))+'" alt="Graphical abstract: '+p.title.replace(/"/g,'')+'" loading="lazy" onerror="this.remove()"></div><div class="cap">'+p.short+'</div><div class="ttl">'+p.title+'</div></a>';
+    var t=TINT[p.tag],n=p.ga||'';
+    return '<a class="sel" href="'+p.url+'" target="_blank" rel="noopener"><div class="ga">'+motif(p.motif,t[0],t[1])+'<img src="'+(GA[n]||'images/none.jpg')+'" alt="Graphical abstract: '+p.title.replace(/"/g,'')+'" loading="lazy" onerror="this.remove()"></div><div class="cap">'+p.short+'</div><div class="ttl">'+p.title+'</div>'+metrics(p)+'</a>';
   }).join('');
   document.getElementById('news-side').innerHTML=news.map(function(n){return '<li><time>'+n.d+'</time><p>'+n.t+'</p></li>';}).join('');
 
@@ -946,7 +998,7 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
     var n=list.length;
     box.innerHTML=years.map(function(y){
       return '<div class="year-block"><h3>'+y+'</h3><ol class="pubs">'+shown.filter(function(p){return p.y===y}).map(function(p){
-        return '<li><span class="no">['+(n--)+']</span><div><a class="title" href="'+p.url+'" target="_blank" rel="noopener">'+p.title+'</a><span class="badges">'+(p.first?'<span class="badge">First author</span>':'')+(p.corr?'<span class="badge">Corresponding</span>':'')+(p.conf?'<span class="badge">Conference</span>':'')+(p.pre?'<span class="badge">Preprint</span>':'')+'</span><span class="auth">'+p.a+'</span><span class="venue"><em>'+p.j+'</em> '+p.v+'</span></div></li>';}).join('')+'</ol></div>';
+        return '<li><span class="no">['+(n--)+']</span><div><a class="title" href="'+p.url+'" target="_blank" rel="noopener">'+p.title+'</a><span class="badges">'+(p.first?'<span class="badge">First author</span>':'')+(p.corr?'<span class="badge">Corresponding</span>':'')+(p.conf?'<span class="badge">Conference</span>':'')+(p.pre?'<span class="badge">Preprint</span>':'')+'</span>'+metrics(p)+'<span class="auth">'+p.a+'</span><span class="venue"><em>'+p.j+'</em> '+p.v+'</span></div></li>';}).join('')+'</ol></div>';
     }).join('');
     more.hidden=(q||cur!=="All"||list.length<=10);
     more.textContent=showAll?'Show fewer':'Show all '+list.length+' publications';
@@ -957,7 +1009,6 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
 
   /* ---------- Lattice ---------- */
   var NS="http://www.w3.org/2000/svg", pal=["var(--e1)","var(--e2)","var(--e3)","var(--e4)","var(--e5)"];
-  document.getElementById('legend').innerHTML=pal.map(function(c,i){return '<span><i style="background:'+c+'"></i>Element '+"ABCDE"[i]+'</span>'}).join('');
   function lattice(svg,cols,rows,dx,dy,ox,oy,rad,bondColor){
     var bonds=document.createElementNS(NS,'g');bonds.setAttribute('stroke',bondColor);bonds.setAttribute('stroke-width','2');svg.appendChild(bonds);
     var g=document.createElementNS(NS,'g');svg.appendChild(g);var atoms=[];
@@ -970,16 +1021,105 @@ main > section.page:nth-of-type(even) .mcard{background:var(--bg)}
     }
     return atoms;
   }
-  var main=lattice(document.getElementById('lattice'),12,8,33,34,28,30,11,'rgba(255,255,255,.18)');
   var small=lattice(document.getElementById('art-hem'),16,4,19,26,12,20,7,'var(--line)');
   var side=lattice(document.getElementById('art-hem2'),9,6,27,30,20,22,9,'var(--line)');
   function paint(atoms){var counts=[0,0,0,0,0];atoms.forEach(function(a){var k=Math.floor(Math.random()*5);counts[k]++;a.setAttribute('fill',pal[k]);});return counts;}
-  function shuffle(){
-    var counts=paint(main),N=main.length,S=0;counts.forEach(function(n){if(n){var x=n/N;S-=x*Math.log(x);}});
-    document.getElementById('entropy-readout').textContent='Configurational entropy: '+S.toFixed(2)+' R per site (ideal: ln 5 = 1.61 R)';
-  }
-  paint(small);paint(side);shuffle();
-  document.getElementById('shuffle').addEventListener('click',shuffle);
+  paint(small);paint(side);
+  /* ---------- Hero: animated lithium-ion cell ---------- */
+  (function(){
+    var svg=document.getElementById('cell');if(!svg)return;
+    var NS="http://www.w3.org/2000/svg",RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function E(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
+    function T(x,y,txt,a,p){var t=E('text',Object.assign({x:x,y:y},a||{}),p);t.textContent=txt;return t;}
+    var X0=88,X1=432,Y0=118,Y1=360,SEP=260;
+    // external circuit
+    var wire=E('path',{d:'M'+(X0+4)+' '+Y0+' V44 H'+(X1-4)+' V'+Y0,fill:'none',stroke:'var(--band-muted)','stroke-width':3,'stroke-linejoin':'round',opacity:.7});
+    var eG=E('g',{});
+    var box=E('g',{class:'cbox'});
+    E('rect',{x:180,y:20,width:160,height:48,rx:10,fill:'var(--band)',stroke:'var(--band-muted)','stroke-width':2},box);
+    var gCh=E('g',{class:'show-charge'},box),gDis=E('g',{class:'show-discharge'},box);
+    E('path',{d:'M198 36h10v-6M202 30v6M212 36h-4v12h-6v-12',fill:'none',stroke:'var(--e2)','stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'},gCh);
+    E('path',{d:'M205 48v6',stroke:'var(--e2)','stroke-width':2.4,'stroke-linecap':'round'},gCh);
+    T(226,40,'Power source',{class:'cb-t'},gCh);T(226,55,'charging the cell',{class:'cb-s'},gCh);
+    E('path',{d:'M190 52v-5l4-6h15l5 6h3v5z',fill:'none',stroke:'var(--e1)','stroke-width':2.2,'stroke-linejoin':'round'},gDis);
+    E('circle',{cx:196,cy:53,r:3,fill:'var(--e1)'},gDis);E('circle',{cx:211,cy:53,r:3,fill:'var(--e1)'},gDis);
+    T(226,40,'Load',{class:'cb-t'},gDis);T(226,55,'EV · phone · grid',{class:'cb-s'},gDis);
+    // casing + electrolyte
+    E('rect',{x:X0-8,y:Y0,width:X1-X0+16,height:Y1-Y0,rx:12,fill:'var(--e4)','fill-opacity':.16,stroke:'var(--band-muted)','stroke-opacity':.5,'stroke-width':2});
+    // hex electrodes
+    function hexes(x0,x1,fill,op,slots){
+      var r=12.5,w=r*1.732,g=E('g',{});
+      for(var row=0;row*r*1.5<Y1-Y0-22;row++){var y=Y0+18+row*r*1.5,off=row%2?w/2:0;
+        for(var x=x0+off;x<x1;x+=w){
+          var pts=[];for(var k=0;k<6;k++){var a=Math.PI/180*(60*k-30);pts.push((x+r*Math.cos(a)).toFixed(1)+','+(y+r*Math.sin(a)).toFixed(1));}
+          E('polygon',{points:pts.join(' '),fill:fill,'fill-opacity':op,stroke:'var(--band)','stroke-width':1.6},g);
+          if(row%2===0)slots.push([x+w/2,y+r*0.75]);
+        }}
+      return g;
+    }
+    var aSlots=[],cSlots=[];
+    hexes(X0+18,200,'#8FB3C2',.55,aSlots);
+    hexes(322,X1-6,'#7C8597',.75,cSlots);
+    // collectors
+    E('rect',{x:X0,y:Y0+6,width:8,height:Y1-Y0-12,rx:2,fill:'#C07A45'});
+    E('rect',{x:X1-8,y:Y0+6,width:8,height:Y1-Y0-12,rx:2,fill:'#B9C0C9'});
+    // separator
+    for(var y=Y0+10;y<Y1-10;y+=28)E('rect',{x:SEP-3,y:y,width:6,height:18,rx:1.5,fill:'var(--e2)',opacity:.85});
+    // terminals
+    E('circle',{cx:44,cy:240,r:15,fill:'none',stroke:'var(--band-ink)','stroke-width':2});T(44,246,'−',{class:'term'});
+    E('circle',{cx:476,cy:240,r:15,fill:'none',stroke:'var(--band-ink)','stroke-width':2});T(476,246,'+',{class:'term'});
+    // labels
+    T(138,108,'Anode · graphite',{class:'lbl'});T(SEP,108,'Separator',{class:'lbl'});T(384,108,'Cathode · LiMO₂',{class:'lbl'});
+    T(92,382,'Cu',{class:'lbl sm'});T(SEP,382,'Liquid / solid electrolyte',{class:'lbl sm'});T(428,382,'Al',{class:'lbl sm'});
+    var dirT=T(SEP,404,'',{class:'lbl dir'});
+    // anions
+    var anions=[];for(var i=0;i<9;i++){var ax=212+((i*37)%96),ay=Y0+26+((i*53)%210);var g=E('g',{class:'anion'});E('circle',{r:7,fill:'var(--e5)'},g);T(0,4,'−',{class:'ion-t'},g);anions.push({g:g,x:ax,y:ay,p:i});}
+    // Li ions
+    var N=Math.min(16,aSlots.length,cSlots.length),ions=[];
+    function pick(a,n){var out=[],st=a.length/n;for(var i=0;i<n;i++)out.push(a[Math.floor(i*st)]);return out;}
+    var A=pick(aSlots,N),C=pick(cSlots,N);
+    for(var i=0;i<N;i++){var g=E('g',{class:'li'});E('circle',{r:11,class:'halo'},g);E('circle',{r:6.5,fill:'var(--e2)'},g);T(0,3.6,'+',{class:'ion-t dark'},g);ions.push({g:g,a:A[i],c:C[(i*7)%N],t:0,lane:(i%5-2)*34});}
+    // electrons
+    var L=wire.getTotalLength(),els=[];
+    for(var i=0;i<12;i++){els.push({c:E('circle',{r:3.6,class:'e-'},eG),s:i/12*L});}
+    // state
+    var mode='charge',soc=0,moving=true,auto=true,last=performance.now(),modeT=0,hold=0;
+    var appsEl=document.getElementById('apps'),fill=document.getElementById('soc-fill'),val=document.getElementById('soc-val');
+    var btns=[].slice.call(document.querySelectorAll('.cell-ctrl [data-m]'));
+    function setMode(m,user){mode=m;modeT=0;hold=0;svg.setAttribute('data-mode',m);appsEl.classList.toggle('on',m==='discharge');
+      btns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.m===m)});
+      dirT.textContent=m==='charge'?'Charging: Li⁺ → anode, e⁻ through the charger':'Discharging: Li⁺ → cathode, e⁻ power the load';
+      if(user)auto=true;
+      if(RM){ions.forEach(function(o){o.t=m==='charge'?1:0;});draw(0);}
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){setMode(b.dataset.m,true)})});
+    function pos(o){var t=o.t,from=o.c,to=o.a,k=t*t*(3-2*t);var x=from[0]+(to[0]-from[0])*k,y=from[1]+(to[1]-from[1])*k;
+      var bump=Math.sin(Math.PI*t);y+=bump*o.lane*0.5;y=Math.max(Y0+12,Math.min(Y1-12,y));return [x,y];}
+    function draw(dt){
+      var target=mode==='charge'?1:0,anyMove=false;
+      ions.forEach(function(o,i){
+        if(modeT>i*0.22&&o.t!==target){anyMove=true;var sp=0.55*dt;o.t=target?Math.min(1,o.t+sp):Math.max(0,o.t-sp);}
+        var p=pos(o);o.g.setAttribute('transform','translate('+p[0].toFixed(1)+','+p[1].toFixed(1)+')');
+        o.g.classList.toggle('mv',o.t>0&&o.t<1);
+      });
+      soc=ions.reduce(function(a,o){return a+o.t},0)/N;
+      fill.style.width=(soc*100).toFixed(0)+'%';val.textContent=Math.round(soc*100)+'%';
+      var dir=mode==='discharge'?1:-1;
+      els.forEach(function(e){if(anyMove)e.s=(e.s+dir*95*dt+L)%L;var pt=wire.getPointAtLength(e.s);e.c.setAttribute('cx',pt.x);e.c.setAttribute('cy',pt.y);e.c.style.opacity=anyMove?1:.25;});
+      var tt=performance.now()/1000;
+      anions.forEach(function(a){a.g.setAttribute('transform','translate('+(a.x+Math.sin(tt*1.3+a.p)*3).toFixed(1)+','+(a.y+Math.cos(tt+a.p)*3).toFixed(1)+')');});
+      return anyMove;
+    }
+    function loop(now){
+      var dt=Math.min(.05,(now-last)/1000);last=now;modeT+=dt;
+      var mv=draw(dt);
+      if(!mv){hold+=dt;if(auto&&hold>1.6)setMode(mode==='charge'?'discharge':'charge');}
+      requestAnimationFrame(loop);
+    }
+    setMode('charge');
+    if(RM){setMode('discharge');ions.forEach(function(o,i){o.t=i%4?1:0});draw(0);}
+    else requestAnimationFrame(function(n){last=n;loop(n)});
+  })();
 
   /* ---------- One-page scrolling: #section or #section/sub ---------- */
   var secs=[].slice.call(document.querySelectorAll('main > section[id]'));
