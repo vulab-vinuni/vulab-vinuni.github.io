@@ -788,6 +788,18 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 .latest .la{background:color-mix(in srgb,var(--accent) 14%,transparent)}
 .latest .lgo{font-size:1.2rem;color:var(--accent);font-weight:800}
 @media (max-width:560px){.latest a{grid-template-columns:1fr 20px}.latest .ly{grid-column:1/-1}}
+
+/* award conference posters on hover */
+.awards{padding-top:8px}
+.award{overflow:visible}
+.aw-pop{position:absolute;left:50%;bottom:calc(100% - 6px);width:190px;transform:translate(-50%,14px) scale(.9);opacity:0;pointer-events:none;transition:opacity .35s,transform .35s cubic-bezier(.2,.8,.3,1.2);z-index:40;display:flex;flex-direction:column;align-items:center}
+.award.star .aw-pop{left:105px}
+.award:hover .aw-pop,.award:focus .aw-pop{opacity:1;transform:translate(-50%,0) scale(1) rotate(1.5deg)}
+.award:hover,.award:focus{z-index:40}
+.aw-poster{order:1;width:100%;border-radius:14px;box-shadow:0 22px 44px rgba(14,26,48,.35),0 0 0 1px rgba(255,255,255,.15)}
+.aw-poster svg{display:block;width:100%;height:auto;border-radius:14px}
+.aw-beam{order:2;width:100%;height:56px;background:linear-gradient(180deg,rgba(91,192,235,.55),rgba(91,192,235,.05));clip-path:polygon(0 0,100% 0,72% 100%,28% 100%);filter:blur(3px);margin-top:-4px}
+@media (hover:none){.aw-pop{display:none}}
 </style>
 </head>
 <body>
@@ -916,7 +928,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
     <div data-impact></div>
 
     <h2 class="section-title" id="professor-awards">Awards and honors</h2>
-    <p class="section-sub">Hover over a medal for details.</p>
+    <p class="section-sub">Hover over a medal to see the event poster and details.</p>
     <div class="awards" id="awards"></div>
   </div>
 </section>
@@ -1803,8 +1815,25 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
     {y:"2017",t:"Best Poster Awards ×2",d:"Autumn Polymer Society of Korea and Adhesive Society of Korea conferences",i:"poster",c:"var(--e4)"}
   ];
   var aBox=document.getElementById('awards');
-  if(aBox)aBox.innerHTML=awards.map(function(a){
-    return '<div class="award'+(a.star?' star':'')+'" tabindex="0" style="--c:'+(a.c||'var(--e2)')+'"><div class="medal">'+aw[a.i]+'</div><div><div class="y">'+a.y+'</div><div class="t">'+a.t+'</div><div class="d">'+a.d+'</div></div></div>';
+  var PAL={star:['#13213B','#2F4F7F','#F0BE3A'],poster:['#0F3B5F','#2F6690','#7FD6E0'],mic:['#2E1F4F','#6A4C93','#E0B7FF'],people:['#1F3B33','#4F7A68','#BFE6D2'],book:['#3B241A','#8A5A44','#F2D3B8']};
+  function wrapW(t,n){var w=t.split(' '),o=[],l='';w.forEach(function(x){if((l+' '+x).trim().length>n){o.push(l.trim());l=x;}else l+=' '+x;});o.push(l.trim());return o;}
+  function posterSVG(a,k){
+    var p=PAL[a.star?'star':a.i]||PAL.poster,id='pg'+k,conf=a.star?a.t:a.d,lines=wrapW(conf,20).slice(0,4);
+    var deco='';
+    for(var i=0;i<6;i++)deco+='<circle cx="240" cy="70" r="'+(30+i*26)+'" fill="none" stroke="'+p[2]+'" stroke-opacity="'+(.32-i*.045).toFixed(2)+'" stroke-width="2"/>';
+    for(var r=0;r<5;r++)for(var c=0;c<7;c++)deco+='<circle cx="'+(24+c*14)+'" cy="'+(26+r*14)+'" r="2" fill="'+p[2]+'" opacity=".35"/>';
+    for(var i=0;i<5;i++){var x=30+i*58;deco+='<polygon points="'+[0,1,2,3,4,5].map(function(j){var an=Math.PI/3*j+Math.PI/6;return (x+16*Math.cos(an)).toFixed(1)+','+(300+16*Math.sin(an)).toFixed(1)}).join(' ')+'" fill="none" stroke="'+p[2]+'" stroke-opacity=".25" stroke-width="1.5"/>';}
+    var tl=lines.map(function(l,i){return '<tspan x="24" dy="'+(i?27:0)+'">'+l+'</tspan>'}).join('');
+    return '<svg viewBox="0 0 300 400" aria-hidden="true"><defs><linearGradient id="'+id+'" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="'+p[0]+'"/><stop offset="1" stop-color="'+p[1]+'"/></linearGradient></defs>'+
+      '<rect width="300" height="400" rx="14" fill="url(#'+id+')"/>'+deco+
+      '<text x="24" y="138" font-family="Manrope,system-ui,sans-serif" font-size="11" font-weight="800" letter-spacing="3" fill="'+p[2]+'">'+(a.i==='people'?'RECOGNITION':a.i==='book'?'GRADUATION':a.star?'MEETING':'CONFERENCE')+'</text>'+
+      '<text x="24" y="172" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#fff">'+tl+'</text>'+
+      '<text x="276" y="372" text-anchor="end" font-family="Georgia,serif" font-size="58" font-weight="700" fill="none" stroke="'+p[2]+'" stroke-width="1.5" opacity=".9">'+a.y+'</text>'+
+      '<rect x="0" y="318" width="190" height="34" fill="'+p[2]+'"/><polygon points="190,318 206,335 190,352" fill="'+p[2]+'"/>'+
+      '<text x="20" y="340" font-family="Manrope,system-ui,sans-serif" font-size="13" font-weight="800" fill="'+p[0]+'">'+a.t.replace(/15th HOPE Meetings with Nobel Laureates/,'Selected participant')+'</text></svg>';
+  }
+  if(aBox)aBox.innerHTML=awards.map(function(a,k){
+    return '<div class="award'+(a.star?' star':'')+'" tabindex="0" style="--c:'+(a.c||'var(--e2)')+'"><div class="aw-pop" aria-hidden="true"><div class="aw-beam"></div><div class="aw-poster">'+posterSVG(a,k)+'</div></div><div class="medal">'+aw[a.i]+'</div><div><div class="y">'+a.y+'</div><div class="t">'+a.t+'</div><div class="d">'+a.d+'</div></div></div>';
   }).join('');
 
   /* ---------- Research donut (computed from publication list) ---------- */
