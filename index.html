@@ -768,6 +768,12 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 .vin-logo{position:absolute;top:16px;right:16px;width:96px;height:96px;border-radius:50%;box-shadow:0 10px 24px rgba(0,0,0,.35);background:#fff}
 .vin-txt h3{color:#fff;margin-bottom:4px}
 .vin-txt p{color:#E3EAF3;margin:0 0 14px}
+
+.cell3d{display:none}
+.cell3d.ready{display:block;position:relative;width:100%;aspect-ratio:520/440;cursor:grab}
+.cell3d.ready:active{cursor:grabbing}
+.cell3d canvas{display:block;width:100%!important;height:100%!important;touch-action:pan-y}
+.c3-hint{position:absolute;left:10px;top:8px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--band-muted);opacity:.75;pointer-events:none}
 </style>
 </head>
 <body>
@@ -786,6 +792,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
     <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" aria-label="Main">
       <ul>
+        <li><a href="#home">Home</a></li>
         <li><a href="#news">News</a>
           <ul class="sub"><li><a href="#news/list">Latest news</a></li></ul></li>
         <li><a href="#professor">Professor</a>
@@ -803,7 +810,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 
 <main>
 
-<section data-page="news" id="news" class="page">
+<section data-page="home" id="home" class="page">
 <div class="hero-band">
     <div class="wrap hero">
       <div>
@@ -816,6 +823,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
         </div>
       </div>
       <figure class="cell-box" style="margin:0">
+        <div class="cell3d" id="cell3d"><span class="c3-hint">drag to rotate · 3D</span></div>
         <svg id="cell" viewBox="0 0 520 420" role="img" aria-label="Animated lithium-ion battery: lithium ions move between a graphite anode and a layered-oxide cathode through the electrolyte while electrons flow through the external circuit"></svg>
         <div class="cell-ctrl">
           <div class="mode" role="group" aria-label="Battery mode">
@@ -834,6 +842,9 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
     </div>
   </div>
 
+</section>
+
+<section data-page="news" id="news" class="page">
   <div class="sec-title wrap" id="news-list"><h2>News</h2><p>Collaborations, events, awards, new members and milestones from the HE3 Lab.</p></div>
   <div class="wrap"><div class="news-grid" id="news-cards"></div>
     <p class="news-more"><button class="btn ghost" type="button" id="news-more">Show older news</button></p></div>
@@ -1493,11 +1504,11 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   var pages=[].slice.call(document.querySelectorAll('main > section[data-page]'));
   var topLinks=[].slice.call(document.querySelectorAll('nav > ul > li > a'));
   var nav=document.getElementById('site-nav'),btn=document.querySelector('.menu-btn');
-  var ALIAS={home:'news',publications:'research/selected',allpubs:'research/publications',members:'members'};
+  var ALIAS={publications:'research/selected',allpubs:'research/publications',members:'members'};
   function go(){
-    var h=location.hash.slice(1)||'news';if(ALIAS[h.split('/')[0]]&&!h.split('/')[1])h=ALIAS[h.split('/')[0]];
+    var h=location.hash.slice(1)||'home';if(ALIAS[h.split('/')[0]]&&!h.split('/')[1])h=ALIAS[h.split('/')[0]];
     var parts=h.split('/'),id=parts[0],sub=parts[1];
-    if(!pages.some(function(p){return p.dataset.page===id})){id='news';sub=null;}
+    if(!pages.some(function(p){return p.dataset.page===id})){id='home';sub=null;}
     pages.forEach(function(p){p.classList.toggle('active',p.dataset.page===id)});
     topLinks.forEach(function(a){if(a.getAttribute('href')==='#'+id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
     nav.classList.remove('open');btn.setAttribute('aria-expanded','false');
@@ -1970,6 +1981,108 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   })();
 
 })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script>
+(function(){
+  var host=document.getElementById('cell3d'),svg=document.getElementById('cell');
+  if(!host||!window.THREE)return;
+  var renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){return;}
+  if(!renderer.getContext())return;
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
+  renderer.domElement.setAttribute('role','img');
+  renderer.domElement.setAttribute('aria-label','3D lithium-ion battery: lithium ions shuttle between graphite anode layers and a layered oxide cathode while electrons flow through the external circuit');
+  host.appendChild(renderer.domElement);host.classList.add('ready');if(svg)svg.style.display='none';
+  var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,.1,100);
+  cam.position.set(3.2,4.2,12.6);cam.lookAt(0,.45,0);
+  scene.add(new THREE.HemisphereLight(0xe6efff,0x18213a,.95));
+  var dl=new THREE.DirectionalLight(0xffffff,.85);dl.position.set(5,9,7);scene.add(dl);
+  var pl=new THREE.PointLight(0xf0be3a,.7,18);pl.position.set(0,1.5,4.5);scene.add(pl);
+  var root=new THREE.Group();root.scale.setScalar(.92);scene.add(root);
+  function std(c,o){return new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.5,metalness:.2},o||{}));}
+  // casing + electrolyte
+  var cg=new THREE.BoxGeometry(6.6,4.4,3.4);
+  root.add(new THREE.Mesh(cg,new THREE.MeshPhysicalMaterial({color:0x7fb6e0,transparent:true,opacity:.07,roughness:.05,depthWrite:false})));
+  root.add(new THREE.LineSegments(new THREE.EdgesGeometry(cg),new THREE.LineBasicMaterial({color:0x9cc4e8,transparent:true,opacity:.6})));
+  root.add(new THREE.Mesh(new THREE.BoxGeometry(2.6,4.2,3.2),new THREE.MeshBasicMaterial({color:0x2F6690,transparent:true,opacity:.13,depthWrite:false})));
+  // current collectors
+  var cu=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xc8834a,{metalness:.45,roughness:.35,emissive:0x3a1c08,transparent:true,opacity:.8}));cu.position.x=-3.18;root.add(cu);
+  var al=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xd0d7df,{metalness:.4,roughness:.3,emissive:0x2a2f36,transparent:true,opacity:.55,depthWrite:false}));al.position.x=3.18;root.add(al);
+  // graphite: stacked graphene sheets of hexagonal plates
+  var LY=[];for(var y=-1.8;y<=1.81;y+=.45)LY.push(+y.toFixed(2));
+  var gp=[];LY.forEach(function(y){for(var j=0;j<11;j++)for(var i=0;i<7;i++){var x=-3.0+i*.24+(j%2)*.12,z=-1.38+j*.276;if(x<-1.42)gp.push([x,y,z]);}});
+  var gm=new THREE.InstancedMesh(new THREE.CylinderGeometry(.135,.135,.06,6),std(0x7193ad,{roughness:.55}),gp.length),M=new THREE.Matrix4();
+  gp.forEach(function(p,k){M.makeTranslation(p[0],p[1],p[2]);gm.setMatrixAt(k,M);});root.add(gm);
+  // cathode: layered MO2 slabs with octahedra
+  LY.forEach(function(y){var s=new THREE.Mesh(new THREE.BoxGeometry(1.6,.07,3.05),std(0x5d6a84,{metalness:.35}));s.position.set(2.32,y,0);root.add(s);});
+  var op=[];LY.forEach(function(y){for(var i=0;i<8;i++)for(var j=0;j<10;j++)op.push([1.62+i*.2,y+.07,-1.35+j*.3]);});
+  var om=new THREE.InstancedMesh(new THREE.OctahedronGeometry(.085),std(0x7fd1b4,{emissive:0x1d4d40,roughness:.4}),op.length);
+  op.forEach(function(p,k){M.makeTranslation(p[0],p[1],p[2]);om.setMatrixAt(k,M);});root.add(om);
+  // separator
+  var sep=new THREE.Mesh(new THREE.BoxGeometry(.05,4.15,3.15),std(0xf0be3a,{transparent:true,opacity:.42,emissive:0x5a4300}));root.add(sep);
+  var grid=new THREE.Group();for(var gy=-1.9;gy<=1.9;gy+=.3)for(var gz=-1.45;gz<=1.45;gz+=.3){var d=new THREE.Mesh(new THREE.CircleGeometry(.05,10),new THREE.MeshBasicMaterial({color:0x1a2a44,transparent:true,opacity:.55,side:THREE.DoubleSide}));d.rotation.y=Math.PI/2;d.position.set(.03,gy,gz);grid.add(d);}root.add(grid);
+  // Li+ ions (slots between layers)
+  var aS=[],cS=[];for(var k=0;k<LY.length-1;k++){var ym=(LY[k]+LY[k+1])/2;[-2.75,-2.25,-1.78].forEach(function(x,ix){[-.95,0,.95].forEach(function(z,iz){aS.push([x,ym,z+(ix%2)*.3]);});});[1.75,2.3,2.8].forEach(function(x,ix){[-.95,0,.95].forEach(function(z){cS.push([x,ym+.02,z+(ix%2)*.3]);});});}
+  var N=26,ions=[],lig=new THREE.SphereGeometry(.11,20,14),hg=new THREE.SphereGeometry(.2,16,12);
+  var lim=std(0xf3c548,{emissive:0xb07a00,emissiveIntensity:.9,metalness:.3,roughness:.3});
+  for(var i=0;i<N;i++){var g=new THREE.Group(),h=new THREE.Mesh(hg,new THREE.MeshBasicMaterial({color:0xf0be3a,transparent:true,opacity:.18,depthWrite:false}));g.add(new THREE.Mesh(lig,lim));g.add(h);root.add(g);
+    ions.push({g:g,h:h,a:aS[(i*7)%aS.length],c:cS[(i*11)%cS.length],o:(i*17)%N,ph:i});}
+  // anions
+  var an=[],ag=new THREE.SphereGeometry(.09,16,12),am=std(0xd2557f,{emissive:0x5a1028});
+  for(var i=0;i<14;i++){var m=new THREE.Mesh(ag,am);root.add(m);an.push({m:m,x:-1+((i*37)%21)/10,y:-1.7+((i*53)%35)/10,z:-1.2+((i*29)%25)/10,p:i});}
+  // external circuit
+  var path=new THREE.CurvePath();
+  [[-3.18,2.15,0],[-3.18,3.35,0],[3.18,3.35,0],[3.18,2.15,0]].reduce(function(a,b){path.add(new THREE.LineCurve3(new THREE.Vector3(a[0],a[1],a[2]),new THREE.Vector3(b[0],b[1],b[2])));return b;});
+  root.add(new THREE.Mesh(new THREE.TubeGeometry(path,120,.045,8,false),std(0x9fb6cf,{metalness:.7,roughness:.3})));
+  var els=[],eg=new THREE.SphereGeometry(.075,14,10),em=new THREE.MeshBasicMaterial({color:0x5BE0FF});
+  for(var i=0;i<16;i++){var e=new THREE.Mesh(eg,em);root.add(e);els.push({m:e,u:i/16});}
+  // labels (canvas sprites)
+  function label(txt,col,w,fs,bg){var c=document.createElement('canvas');c.width=w||512;c.height=128;var x=c.getContext('2d');
+    if(bg){x.fillStyle=bg;x.beginPath();x.moveTo(20,8);x.arcTo(c.width-8,8,c.width-8,120,24);x.arcTo(c.width-8,120,8,120,24);x.arcTo(8,120,8,8,24);x.arcTo(8,8,c.width-8,8,24);x.fill();}
+    x.font='700 '+(fs||46)+'px Manrope, system-ui, sans-serif';x.fillStyle=col||'#E8EEF5';x.textAlign='center';x.textBaseline='middle';x.fillText(txt,c.width/2,64);
+    var t=new THREE.CanvasTexture(c);t.anisotropy=4;var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false,depthTest:false}));s.scale.set(c.width/128*.5,.5,1);s.userData={c:c,x:x,t:t};return s;}
+  function put(s,x,y,z){s.position.set(x,y,z);root.add(s);return s;}
+  put(label('Anode · graphite'),-2.25,2.62,1.7);put(label('Separator','#F0BE3A',400),0,2.62,1.7);put(label('Cathode · layered LiMO₂',null,640),2.3,2.62,1.7);
+  put(label('Cu','#E2A574',200),-3.18,-2.55,1.7);put(label('Al','#DCE3EA',200),3.18,-2.55,1.7);
+  put(label('−','#fff',128,80),-3.75,0,1.75);put(label('+','#fff',128,80),3.75,0,1.75);
+  var boxM=new THREE.Mesh(new THREE.BoxGeometry(3.2,.7,.3),std(0x13213B,{metalness:.2,emissive:0x0a1222}));boxM.position.set(0,3.35,0);root.add(boxM);
+  var bl=label('Power source','#F0BE3A',1024,52);bl.scale.set(3.6,.45,1);put(bl,0,3.36,.3);bl.renderOrder=10;
+  // interaction: drag to rotate
+  var baseY=-.42,baseX=.08,drag=null;
+  renderer.domElement.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,by:baseY,bx:baseX};renderer.domElement.setPointerCapture(e.pointerId);});
+  renderer.domElement.addEventListener('pointermove',function(e){if(!drag)return;baseY=drag.by+(e.clientX-drag.x)*.008;baseX=Math.max(-.5,Math.min(.5,drag.bx+(e.clientY-drag.y)*.006));});
+  renderer.domElement.addEventListener('pointerup',function(){drag=null;});
+  function size(){var w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+  window.addEventListener('resize',size);size();
+  var socS=0,prevSoc=0,mode='',t0=performance.now(),visible=true;
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{}).observe(host);
+  function sm(t){return t*t*(3-2*t);}
+  function frame(now){
+    requestAnimationFrame(frame);
+    if(!visible||!host.offsetParent)return;
+    if(host.clientWidth&&renderer.domElement.width!==Math.round(host.clientWidth*renderer.getPixelRatio()))size();
+    var tt=(now-t0)/1000;
+    var m=svg?svg.getAttribute('data-mode'):'charge';
+    if(m!==mode){mode=m;var L=bl.userData,x=L.x;x.clearRect(0,0,L.c.width,128);x.font='700 52px Manrope, system-ui, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle=mode==='discharge'?'#5BE0FF':'#F0BE3A';x.fillText(mode==='discharge'?'Load · EV · phone · grid':'Power source · charging',L.c.width/2,64);L.t.needsUpdate=true;}
+    var sv=document.getElementById('soc-val'),soc=sv?parseFloat(sv.textContent)/100:0;
+    socS+=(soc-socS)*.08;var moving=Math.abs(socS-prevSoc)>.0004;prevSoc=socS;
+    ions.forEach(function(o,i){
+      var t=Math.max(0,Math.min(1,socS*N-o.o)),k=sm(t),A=o.a,C=o.c;
+      var x=C[0]+(A[0]-C[0])*k,y=C[1]+(A[1]-C[1])*k,z=C[2]+(A[2]-C[2])*k;
+      var bump=Math.sin(Math.PI*t);y+=bump*.35*Math.sin(o.ph);z+=bump*.5*Math.cos(o.ph*1.7);
+      o.g.position.set(x,y,z);o.h.material.opacity=t>0&&t<1?.38:.14;o.h.scale.setScalar(t>0&&t<1?1.25+.15*Math.sin(tt*6+o.ph):1);
+    });
+    an.forEach(function(a){a.m.position.set(a.x+Math.sin(tt*1.2+a.p)*.06,a.y+Math.cos(tt+a.p)*.06,a.z+Math.sin(tt*.8+a.p*2)*.06);});
+    var dir=mode==='discharge'?1:-1;
+    els.forEach(function(e){if(moving&&!RM)e.u=(e.u+dir*.0035+1)%1;e.m.position.copy(path.getPointAt(e.u));e.m.visible=true;e.m.material.opacity=1;});
+    em.color.setHex(moving?0x5BE0FF:0x3a6f80);
+    root.rotation.y=baseY+(RM||drag?0:Math.sin(tt*.25)*.22);root.rotation.x=baseX;
+    renderer.render(scene,cam);
+  }
+  requestAnimationFrame(frame);
+})();
+
 </script>
 </body>
 </html>
