@@ -774,6 +774,20 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 .cell3d.ready:active{cursor:grabbing}
 .cell3d canvas{display:block;width:100%!important;height:100%!important;touch-action:pan-y}
 .c3-hint{position:absolute;left:10px;top:8px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--band-muted);opacity:.75;pointer-events:none}
+
+.latest{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.latest a{display:grid;grid-template-columns:64px 1fr 28px;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:14px 18px;text-decoration:none;color:var(--ink);transition:transform .25s,box-shadow .25s,border-color .25s}
+.latest a:hover{transform:translateX(6px);box-shadow:0 12px 26px rgba(19,33,59,.12);border-left-color:var(--e2)}
+.latest .ly{font-family:var(--serif);font-weight:700;font-size:1.35rem;color:var(--accent)}
+.latest .lb b{display:block;line-height:1.35}
+.latest .lj{display:block;color:var(--muted);font-size:.86rem;margin-top:3px}
+.latest .lc{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.latest .lc span{font-size:.72rem;font-weight:800;border-radius:999px;padding:2px 9px}
+.latest .lq{background:#2E8B57;color:#fff}
+.latest .li{background:var(--bg);border:1px solid var(--line)}
+.latest .la{background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.latest .lgo{font-size:1.2rem;color:var(--accent);font-weight:800}
+@media (max-width:560px){.latest a{grid-template-columns:1fr 20px}.latest .ly{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -794,7 +808,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#news">News</a>
-          <ul class="sub"><li><a href="#news/list">Latest news</a></li></ul></li>
+          <ul class="sub"><li><a href="#news/list">Latest news</a></li><li><a href="#news/latest">Latest publications</a></li></ul></li>
         <li><a href="#professor">Professor</a>
           <ul class="sub"><li><a href="#professor/journey">Academic journey</a></li><li><a href="#professor/impact">Research impact</a></li><li><a href="#professor/awards">Awards &amp; honors</a></li></ul></li>
         <li><a href="#research">Research</a>
@@ -848,6 +862,10 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   <div class="sec-title wrap" id="news-list"><h2>News</h2><p>Collaborations, events, awards, new members and milestones from the HE3 Lab.</p></div>
   <div class="wrap"><div class="news-grid" id="news-cards"></div>
     <p class="news-more"><button class="btn ghost" type="button" id="news-more">Show older news</button></p></div>
+  <div class="wrap"><h2 class="section-title" id="news-latest">Latest publications</h2>
+    <p class="section-sub">Newest first. Click a paper to open it.</p>
+    <ol class="latest" id="latest-pubs"></ol>
+    <p style="text-align:center;margin-top:18px"><a class="btn ghost" href="#research/publications">See all publications</a></p></div>
 
 
 
@@ -1111,13 +1129,8 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
      "ill:hem|battery|emi|thermal" (research illustration), "card:award|launch" (drawn card), or any image URL / data URI. */
   var news = [
     {d:"10/2026",tag:"New members",t:"Welcome to the HE3 team! Postdoc Nguyen Thi Tuyet Hanh and research assistants Pham Duy Anh Hao, Vuong Khiet An, Duong Thanh Tung, Vo Thi Cam Tien, Le Tan Phat and Bui Duc Hieu join the lab.",img:["card:welcome"],story:1},
-    {d:"10/2026",tag:"Lab news",t:"The HE3 Lab website goes live, with our research journey, publications and open positions.",img:["card:launch"]},
-    {d:"2026",tag:"Collaboration",t:"Kick-off of the project “High-Entropy Chemistries for Energy and Electronics” (HE3) at VinUniversity, linking synthesis, battery testing and first-principles modelling.",img:["ill:hem","ill:battery"]},
-    {d:"2026",tag:"New members",t:"Prof. Vu Minh Canh joins VinUniversity as Assistant Professor of Materials Science (College of Engineering & Computer Science and CMIT).",img:["pi"]},
+    {d:"2026",tag:"Collaboration",t:"Kick-off of the project “High-Entropy Chemistries for Energy and Electronics” (HE3) at VinUniversity, linking synthesis, battery testing and first-principles modelling.",img:["ill:hem"]},
     {d:"2026",tag:"Award",t:"Prof. Vu is selected to attend the 15th HOPE Meetings with Nobel Laureates.",img:["card:award"]},
-    {d:"2026",tag:"Publication",t:"Eight new journal articles this year, including a transition-metal- and solvent-free dual-graphite battery (J. Mater. Chem. A) and flame-retardant MXene textiles for EMI shielding.",img:["ill:battery","ill:emi"]},
-    {d:"2025",tag:"Publication",t:"“Electrolytomics: a unified big data approach for electrolyte design and discovery” is published in Chemistry of Materials.",img:["ga:03"]},
-    {d:"2024",tag:"Publication",t:"Fluorinated ether electrolytes for all-temperature fast-charging Li-ion batteries appear in ACS Energy Letters.",img:["ga:02"]},
     {d:"2024",tag:"Award",t:"Best Poster Award at the 11th International Workshop on Advanced Materials Science and Nanotech.",img:["card:poster"]}
   ];
   /* Full publication list, newest first. tag: Batteries | Thermal | EMI | Other.
@@ -1297,6 +1310,16 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
     return '<a class="sel" href="'+p.url+'" target="_blank" rel="noopener"><div class="ga">'+motif(p.motif,t[0],t[1])+'<img src="'+(GA[n]||'images/none.jpg')+'" alt="Graphical abstract: '+p.title.replace(/"/g,'')+'" loading="lazy" onerror="this.remove()"></div><div class="cap">'+p.short+'</div><div class="ttl">'+p.title+'</div>'+metrics(p)+'</a>';
   }).join('');
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Latest publications (News) ---------- */
+  (function(){
+    var box=document.getElementById('latest-pubs');if(!box)return;
+    var L=(window.PUBS||[]).filter(function(p){return !p.conf&&!p.pre}).slice(0,8);
+    box.innerHTML=L.map(function(p){
+      var chips=(p.q?'<span class="lq">'+p.q+'</span>':'')+(p.impf?'<span class="li">IF '+p.impf+'</span>':'')+(p.h?'<span class="li">H-index '+p.h+'</span>':'')+(p.first?'<span class="la">First author</span>':'')+(p.corr?'<span class="la">Corresponding</span>':'');
+      return '<li><a href="'+p.url+'" target="_blank" rel="noopener"><span class="ly">'+p.y+'</span><span class="lb"><b>'+p.title+'</b><span class="lj"><em>'+p.j+'</em> '+p.v+'</span>'+(chips?'<span class="lc">'+chips+'</span>':'')+'</span><span class="lgo">↗</span></a></li>';
+    }).join('');
+  })();
   /* ---------- News cards ---------- */
   var TAGC={"Collaboration":"var(--e4)","Event":"var(--e3)","New members":"var(--e1)","Award":"var(--e2)","Publication":"var(--e5)","Lab news":"var(--e7)"};
   function welcomeCard(){
