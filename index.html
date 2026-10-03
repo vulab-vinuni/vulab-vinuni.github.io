@@ -848,6 +848,25 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 .pb-orcid b{background:#A6CE39;color:#fff;border-radius:50%;width:20px;height:20px;display:inline-grid;place-items:center;font-size:.62rem}
 .pb-vin{background:#FDF4E2;color:#8A5A00;border:1.5px solid #E3B65A}
 .pb-mail{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+
+.pi-icons{display:flex;flex-wrap:wrap;gap:16px;margin-top:4px}
+.pic{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--muted);font-size:.74rem;font-weight:700}
+.pic svg{width:46px;height:46px;fill:#5E7FB0;color:#5E7FB0;transition:transform .2s,fill .2s,filter .2s}
+.pic:hover svg{fill:#2F5F99;color:#2F5F99;transform:translateY(-3px);filter:drop-shadow(0 8px 12px rgba(47,95,153,.35))}
+.pic:hover{color:var(--ink)}
+.mission{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:6px 0 28px;max-width:640px}
+.mission .mk{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--e2);border-bottom:2px solid var(--e2);padding-bottom:3px;margin-bottom:8px}
+.mission .mh{font-family:var(--serif);font-size:1.12rem;color:var(--band-ink);margin:0 0 6px;line-height:1.35}
+.mission p{margin:0;color:var(--band-muted);font-size:.9rem;line-height:1.55}
+@media (max-width:640px){.mission{grid-template-columns:1fr}}
+.chem-info{margin:6px 2px 0;min-height:52px}
+.chem-info b{display:block;color:var(--e2);font-size:.95rem}
+.chem-info span{display:block;color:var(--band-muted);font-size:.82rem;line-height:1.45;margin-top:2px}
+.apps-hint{margin:14px 0 -6px;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--band-muted)}
+.app{cursor:pointer}
+.app.sel{background:rgba(240,190,58,.14);border-color:var(--e2)!important;color:var(--band-ink)}
+.foot-addr{display:block;line-height:1.6}
+sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
 </style>
 </head>
 <body>
@@ -888,9 +907,12 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 <div class="hero-band">
     <div class="wrap hero">
       <div>
-        <p class="eyebrow">High-Entropy Chemistries for Energy &amp; Electronics (HE3) · VinUniversity</p>
+        <p class="eyebrow">High-Entropy Chemistries for Energy &amp; Electronics (HE3)</p>
         <h1 class="slogan">Safer energy.<br><span>Smarter materials.</span></h1>
-        <p class="lead">We build safer batteries from the electrolyte up, and polymer composites that keep electronics cool and shielded. Our newest direction: high-entropy materials for energy and electronics.</p>
+        <div class="mission">
+          <div><span class="mk">Mission</span><p class="mh">Build safer energy and smarter materials for a sustainable future.</p><p>We engineer high-entropy chemistries for advanced battery materials and nanocomposites to tackle challenges in energy storage and next-generation electronics.</p></div>
+          <div><span class="mk">Who we are</span><p class="mh">We are scientists who think like engineers and create like artists.</p><p>We challenge conventional materials, explore new architectures, and turn bold ideas into functional technologies.</p></div>
+        </div>
         <div class="cta">
           <a class="btn" href="#research">Explore research</a>
           <a class="btn ghost" href="#join">Open positions</a>
@@ -898,6 +920,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
       </div>
       <figure class="cell-box" style="margin:0">
         <div class="cell3d" id="cell3d"><span class="c3-hint">drag to rotate · 3D</span></div>
+        <div class="chem-info"><b id="chem-title"></b><span id="chem-mech"></span></div>
         <svg id="cell" viewBox="0 0 520 420" role="img" aria-label="Animated lithium-ion battery: lithium ions move between a graphite anode and a layered-oxide cathode through the electrolyte while electrons flow through the external circuit"></svg>
         <div class="cell-ctrl">
           <div class="mode" role="group" aria-label="Battery mode">
@@ -906,11 +929,12 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
           </div>
           <div class="soc"><span>State of charge</span><div class="soc-bar"><i id="soc-fill"></i></div><b id="soc-val">0%</b></div>
         </div>
+        <p class="apps-hint">Choose an application to see its battery chemistry</p>
         <div class="apps" id="apps">
-          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 22v-6l5-7h20l7 7h4a2 2 0 0 1 2 2v4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M13 9l-3 7h28" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="23" r="4" fill="currentColor"/><circle cx="35" cy="23" r="4" fill="currentColor"/><path d="M24 11l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Electric vehicles</span></div>
-          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="8" y="5" width="18" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="29" y="9" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M26 23h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="17" cy="25" r="1.4" fill="currentColor"/></svg><span>Phones &amp; laptops</span></div>
-          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 15 17 6l11 9v13H6z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><rect x="31" y="12" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M35 12v-3h4v3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M38 15l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grid &amp; home storage</span></div>
-          <div class="app"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="17" y="4" width="14" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="21" y="10" width="6" height="12" rx="2" fill="currentColor"/><path d="M8 16h6M34 16h6M10 10l4 3M38 10l-4 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Wearables &amp; IoT</span></div>
+          <div class="app" role="button" tabindex="0" data-chem="ev"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 22v-6l5-7h20l7 7h4a2 2 0 0 1 2 2v4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M13 9l-3 7h28" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="23" r="4" fill="currentColor"/><circle cx="35" cy="23" r="4" fill="currentColor"/><path d="M24 11l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Electric vehicles</span></div>
+          <div class="app" role="button" tabindex="0" data-chem="phone"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="8" y="5" width="18" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="29" y="9" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M26 23h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="17" cy="25" r="1.4" fill="currentColor"/></svg><span>Phones &amp; laptops</span></div>
+          <div class="app" role="button" tabindex="0" data-chem="grid"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 15 17 6l11 9v13H6z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><rect x="31" y="12" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M35 12v-3h4v3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M38 15l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grid &amp; home storage</span></div>
+          <div class="app" role="button" tabindex="0" data-chem="wear"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="17" y="4" width="14" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="21" y="10" width="6" height="12" rx="2" fill="currentColor"/><path d="M8 16h6M34 16h6M10 10l4 3M38 10l-4 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Wearables &amp; IoT</span></div>
         </div>
       </figure>
     </div>
@@ -951,11 +975,12 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
         <p class="pi-role">Assistant Professor of Materials Science · CECS &amp; CMIT, VinUniversity</p>
         <blockquote class="pi-quote">Electrochemistry and batteries: from safer electrolytes to polymer composites that keep devices cool.</blockquote>
         <div class="topics"><span class="tp" style="--c:var(--e2)">Batteries</span><span class="tp" style="--c:var(--e4)">Electrolytes</span><span class="tp" style="--c:var(--e7)">Polymer composites</span><span class="tp" style="--c:var(--e3)">Thermal management</span><span class="tp" style="--c:var(--e5)">EMI shielding</span><span class="tp" style="--c:var(--e1)">High-entropy materials<b>new</b></span></div>
-        <div class="pi-btns">
-          <a class="pb pb-main" href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar <i>↗</i></a>
-          <a class="pb pb-orcid" href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener"><b>iD</b> ORCID</a>
-          <a class="pb pb-vin" href="https://vinuni.edu.vn/people/vu-minh-canh/" target="_blank" rel="noopener">VinUni profile <i>↗</i></a>
-          <a class="pb pb-mail" href="mailto:canh.vm@vinuni.edu.vn">✉ canh.vm@vinuni.edu.vn</a>
+        <div class="pi-icons">
+          <a class="pic" href="Canh_Vu_CV_2026.pdf" target="_blank" rel="noopener" title="Curriculum vitae (PDF)" aria-label="CV"><svg viewBox="0 0 48 48"><rect width="48" height="48" rx="10"/><text x="24" y="31" text-anchor="middle" font-family="Manrope,Arial,sans-serif" font-weight="900" font-size="19" fill="#fff">CV</text></svg><span>CV</span></a>
+          <a class="pic" href="https://outlook.office.com/mail/deeplink/compose?to=canh.vm@vinuni.edu.vn" target="_blank" rel="noopener" title="Email via Outlook: canh.vm@vinuni.edu.vn" aria-label="Email"><svg viewBox="0 0 48 48"><rect width="48" height="48" rx="10"/><rect x="11" y="15" width="26" height="18" rx="2" fill="none" stroke="#fff" stroke-width="3"/><path d="M12 16l12 9 12-9" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg><span>Email</span></a>
+          <a class="pic" href="https://www.linkedin.com/search/results/all/?keywords=Minh%20Canh%20Vu%20VinUniversity" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><svg viewBox="0 0 48 48"><rect width="48" height="48" rx="10"/><circle cx="16" cy="15" r="3.2" fill="#fff"/><rect x="13" y="20" width="6" height="16" fill="#fff"/><path d="M23 20h5.5v2.4c1-1.6 2.9-2.8 5.4-2.8 4 0 5.1 2.6 5.1 6.3V36h-6v-9c0-2-.6-3.1-2.3-3.1S28.9 25.2 28.9 27v9H23z" fill="#fff"/></svg><span>LinkedIn</span></a>
+          <a class="pic" href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener" title="ORCID 0000-0002-6143-7770" aria-label="ORCID"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="24"/><circle cx="16.5" cy="13.5" r="2.2" fill="#fff"/><rect x="14.6" y="18" width="3.8" height="17" fill="#fff"/><path d="M22 18h6.5c5.2 0 8.5 3.6 8.5 8.5S33.7 35 28.5 35H22zm3.8 3.3v10.4h2.6c3.3 0 5-2.2 5-5.2s-1.7-5.2-5-5.2z" fill="#fff"/></svg><span>ORCID</span></a>
+          <a class="pic" href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><svg viewBox="0 0 48 48"><rect width="48" height="48" rx="10"/><path d="M24 10 8 22h7.2a9 9 0 1 0 17.6 0H40z" fill="#fff"/><circle cx="24" cy="29" r="6.2" fill="currentColor"/></svg><span>Scholar</span></a>
         </div>
       </div>
     </div>
@@ -1109,7 +1134,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 <section data-page="members" id="members" class="page">
   <div class="sec-title wrap"><h2>HE3 Team</h2><p>The people of the High-Entropy Chemistries for Energy &amp; Electronics lab.</p></div>
   <div class="wrap">
-    <div class="subnav"><a href="#members/pi">Professor</a><a href="#members/postdoc">Postdocs</a><a href="#members/phd">PhD candidates</a><a href="#members/ra">Research assistants</a><a href="#members/students">Students</a></div>
+    <div class="subnav"><a href="#members/pi">Principal Investigator</a><a href="#members/postdoc">Postdocs</a><a href="#members/phd">PhD candidates</a><a href="#members/ra">Research assistants</a><a href="#members/students">Students</a></div>
     <div id="members-root"></div>
   </div>
 </section>
@@ -1173,9 +1198,9 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 <footer>
   <div class="wrap">
     <div class="cols">
-      <div><span class="foot-brand"><svg class="brand-mark foot-mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="3.5" y="12" width="52" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="3.4"/> <rect x="56.5" y="24.5" width="5" height="15" rx="2" fill="currentColor"/> <path d="M14.5 19.5 L26 44.5" stroke="var(--e4)" stroke-width="6" stroke-linecap="round"/> <path d="M44.5 19.5 L33 44.5" stroke="var(--e2)" stroke-width="6" stroke-linecap="round"/> <path d="M29.5 17.5 V47" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="2.2 2.2"/> <g class="ions"> <circle cx="23.6" cy="23.5" r="2.6" fill="var(--e1)"/> <circle cx="29.5" cy="23.5" r="2.8" fill="var(--e5)"/> <circle cx="35.4" cy="23.5" r="2.6" fill="var(--e3)"/> <circle cx="29.5" cy="32" r="2.2" fill="var(--e1)"/> </g></svg><b>HE3 Lab</b></span><i class="foot-slogan">Safer energy. Smarter materials.</i>High-Entropy Chemistries for Energy &amp; Electronics (HE3), College of Engineering &amp; Computer Science and Center for Materials Innovation and Technology, VinUniversity, Vinhomes Ocean Park, Gia Lam, Hanoi, Vietnam</div>
+      <div><span class="foot-brand"><svg class="brand-mark foot-mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="3.5" y="12" width="52" height="40" rx="8" fill="none" stroke="currentColor" stroke-width="3.4"/> <rect x="56.5" y="24.5" width="5" height="15" rx="2" fill="currentColor"/> <path d="M14.5 19.5 L26 44.5" stroke="var(--e4)" stroke-width="6" stroke-linecap="round"/> <path d="M44.5 19.5 L33 44.5" stroke="var(--e2)" stroke-width="6" stroke-linecap="round"/> <path d="M29.5 17.5 V47" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="2.2 2.2"/> <g class="ions"> <circle cx="23.6" cy="23.5" r="2.6" fill="var(--e1)"/> <circle cx="29.5" cy="23.5" r="2.8" fill="var(--e5)"/> <circle cx="35.4" cy="23.5" r="2.6" fill="var(--e3)"/> <circle cx="29.5" cy="32" r="2.2" fill="var(--e1)"/> </g></svg><b>HE3 Lab</b></span><i class="foot-slogan">Safer energy. Smarter materials.</i><span class="foot-addr">High-Entropy Chemistries for Energy &amp; Electronics (HE3),<br>Center for Materials Innovation and Technology,<br>College of Engineering &amp; Computer Science,<br>VinUniversity, Gia Lam, Hanoi 100000, Vietnam</span></div>
       <div><b>Lab</b><ul><li><a href="#research">Research</a></li><li><a href="#members">HE3 Team</a></li><li><a href="#research/publications">Publications</a></li><li><a href="#join">Join us</a></li></ul></div>
-      <div><b>Links</b><ul><li><a href="https://vinuni.edu.vn" target="_blank" rel="noopener">VinUniversity</a></li><li><a href="https://cecs.vinuni.edu.vn/" target="_blank" rel="noopener">CECS</a></li><li><a href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener">ORCID</a></li></ul></div>
+      <div><b>Links</b><ul><li><a href="https://vinuni.edu.vn" target="_blank" rel="noopener">VinUniversity</a></li><li><a href="https://cecs.vinuni.edu.vn/" target="_blank" rel="noopener">CECS</a></li><li><a href="https://cmit.vinuni.edu.vn/" target="_blank" rel="noopener">CMIT</a></li><li><a href="https://scholar.google.com/citations?user=H2h5eN8AAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li><li><a href="https://orcid.org/0000-0002-6143-7770" target="_blank" rel="noopener">ORCID</a></li></ul></div>
     </div>
     <div class="copy">© 2026 HE3 Lab · High-Entropy Chemistries for Energy &amp; Electronics (HE3), VinUniversity. All rights reserved.</div>
   </div>
@@ -1190,7 +1215,8 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
      "ill:hem|battery|emi|thermal" (research illustration), "card:award|launch" (drawn card), or any image URL / data URI. */
   var news = [
     {d:"10/2026",tag:"New members",t:"Welcome to the HE3 team! Postdoc Nguyen Thi Tuyet Hanh and research assistants Pham Duy Anh Hao, Vuong Khiet An, Duong Thanh Tung, Vo Thi Cam Tien, Le Tan Phat and Bui Duc Hieu join the lab, together with PhD candidate Vo Hao Nhien, research assistant Nguyen Chi Thien and eight student researchers.",img:["card:welcome"],story:1},
-    {d:"2026",tag:"Collaboration",t:"Kick-off of the project “High-Entropy Chemistries for Energy and Electronics” (HE3) at VinUniversity, linking synthesis, battery testing and first-principles modelling.",img:["ill:hem"]},
+    {d:"2026",tag:"Project",t:"Kick-off of the project “High-Entropy Materials for Batteries” at VinUniversity.<br>Linking synthesis, battery testing and first-principles modelling.",img:["ill:hem"]},
+    {d:"2026",tag:"Project",t:"VinUni–VinFast Joint Project: “Advanced cathode materials for sodium-ion batteries”.",img:["card:vinfast"]},
     {d:"2026",tag:"Award",t:"Prof. Vu is selected to attend the 15th HOPE Meetings with Nobel Laureates.",img:["card:award"]},
     {d:"2024",tag:"Award",t:"Best Poster Award at the 11th International Workshop on Advanced Materials Science and Nanotech.",img:["card:poster"]}
   ];
@@ -1273,7 +1299,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   ];
   var members = [
     /* edu: [stage, degree / position, field, institution, years]. Leave "" for unknown parts; empty email/field are hidden. */
-    {id:"pi",title:"Professor",list:[{n:"Vu Minh Canh",r:"Assistant Professor",f:"Batteries, electrolytes, polymer composites, thermal management, EMI shielding",e:"canh.vm@vinuni.edu.vn",c:"var(--e4)",i:"MCV",photo:1,edu:[
+    {id:"pi",title:"Principal Investigator",list:[{n:"Vu Minh Canh",r:"Assistant Professor",f:"Batteries, electrolytes, polymer composites, thermal management, EMI shielding",e:"canh.vm@vinuni.edu.vn",c:"var(--e4)",i:"MCV",photo:1,edu:[
       ["BEng","Bachelor of Engineering","Chemical Engineering","Industrial University of Ho Chi Minh City, Vietnam","2014"],
       ["MSc","Master of Science","Polymer Science & Engineering","Korea National University of Transportation, Korea","2017"],
       ["PhD","Doctor of Philosophy","Polymer Science & Engineering","Korea National University of Transportation, Korea","2020"],
@@ -1287,7 +1313,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
       ["Postdoc","Postdoctoral Researcher","Chemical Engineering","National Cheng Kung University, Taiwan","2024 – 2025"],
       ["Postdoc","Postdoctoral Researcher","Energy storage materials","VinUniversity, Vietnam","2026 – now"]]}]},
     {id:"phd",title:"PhD candidates",list:[
-      {n:"Vo Hao Nhien",r:"PhD Candidate",f:"Dielectric materials for energy-storage capacitors; polymer dielectric nanocomposites; ANF/CNF nanofiber hybrid films",e:"haonhien1296@gmail.com",c:"var(--e3)",i:"VN",ph:"nhien",edu:[
+      {n:"Vo Hao Nhien",r:"PhD Candidate",f:"Dielectric polymer nanocomposites, dielectric films, dielectric capacitors",e:"haonhien1296@gmail.com",c:"var(--e3)",i:"VN",ph:"nhien",edu:[
         ["BSc","Bachelor of Science","Chemistry Education","Dong Nai University, Vietnam","2014 – 2018"],
         ["MSc","Master of Science","Chemical Engineering","Taiwan Tech (NTUST), Taiwan","2019 – 2021"],
         ["PhD","PhD candidate","Chemical Engineering","Industrial University of Ho Chi Minh City, Vietnam","now"]]}]},
@@ -1299,35 +1325,35 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
         ["BSc","Bachelor of Science","Physics Education","Can Tho University, Vietnam",""],
         ["MSc","Master of Science","Theoretical & Mathematical Physics","",""],
         ["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
-      {n:"Duong Thanh Tung",r:"Research Assistant",f:"EMI shielding materials & functional nanocomposites",e:"tung.dt@vinuni.edu.vn",c:"var(--e2)",i:"DT",ph:"tung",edu:[
+      {n:"Duong Thanh Tung",r:"Research Assistant",f:"Multifunctional nanocomposites, EMI shielding materials",e:"tung.dt@vinuni.edu.vn",c:"var(--e2)",i:"DT",ph:"tung",edu:[
         ["BEng","Bachelor of Engineering","Chemical Engineering","Industrial University of Ho Chi Minh City, Vietnam",""],
         ["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
-      {n:"Vo Thi Cam Tien",r:"Research Assistant",f:"Battery materials & functional nanocomposites",e:"tien.vtc@vinuni.edu.vn",c:"var(--e5)",i:"VT",ph:"tien",edu:[
+      {n:"Vo Thi Cam Tien",r:"Research Assistant",f:"Multifunctional polymer composites, electrolytes for sodium-ion batteries",e:"tien.vtc@vinuni.edu.vn",c:"var(--e5)",i:"VT",ph:"tien",edu:[
         ["BEng","Bachelor of Engineering","Chemical Engineering","Industrial University of Ho Chi Minh City, Vietnam",""],
         ["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
-      {n:"Le Tan Phat",r:"Research Assistant",f:"Sodium-ion batteries",e:"tanphat.wk@gmail.com",c:"var(--e7)",i:"LP",ph:"phat",edu:[
+      {n:"Le Tan Phat",r:"Research Assistant",f:"Advanced cathodes for sodium-ion batteries",e:"tanphat.wk@gmail.com",c:"var(--e7)",i:"LP",ph:"phat",edu:[
         ["BSc","Bachelor of Science","Chemistry","University of Science, VNU-HCM, Vietnam",""],
         ["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
-      {n:"Nguyen Chi Thien",r:"Research Assistant",f:"High-entropy materials for EMI shielding & thermal management; 2D materials; polymer composites",e:"thien.nc@vinuni.edu.vn",c:"var(--e4)",i:"NT",ph:"thien",edu:[
+      {n:"Nguyen Chi Thien",r:"Research Assistant",f:"High-entropy nanomaterials, 2D nanomaterials, polymer composites, EMI shielding &amp; thermal management materials",e:"thien.nc@vinuni.edu.vn",c:"var(--e4)",i:"NT",ph:"thien",edu:[
         ["BEng","Bachelor of Engineering","Chemical Engineering","Industrial University of Ho Chi Minh City, Vietnam",""],
         ["RA","Teaching & Research Assistant","","Industrial University of Ho Chi Minh City, Vietnam",""],
         ["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]},
-      {n:"Bui Duc Hieu",r:"Research Assistant",f:"Energy conversion materials",e:"",c:"var(--e6)",i:"BH",ph:"hieu",edu:[
+      {n:"Bui Duc Hieu",r:"Research Assistant",f:"Advanced cathodes for sodium-ion batteries",e:"",c:"var(--e6)",i:"BH",ph:"hieu",edu:[
         ["BSc","Bachelor of Science","Chemistry","University of Science, VNU-HCM, Vietnam",""],
         ["RA","Research Assistant","","VinUniversity, Vietnam","2026 – now"]]}]},
     {id:"students",title:"Students",list:[
-      {n:"Do Thi Minh Hieu",r:"Undergraduate Student",f:"High-entropy materials for EMI shielding; 2D materials; polymer composites for EMI shielding & thermal management",e:"minhhieudothi15@gmail.com",c:"var(--e5)",i:"DH",ph:"mhieu",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
+      {n:"Do Thi Minh Hieu",r:"Undergraduate Student",f:"High-entropy nanomaterials; polymer composites for EMI shielding",e:"minhhieudothi15@gmail.com",c:"var(--e5)",i:"DH",ph:"mhieu",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
       {n:"Duong Hoai Linh",r:"Undergraduate Student",f:"High-entropy materials and polymer composites for EMI shielding",e:"duonghoailinh10072019@gmail.com",c:"var(--e7)",i:"DL",ph:"linh",edu:[["BEng","Bachelor of Engineering","Analytical Chemistry (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
-      {n:"Nguyen Thi Kim Ngan",r:"Undergraduate Student",f:"2D materials (MXene, BN, graphene); polymer composites for EMI shielding & thermal management; flexible devices",e:"nguyenthikngan9@gmail.com",c:"var(--e2)",i:"NN",ph:"ngan",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
-      {n:"Pham Ngoc Chau",r:"Undergraduate Student",f:"High-entropy materials for EMI shielding; 2D materials; polymer composites; flexible devices",e:"ngocchaupham3617@gmail.com",c:"var(--e1)",i:"PC",ph:"chau",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
+      {n:"Nguyen Thi Kim Ngan",r:"Undergraduate Student",f:"High-entropy nanomaterials; polymer composites for EMI shielding",e:"nguyenthikngan9@gmail.com",c:"var(--e2)",i:"NN",ph:"ngan",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
+      {n:"Pham Ngoc Chau",r:"Undergraduate Student",f:"High-entropy nanomaterials; polymer composites for EMI shielding",e:"ngocchaupham3617@gmail.com",c:"var(--e1)",i:"PC",ph:"chau",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
       {n:"Phan Van Khoe",r:"Undergraduate Student",f:"High-entropy materials and polymer composites for EMI shielding",e:"vankhoephan150704@gmail.com",c:"var(--e4)",i:"PK",ph:"khoe",edu:[["BEng","Bachelor of Engineering","Analytical Chemistry (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
-      {n:"Vo Truong Anh Thu",r:"Undergraduate Student",f:"2D materials; polymer composites for EMI shielding & thermal management; flexible devices",e:"anhthuvotruong0511@gmail.com",c:"var(--e6)",i:"VT",ph:"thu",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
+      {n:"Vo Truong Anh Thu",r:"Undergraduate Student",f:"High-entropy nanomaterials; polymer composites for EMI shielding",e:"anhthuvotruong0511@gmail.com",c:"var(--e6)",i:"VT",ph:"thu",edu:[["BEng","Bachelor of Engineering","Chemical Engineering (student)","Industrial University of Ho Chi Minh City, Vietnam","now"]]},
       {n:"Nguyen Duc Thuan",r:"Undergraduate Student",f:"Energy and environmental sustainability",e:"26thuan.nd@vinuni.edu.vn",c:"var(--e7)",i:"NT",ph:"thuan",edu:[
         ["BSc","Bachelor of Science","Data Science","VinUniversity, Vietnam","now"]]},
       {n:"Kieu Thanh Binh",r:"Undergraduate Student",f:"Machine learning for materials",e:"26binh.kt@vinuni.edu.vn",c:"var(--e4)",i:"KB",ph:"binh",edu:[
         ["HS","High school","Informatics (gifted program)","HUS High School for Gifted Students, Hanoi",""],
         ["BSc","Bachelor of Science","Data Science","VinUniversity, Vietnam","now"]]},
-      {n:"Nguyen Le Hoang",r:"Undergraduate Student",f:"Nanomaterials for electromagnetic interference shielding",e:"26hoang.nl@vinuni.edu.vn",c:"var(--e5)",i:"LH",ph:"hoang",edu:[
+      {n:"Nguyen Le Hoang",r:"Undergraduate Student",f:"Nanomaterials for EMI shielding",e:"26hoang.nl@vinuni.edu.vn",c:"var(--e5)",i:"LH",ph:"hoang",edu:[
         ["BSc","Undergraduate","","VinUniversity, Vietnam","2026 – now"]]}]}
   ];
 
@@ -1399,7 +1425,7 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
     }).join('');
   })();
   /* ---------- News cards ---------- */
-  var TAGC={"Collaboration":"var(--e4)","Event":"var(--e3)","New members":"var(--e1)","Award":"var(--e2)","Publication":"var(--e5)","Lab news":"var(--e7)"};
+  var TAGC={"Project":"var(--e4)","Collaboration":"var(--e4)","Event":"var(--e3)","New members":"var(--e1)","Award":"var(--e2)","Publication":"var(--e5)","Lab news":"var(--e7)"};
   function welcomeCard(){
     var ppl=[['hanh','Hanh'],['hao','Hao'],['an','An'],['tung','Tung'],['tien','Tien'],['phat','Phat'],['hieu','Hieu']];
     var out='<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="wcg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E7C86"/><stop offset="1" stop-color="#13213B"/></linearGradient>';
@@ -1419,12 +1445,12 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   }
   function drawnCard(kind){
     if(kind==='welcome')return welcomeCard();
-    var k={award:['#13213B','#2F6690','★','15th HOPE Meetings','with Nobel Laureates · 2026'],poster:['#3B2A5C','#6A4C93','★','Best Poster','Advanced Materials Science & Nanotech'],launch:['#0E7C86','#2F6690','','HE3 Lab','High-Entropy Chemistries for Energy & Electronics']}[kind];
+    var k={award:['#13213B','#2F6690','★','15th HOPE Meetings','with Nobel Laureates · 2026'],poster:['#3B2A5C','#6A4C93','★','Best Poster','Advanced Materials Science & Nanotech'],launch:['#0E7C86','#2F6690','','HE3 Lab','High-Entropy Chemistries for Energy & Electronics'],vinfast:['#0F2E4A','#1E6FA8','Na⁺','VinUni – VinFast Joint Project','Advanced cathode materials for sodium-ion batteries']}[kind];
     var mark=document.querySelector('.brand-mark');
-    var icon=kind==='launch'&&mark?'<g transform="translate(250,40) scale(1.6)" color="#fff">'+mark.innerHTML+'</g>':'<text x="300" y="120" text-anchor="middle" font-size="90" fill="#F0BE3A">'+k[2]+'</text>';
+    var icon=kind==='vinfast'?'<g transform="translate(300,108)"><rect x="-70" y="-42" width="128" height="84" rx="12" fill="none" stroke="#fff" stroke-width="6"/><rect x="58" y="-16" width="12" height="32" rx="3" fill="#fff"/><circle cx="-30" cy="0" r="22" fill="#F28C28"/><text x="-30" y="9" text-anchor="middle" font-size="24" font-weight="800" fill="#fff" font-family="Manrope,sans-serif">Na⁺</text><path d="M4 -20 l-14 22 h14 l-10 20" fill="none" stroke="#F0BE3A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>':kind==='launch'&&mark?'<g transform="translate(250,40) scale(1.6)" color="#fff">'+mark.innerHTML+'</g>':'<text x="300" y="120" text-anchor="middle" font-size="90" fill="#F0BE3A">'+k[2]+'</text>';
     return '<svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="g'+kind+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+k[0]+'"/><stop offset="1" stop-color="'+k[1]+'"/></linearGradient></defs><rect width="600" height="340" fill="url(#g'+kind+')"/>'+
       '<g opacity=".12" fill="#fff">'+[0,1,2,3,4,5,6,7].map(function(i){return '<circle cx="'+(40+i*75)+'" cy="'+(300-(i%3)*20)+'" r="'+(10+i%3*6)+'"/>'}).join('')+'</g>'+icon+
-      '<text x="300" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="40" font-weight="700" fill="#fff">'+k[3]+'</text><text x="300" y="272" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-size="18" fill="#DCE6F2">'+k[4]+'</text></svg>';
+      '<text x="300" y="235" text-anchor="middle" font-family="Georgia,serif" font-size="'+(k[3].length>22?30:40)+'" font-weight="700" fill="#fff">'+k[3]+'</text><text x="300" y="272" text-anchor="middle" font-family="Manrope,system-ui,sans-serif" font-size="18" fill="#DCE6F2">'+k[4]+'</text></svg>';
   }
   function media(x){
     if(x==='pi')return '<img src="'+PHOTO+'" alt="Prof. Vu Minh Canh">';
@@ -2010,15 +2036,15 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
       {id:"tien",n:"Vo Thi Cam Tien",r:"Research Assistant",steps:[
         {y:"Roots",t:"Dong Thap",u:"HOME",city:"DT",ctry:"VN",tx:"Tien’s story begins in Dong Thap, in the Mekong Delta."},
         {y:"BEng",t:"Chemical Engineering",u:"IUH",city:"HCM",ctry:"VN",tx:"She moved to Ho Chi Minh City to study Chemical Engineering at the Industrial University of Ho Chi Minh City."},
-        {y:"2026 – now",t:"Research Assistant · HE3",u:"VIN",city:"HN",ctry:"VN",tx:"She joined HE3 in Hanoi to work on battery materials and functional nanocomposites. Welcome, Tien!"}]},
+        {y:"2026 – now",t:"Research Assistant · HE3",u:"VIN",city:"HN",ctry:"VN",tx:"She joined HE3 to work on multifunctional polymer composites and electrolytes for sodium-ion batteries. Welcome, Tien!"}]},
       {id:"phat",n:"Le Tan Phat",r:"Research Assistant",steps:[
         {y:"Roots",t:"Tay Ninh",u:"HOME",city:"TNH",ctry:"VN",tx:"Phat’s story begins in Tay Ninh, in southern Vietnam."},
         {y:"BSc",t:"Chemistry",u:"HCMUS",city:"HCM",ctry:"VN",tx:"He moved to Ho Chi Minh City and earned his BSc in Chemistry at the University of Science, VNU-HCM."},
-        {y:"2026 – now",t:"Research Assistant · HE3",u:"VIN",city:"HN",ctry:"VN",tx:"Now at HE3 in Hanoi, he focuses on sodium-ion batteries. Welcome, Phat!"}]},
+        {y:"2026 – now",t:"Research Assistant · HE3",u:"VIN",city:"HN",ctry:"VN",tx:"Now at HE3, he develops advanced cathodes for sodium-ion batteries. Welcome, Phat!"}]},
       {id:"hieu",n:"Bui Duc Hieu",r:"Research Assistant",steps:[
         {y:"Roots",t:"Phan Rang",u:"HOME",city:"PR",ctry:"VN",tx:"Hieu’s story begins in Phan Rang, on the south-central coast of Vietnam."},
         {y:"BSc",t:"Chemistry",u:"HCMUS",city:"HCM",ctry:"VN",tx:"He moved to Ho Chi Minh City to study in the Chemistry Department of the University of Science, VNU-HCM."},
-        {y:"2026 – now",t:"Research Assistant · HE3",u:"VIN",city:"HN",ctry:"VN",tx:"At HE3 he works on energy conversion materials. Welcome, Hieu!"}]},
+        {y:"2026 – now",t:"Research Assistant · HE3",u:"VIN",city:"HN",ctry:"VN",tx:"At HE3 he develops advanced cathodes for sodium-ion batteries. Welcome, Hieu!"}]},
       {id:"thien",n:"Nguyen Chi Thien",r:"Research Assistant",steps:[
         {y:"Roots",t:"Ninh Thuan",u:"HOME",city:"PR",ctry:"VN",tx:"Thien’s story begins in Ninh Thuan, on the south-central coast."},
         {y:"BEng",t:"Chemical Engineering",u:"IUH",city:"HCM",ctry:"VN",tx:"He moved to Ho Chi Minh City, earned his engineering degree in Chemical Engineering at IUH and stayed on as a teaching and research assistant."},
@@ -2132,69 +2158,110 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
 <script>
 (function(){
   var host=document.getElementById('cell3d'),svg=document.getElementById('cell');
+  var CHEM={
+    ev:{title:'Electric vehicles · Lithium-ion',mech:'Li⁺ shuttles between graphite layers and a layered-oxide cathode: the classic rocking-chair intercalation.',ion:[0xF3C548,0xB07A00,.11],an:'graphite',ca:'layered',sep:'porous',L:['Anode · graphite','Liquid electrolyte','Cathode · layered LiMO₂'],anions:1},
+    phone:{title:'Phones & laptops · Solid-state lithium-metal',mech:'Li⁺ crosses a ceramic solid electrolyte and plates or strips as lithium metal — high energy density, no flammable liquid.',ion:[0xF3C548,0xB07A00,.1],an:'limetal',ca:'layered',sep:'solid',L:['Anode · lithium metal','Solid electrolyte (garnet)','Cathode · layered LiCoO₂'],anions:0},
+    grid:{title:'Grid & home storage · Sodium-ion',mech:'Larger Na⁺ ions move between hard carbon and a Prussian-blue framework: abundant, low-cost materials for stationary storage.',ion:[0xF28C28,0x8A3B00,.15],an:'hardcarbon',ca:'prussian',sep:'porous',L:['Anode · hard carbon','Liquid electrolyte','Cathode · Prussian blue'],anions:1},
+    wear:{title:'Wearables & IoT · Aqueous zinc-ion',mech:'Zn²⁺ travels through a water-based electrolyte between a zinc anode and a tunnel-structured MnO₂ cathode: intrinsically safe and flexible.',ion:[0x5FD3E6,0x0E6F80,.12],an:'zinc',ca:'mno2',sep:'aqueous',L:['Anode · zinc metal','Aqueous electrolyte','Cathode · MnO₂ tunnels'],anions:1}
+  };
+  var tBox=document.getElementById('chem-title'),mBox=document.getElementById('chem-mech');
+  var apps=[].slice.call(document.querySelectorAll('#apps .app'));
+  var current='ev',onChem=null;
+  function showInfo(k){var c=CHEM[k];if(tBox)tBox.textContent=c.title;if(mBox)mBox.textContent=c.mech;apps.forEach(function(a){var on=a.dataset.chem===k;a.classList.toggle('sel',on);a.setAttribute('aria-pressed',on);});}
+  apps.forEach(function(a){a.addEventListener('click',function(){current=a.dataset.chem;showInfo(current);if(onChem)onChem(current);});a.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();a.click();}});});
+  showInfo(current);
   if(!host||!window.THREE)return;
   var renderer;try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}catch(e){return;}
   if(!renderer.getContext())return;
   var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   renderer.setPixelRatio(Math.min(2,window.devicePixelRatio||1));
-  renderer.domElement.setAttribute('role','img');
-  renderer.domElement.setAttribute('aria-label','3D lithium-ion battery: lithium ions shuttle between graphite anode layers and a layered oxide cathode while electrons flow through the external circuit');
+  renderer.domElement.setAttribute('role','img');renderer.domElement.setAttribute('aria-label','3D battery model; choose an application below to see its battery chemistry');
   host.appendChild(renderer.domElement);host.classList.add('ready');if(svg)svg.style.display='none';
   var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(32,1,.1,100);
   cam.position.set(3.2,4.2,12.6);cam.lookAt(0,.45,0);
   scene.add(new THREE.HemisphereLight(0xe6efff,0x18213a,.95));
   var dl=new THREE.DirectionalLight(0xffffff,.85);dl.position.set(5,9,7);scene.add(dl);
-  var pl=new THREE.PointLight(0xf0be3a,.7,18);pl.position.set(0,1.5,4.5);scene.add(pl);
+  var pl=new THREE.PointLight(0xf0be3a,.6,18);pl.position.set(0,1.5,4.5);scene.add(pl);
   var root=new THREE.Group();root.scale.setScalar(.92);scene.add(root);
   function std(c,o){return new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.5,metalness:.2},o||{}));}
-  // casing + electrolyte
+  var M=new THREE.Matrix4(),Q=new THREE.Quaternion(),S=new THREE.Vector3(1,1,1),P=new THREE.Vector3(),Eu=new THREE.Euler();
+  function inst(geo,mat,list,rot){var m=new THREE.InstancedMesh(geo,mat,list.length);list.forEach(function(p,k){P.set(p[0],p[1],p[2]);if(rot){Eu.set(p[3]||0,p[4]||0,p[5]||0);Q.setFromEuler(Eu);}else Q.identity();S.set(p[6]||1,p[7]||1,p[8]||1);M.compose(P,Q,S);m.setMatrixAt(k,M);});return m;}
+  // static: casing, collectors
   var cg=new THREE.BoxGeometry(6.6,4.4,3.4);
   root.add(new THREE.Mesh(cg,new THREE.MeshPhysicalMaterial({color:0x7fb6e0,transparent:true,opacity:.07,roughness:.05,depthWrite:false})));
   root.add(new THREE.LineSegments(new THREE.EdgesGeometry(cg),new THREE.LineBasicMaterial({color:0x9cc4e8,transparent:true,opacity:.6})));
-  root.add(new THREE.Mesh(new THREE.BoxGeometry(2.6,4.2,3.2),new THREE.MeshBasicMaterial({color:0x2F6690,transparent:true,opacity:.13,depthWrite:false})));
-  // current collectors
+  var elMat=new THREE.MeshBasicMaterial({color:0x2F6690,transparent:true,opacity:.13,depthWrite:false});
+  root.add(new THREE.Mesh(new THREE.BoxGeometry(2.6,4.2,3.2),elMat));
   var cu=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xc8834a,{metalness:.45,roughness:.35,emissive:0x3a1c08,transparent:true,opacity:.8}));cu.position.x=-3.18;root.add(cu);
   var al=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xd0d7df,{metalness:.4,roughness:.3,emissive:0x2a2f36,transparent:true,opacity:.55,depthWrite:false}));al.position.x=3.18;root.add(al);
-  // graphite: stacked graphene sheets of hexagonal plates
   var LY=[];for(var y=-1.8;y<=1.81;y+=.45)LY.push(+y.toFixed(2));
-  var gp=[];LY.forEach(function(y){for(var j=0;j<11;j++)for(var i=0;i<7;i++){var x=-3.0+i*.24+(j%2)*.12,z=-1.38+j*.276;if(x<-1.42)gp.push([x,y,z]);}});
-  var gm=new THREE.InstancedMesh(new THREE.CylinderGeometry(.135,.135,.06,6),std(0x7193ad,{roughness:.55}),gp.length),M=new THREE.Matrix4();
-  gp.forEach(function(p,k){M.makeTranslation(p[0],p[1],p[2]);gm.setMatrixAt(k,M);});root.add(gm);
-  // cathode: layered MO2 slabs with octahedra
-  LY.forEach(function(y){var s=new THREE.Mesh(new THREE.BoxGeometry(1.6,.07,3.05),std(0x5d6a84,{metalness:.35}));s.position.set(2.32,y,0);root.add(s);});
-  var op=[];LY.forEach(function(y){for(var i=0;i<8;i++)for(var j=0;j<10;j++)op.push([1.62+i*.2,y+.07,-1.35+j*.3]);});
-  var om=new THREE.InstancedMesh(new THREE.OctahedronGeometry(.085),std(0x7fd1b4,{emissive:0x1d4d40,roughness:.4}),op.length);
-  op.forEach(function(p,k){M.makeTranslation(p[0],p[1],p[2]);om.setMatrixAt(k,M);});root.add(om);
-  // separator
-  var sep=new THREE.Mesh(new THREE.BoxGeometry(.05,4.15,3.15),std(0xf0be3a,{transparent:true,opacity:.42,emissive:0x5a4300}));root.add(sep);
-  var grid=new THREE.Group();for(var gy=-1.9;gy<=1.9;gy+=.3)for(var gz=-1.45;gz<=1.45;gz+=.3){var d=new THREE.Mesh(new THREE.CircleGeometry(.05,10),new THREE.MeshBasicMaterial({color:0x1a2a44,transparent:true,opacity:.55,side:THREE.DoubleSide}));d.rotation.y=Math.PI/2;d.position.set(.03,gy,gz);grid.add(d);}root.add(grid);
-  // Li+ ions (slots between layers)
-  var aS=[],cS=[];for(var k=0;k<LY.length-1;k++){var ym=(LY[k]+LY[k+1])/2;[-2.75,-2.25,-1.78].forEach(function(x,ix){[-.95,0,.95].forEach(function(z,iz){aS.push([x,ym,z+(ix%2)*.3]);});});[1.75,2.3,2.8].forEach(function(x,ix){[-.95,0,.95].forEach(function(z){cS.push([x,ym+.02,z+(ix%2)*.3]);});});}
-  var N=26,ions=[],lig=new THREE.SphereGeometry(.11,20,14),hg=new THREE.SphereGeometry(.2,16,12);
-  var lim=std(0xf3c548,{emissive:0xb07a00,emissiveIntensity:.9,metalness:.3,roughness:.3});
-  for(var i=0;i<N;i++){var g=new THREE.Group(),h=new THREE.Mesh(hg,new THREE.MeshBasicMaterial({color:0xf0be3a,transparent:true,opacity:.18,depthWrite:false}));g.add(new THREE.Mesh(lig,lim));g.add(h);root.add(g);
-    ions.push({g:g,h:h,a:aS[(i*7)%aS.length],c:cS[(i*11)%cS.length],o:(i*17)%N,ph:i});}
-  // anions
-  var an=[],ag=new THREE.SphereGeometry(.09,16,12),am=std(0xd2557f,{emissive:0x5a1028});
-  for(var i=0;i<14;i++){var m=new THREE.Mesh(ag,am);root.add(m);an.push({m:m,x:-1+((i*37)%21)/10,y:-1.7+((i*53)%35)/10,z:-1.2+((i*29)%25)/10,p:i});}
-  // external circuit
+  // chemistry-specific group
+  var chemG=new THREE.Group();root.add(chemG);var plated=null,aS=[],cS=[];
+  function clearChem(){while(chemG.children.length){var o=chemG.children.pop();if(o.geometry)o.geometry.dispose();if(o.material)o.material.dispose();}plated=null;}
+  function slotsBetween(xs,dy){var out=[];for(var k=0;k<LY.length-1;k++){var ym=(LY[k]+LY[k+1])/2+(dy||0);xs.forEach(function(x,ix){[-.95,0,.95].forEach(function(z){out.push([x,ym,z+(ix%2)*.3]);});});}return out;}
+  var B={
+    graphite:function(){var gp=[];LY.forEach(function(y){for(var j=0;j<11;j++)for(var i=0;i<7;i++){var x=-3.0+i*.24+(j%2)*.12,z=-1.38+j*.276;if(x<-1.42)gp.push([x,y,z]);}});
+      chemG.add(inst(new THREE.CylinderGeometry(.135,.135,.06,6),std(0x7193ad,{roughness:.55}),gp));aS=slotsBetween([-2.75,-2.25,-1.78]);},
+    limetal:function(){var m=new THREE.Mesh(new THREE.BoxGeometry(.9,4.1,3.1),std(0xC3CCD6,{metalness:.55,roughness:.25}));m.position.x=-2.65;chemG.add(m);
+      plated=new THREE.Mesh(new THREE.BoxGeometry(1,4.1,3.1),std(0xE6ECF2,{metalness:.5,roughness:.2,emissive:0x2a3340}));plated.position.x=-2.2;chemG.add(plated);
+      aS=[];for(var y=-1.7;y<=1.71;y+=.42)for(var z=-1.2;z<=1.21;z+=.6)aS.push([-2.05+Math.random()*.25,y,z]);},
+    hardcarbon:function(){var l=[];for(var i=0;i<170;i++){var x=-3.0+Math.random()*1.55,y=-1.95+Math.random()*3.9,z=-1.4+Math.random()*2.8;l.push([x,y,z,Math.random()*3,Math.random()*3,Math.random()*3]);}
+      chemG.add(inst(new THREE.BoxGeometry(.42,.035,.22),std(0x48525F,{roughness:.7}),l,true));aS=slotsBetween([-2.7,-2.2,-1.75]);},
+    zinc:function(){var m=new THREE.Mesh(new THREE.BoxGeometry(.8,4.1,3.1),std(0x9AA6B5,{metalness:.6,roughness:.35}));m.position.x=-2.7;chemG.add(m);
+      plated=new THREE.Mesh(new THREE.BoxGeometry(1,4.1,3.1),std(0xB8C4D2,{metalness:.5,roughness:.3}));plated.position.x=-2.3;chemG.add(plated);
+      var hx=[];for(var y=-1.8;y<=1.81;y+=.3)for(var z=-1.35;z<=1.36;z+=.3)hx.push([-2.28,y,z,0,0,Math.PI/2]);chemG.add(inst(new THREE.CylinderGeometry(.11,.11,.03,6),std(0xA9B5C4,{metalness:.6}),hx,true));
+      aS=[];for(var y=-1.7;y<=1.71;y+=.42)for(var z=-1.2;z<=1.21;z+=.6)aS.push([-2.1+Math.random()*.25,y,z]);},
+    layered:function(){LY.forEach(function(y){var s=new THREE.Mesh(new THREE.BoxGeometry(1.6,.07,3.05),std(0x5d6a84,{metalness:.35}));s.position.set(2.32,y,0);chemG.add(s);});
+      var op=[];LY.forEach(function(y){for(var i=0;i<8;i++)for(var j=0;j<10;j++)op.push([1.62+i*.2,y+.07,-1.35+j*.3]);});
+      chemG.add(inst(new THREE.OctahedronGeometry(.085),std(0x7fd1b4,{emissive:0x1d4d40,roughness:.4}),op));cS=slotsBetween([1.75,2.3,2.8],.02);},
+    prussian:function(){var pts=[],lines=[];var xs=[1.55,1.95,2.35,2.75],ys=[],zs=[];for(var y=-1.8;y<=1.81;y+=.45)ys.push(y);for(var z=-1.35;z<=1.36;z+=.45)zs.push(z);
+      xs.forEach(function(x){ys.forEach(function(y){zs.forEach(function(z){pts.push([x,y,z]);});});});
+      chemG.add(inst(new THREE.BoxGeometry(.11,.11,.11),std(0x2F5FB0,{emissive:0x0c2250,metalness:.4}),pts));
+      var v=[];xs.forEach(function(x,i){ys.forEach(function(y,j){zs.forEach(function(z,k){if(i<xs.length-1)v.push(x,y,z,xs[i+1],y,z);if(j<ys.length-1)v.push(x,y,z,x,ys[j+1],z);if(k<zs.length-1)v.push(x,y,z,x,y,zs[k+1]);});});});
+      var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(v,3));chemG.add(new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:0x6FA3D6,transparent:true,opacity:.7})));
+      cS=[];for(var i=0;i<xs.length-1;i++)for(var j=0;j<ys.length-1;j++)for(var k=0;k<zs.length-1;k+=2)cS.push([(xs[i]+xs[i+1])/2,(ys[j]+ys[j+1])/2,(zs[k]+zs[k+1])/2]);},
+    mno2:function(){var op=[];for(var x=1.55;x<=2.9;x+=.34)for(var y=-1.85;y<=1.86;y+=.42){[-1.35,-1.05,-.15,.15,1.05,1.35].forEach(function(z){op.push([x,y,z]);});if(Math.round((y+1.85)/.36)%2===0)[-.75,-.45,.45,.75].forEach(function(z){op.push([x,y,z]);});}
+      chemG.add(inst(new THREE.OctahedronGeometry(.075),std(0x6B4A36,{emissive:0x1a0d05,roughness:.55}),op));
+      cS=[];for(var x=1.6;x<=2.85;x+=.42)for(var y=-1.65;y<=1.66;y+=.72)[-.6,.6].forEach(function(z){cS.push([x,y,z]);});},
+    porous:function(c){var sep=new THREE.Mesh(new THREE.BoxGeometry(.05,4.15,3.15),std(0xf0be3a,{transparent:true,opacity:.42,emissive:0x5a4300}));chemG.add(sep);
+      var d=[];for(var gy=-1.9;gy<=1.9;gy+=.3)for(var gz=-1.45;gz<=1.45;gz+=.3)d.push([.03,gy,gz,0,Math.PI/2,0]);chemG.add(inst(new THREE.CircleGeometry(.05,10),new THREE.MeshBasicMaterial({color:0x1a2a44,transparent:true,opacity:.55,side:THREE.DoubleSide}),d,true));elMat.color.setHex(0x2F6690);elMat.opacity=.13;},
+    solid:function(){var g=[];for(var i=0;i<260;i++)g.push([-.45+Math.random()*.9,-2+Math.random()*4,-1.5+Math.random()*3]);
+      chemG.add(inst(new THREE.IcosahedronGeometry(.13,0),std(0xE8D9B5,{transparent:true,opacity:.85,roughness:.6}),g));elMat.opacity=.04;},
+    aqueous:function(){var sep=new THREE.Mesh(new THREE.BoxGeometry(.06,4.15,3.15),std(0xF4F6F8,{transparent:true,opacity:.35}));chemG.add(sep);
+      var o=[],h=[];for(var i=0;i<46;i++){var x=-1.15+Math.random()*2.3,y=-1.9+Math.random()*3.8,z=-1.4+Math.random()*2.8,a=Math.random()*6;o.push([x,y,z]);h.push([x+.09*Math.cos(a),y+.07,z+.09*Math.sin(a)]);h.push([x-.09*Math.cos(a),y+.07,z-.09*Math.sin(a)]);}
+      chemG.add(inst(new THREE.SphereGeometry(.055,10,8),std(0xE04A3F),o));chemG.add(inst(new THREE.SphereGeometry(.035,8,6),std(0xFFFFFF),h));elMat.color.setHex(0x3FA7D6);elMat.opacity=.2;}
+  };
+  // ions
+  var N=26,ions=[],lig=new THREE.SphereGeometry(1,20,14),hg=new THREE.SphereGeometry(1.8,16,12);
+  var lim=std(0xF3C548,{emissive:0xB07A00,emissiveIntensity:.9,metalness:.3,roughness:.3}),hm=new THREE.MeshBasicMaterial({color:0xF0BE3A,transparent:true,opacity:.18,depthWrite:false});
+  for(var i=0;i<N;i++){var g=new THREE.Group(),core=new THREE.Mesh(lig,lim),h=new THREE.Mesh(hg,hm.clone());g.add(core);g.add(h);root.add(g);ions.push({g:g,h:h,o:(i*17)%N,ph:i,k:i});}
+  var an=[],am=std(0xd2557f,{emissive:0x5a1028});
+  for(var i=0;i<14;i++){var m=new THREE.Mesh(new THREE.SphereGeometry(.09,16,12),am);root.add(m);an.push({m:m,x:-1+((i*37)%21)/10,y:-1.7+((i*53)%35)/10,z:-1.2+((i*29)%25)/10,p:i});}
+  // circuit
   var path=new THREE.CurvePath();
   [[-3.18,2.15,0],[-3.18,3.35,0],[3.18,3.35,0],[3.18,2.15,0]].reduce(function(a,b){path.add(new THREE.LineCurve3(new THREE.Vector3(a[0],a[1],a[2]),new THREE.Vector3(b[0],b[1],b[2])));return b;});
   root.add(new THREE.Mesh(new THREE.TubeGeometry(path,120,.045,8,false),std(0x9fb6cf,{metalness:.7,roughness:.3})));
-  var els=[],eg=new THREE.SphereGeometry(.075,14,10),em=new THREE.MeshBasicMaterial({color:0x5BE0FF});
-  for(var i=0;i<16;i++){var e=new THREE.Mesh(eg,em);root.add(e);els.push({m:e,u:i/16});}
-  // labels (canvas sprites)
-  function label(txt,col,w,fs,bg){var c=document.createElement('canvas');c.width=w||512;c.height=128;var x=c.getContext('2d');
-    if(bg){x.fillStyle=bg;x.beginPath();x.moveTo(20,8);x.arcTo(c.width-8,8,c.width-8,120,24);x.arcTo(c.width-8,120,8,120,24);x.arcTo(8,120,8,8,24);x.arcTo(8,8,c.width-8,8,24);x.fill();}
-    x.font='700 '+(fs||46)+'px Manrope, system-ui, sans-serif';x.fillStyle=col||'#E8EEF5';x.textAlign='center';x.textBaseline='middle';x.fillText(txt,c.width/2,64);
-    var t=new THREE.CanvasTexture(c);t.anisotropy=4;var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false,depthTest:false}));s.scale.set(c.width/128*.5,.5,1);s.userData={c:c,x:x,t:t};return s;}
+  var els=[],em=new THREE.MeshBasicMaterial({color:0x5BE0FF});for(var i=0;i<16;i++){var e=new THREE.Mesh(new THREE.SphereGeometry(.075,14,10),em);root.add(e);els.push({m:e,u:i/16});}
+  // labels
+  function label(txt,col,w,fs){var c=document.createElement('canvas');c.width=w||512;c.height=128;var x=c.getContext('2d');var t=new THREE.CanvasTexture(c);t.anisotropy=4;
+    var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false,depthTest:false}));s.scale.set(c.width/128*.5,.5,1);s.userData={c:c,x:x,t:t,col:col||'#E8EEF5',fs:fs||46};setL(s,txt);return s;}
+  function setL(s,txt,col){var u=s.userData,x=u.x;x.clearRect(0,0,u.c.width,128);x.font='700 '+u.fs+'px Manrope, system-ui, sans-serif';x.fillStyle=col||u.col;x.textAlign='center';x.textBaseline='middle';x.fillText(txt,u.c.width/2,64);u.t.needsUpdate=true;}
   function put(s,x,y,z){s.position.set(x,y,z);root.add(s);return s;}
-  put(label('Anode · graphite'),-2.25,2.62,1.7);put(label('Separator','#F0BE3A',400),0,2.62,1.7);put(label('Cathode · layered LiMO₂',null,640),2.3,2.62,1.7);
-  put(label('Cu','#E2A574',200),-3.18,-2.55,1.7);put(label('Al','#DCE3EA',200),3.18,-2.55,1.7);
+  var lA=put(label('',null,640),-2.25,2.62,1.7),lS=put(label('','#F0BE3A',720,40),0,-2.6,1.7),lC=put(label('',null,720),2.3,2.62,1.7);
+  lS.scale.set(2.8,.5,1);lA.scale.set(2.5,.5,1);lC.scale.set(2.8,.5,1);
   put(label('−','#fff',128,80),-3.75,0,1.75);put(label('+','#fff',128,80),3.75,0,1.75);
   var boxM=new THREE.Mesh(new THREE.BoxGeometry(3.2,.7,.3),std(0x13213B,{metalness:.2,emissive:0x0a1222}));boxM.position.set(0,3.35,0);root.add(boxM);
-  var bl=label('Power source','#F0BE3A',1024,52);bl.scale.set(3.6,.45,1);put(bl,0,3.36,.3);bl.renderOrder=10;
-  // interaction: drag to rotate
+  var bl=label('','#F0BE3A',1024,52);bl.scale.set(3.6,.45,1);put(bl,0,3.36,.3);
+  var ionL=label('Li⁺','#F3C548',256,60);ionL.scale.set(1,.5,1);
+  function applyChem(k){
+    var c=CHEM[k];clearChem();B[c.an]();B[c.ca]();B[c.sep]();
+    lim.color.setHex(c.ion[0]);lim.emissive.setHex(c.ion[1]);
+    ions.forEach(function(o,i){o.a=aS[(i*7)%aS.length];o.c=cS[(i*11)%cS.length];o.g.scale.setScalar(c.ion[2]);o.h.material.color.setHex(c.ion[0]);});
+    an.forEach(function(a){a.m.visible=!!c.anions;});
+    setL(lA,c.L[0]);setL(lS,c.L[1]);setL(lC,c.L[2]);mode='';
+  }
+  onChem=applyChem;applyChem(current);
+  // interaction
   var baseY=-.42,baseX=.08,drag=null;
   renderer.domElement.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,by:baseY,bx:baseX};renderer.domElement.setPointerCapture(e.pointerId);});
   renderer.domElement.addEventListener('pointermove',function(e){if(!drag)return;baseY=drag.by+(e.clientX-drag.x)*.008;baseX=Math.max(-.5,Math.min(.5,drag.bx+(e.clientY-drag.y)*.006));});
@@ -2204,24 +2271,25 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   var socS=0,prevSoc=0,mode='',t0=performance.now(),visible=true;
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{}).observe(host);
   function sm(t){return t*t*(3-2*t);}
+  var LOADS={ev:'Load · electric motor',phone:'Load · phone & laptop',grid:'Load · home & grid',wear:'Load · wearable sensor'};
   function frame(now){
     requestAnimationFrame(frame);
     if(!visible||!host.offsetParent)return;
     if(host.clientWidth&&renderer.domElement.width!==Math.round(host.clientWidth*renderer.getPixelRatio()))size();
-    var tt=(now-t0)/1000;
-    var m=svg?svg.getAttribute('data-mode'):'charge';
-    if(m!==mode){mode=m;var L=bl.userData,x=L.x;x.clearRect(0,0,L.c.width,128);x.font='700 52px Manrope, system-ui, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillStyle=mode==='discharge'?'#5BE0FF':'#F0BE3A';x.fillText(mode==='discharge'?'Load · EV · phone · grid':'Power source · charging',L.c.width/2,64);L.t.needsUpdate=true;}
+    var tt=(now-t0)/1000,m=svg?svg.getAttribute('data-mode'):'charge';
+    if(m!==mode){mode=m;setL(bl,mode==='discharge'?LOADS[current]:'Power source · charging',mode==='discharge'?'#5BE0FF':'#F0BE3A');}
     var sv=document.getElementById('soc-val'),soc=sv?parseFloat(sv.textContent)/100:0;
     socS+=(soc-socS)*.08;var moving=Math.abs(socS-prevSoc)>.0004;prevSoc=socS;
-    ions.forEach(function(o,i){
+    if(plated){var th=.12+.55*socS;plated.scale.x=th;plated.position.x=(current==='phone'?-2.2:-2.3)+th/2;}
+    ions.forEach(function(o){
       var t=Math.max(0,Math.min(1,socS*N-o.o)),k=sm(t),A=o.a,C=o.c;
-      var x=C[0]+(A[0]-C[0])*k,y=C[1]+(A[1]-C[1])*k,z=C[2]+(A[2]-C[2])*k;
-      var bump=Math.sin(Math.PI*t);y+=bump*.35*Math.sin(o.ph);z+=bump*.5*Math.cos(o.ph*1.7);
-      o.g.position.set(x,y,z);o.h.material.opacity=t>0&&t<1?.38:.14;o.h.scale.setScalar(t>0&&t<1?1.25+.15*Math.sin(tt*6+o.ph):1);
+      var x=C[0]+(A[0]-C[0])*k,y=C[1]+(A[1]-C[1])*k,z=C[2]+(A[2]-C[2])*k,bump=Math.sin(Math.PI*t);
+      y+=bump*.35*Math.sin(o.ph);z+=bump*.5*Math.cos(o.ph*1.7);
+      o.g.position.set(x,y,z);o.h.material.opacity=t>0&&t<1?.38:.14;
     });
     an.forEach(function(a){a.m.position.set(a.x+Math.sin(tt*1.2+a.p)*.06,a.y+Math.cos(tt+a.p)*.06,a.z+Math.sin(tt*.8+a.p*2)*.06);});
     var dir=mode==='discharge'?1:-1;
-    els.forEach(function(e){if(moving&&!RM)e.u=(e.u+dir*.0035+1)%1;e.m.position.copy(path.getPointAt(e.u));e.m.visible=true;e.m.material.opacity=1;});
+    els.forEach(function(e){if(moving&&!RM)e.u=(e.u+dir*.0035+1)%1;e.m.position.copy(path.getPointAt(e.u));});
     em.color.setHex(moving?0x5BE0FF:0x3a6f80);
     root.rotation.y=baseY+(RM||drag?0:Math.sin(tt*.25)*.22);root.rotation.x=baseX;
     renderer.render(scene,cam);
@@ -2229,6 +2297,23 @@ a.pos-link:hover .pos-cta{text-decoration:underline}
   requestAnimationFrame(frame);
 })();
 
+</script>
+<script>
+(function(){
+  var SKIP={SCRIPT:1,STYLE:1,TITLE:1,TEXTAREA:1,svg:1,SVG:1};
+  function fix(root){
+    var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      if(n.nodeValue.indexOf('HE3')<0)return NodeFilter.FILTER_REJECT;
+      for(var p=n.parentNode;p&&p!==document.body;p=p.parentNode){if(SKIP[p.nodeName]||p.namespaceURI==='http://www.w3.org/2000/svg')return NodeFilter.FILTER_REJECT;}
+      return NodeFilter.FILTER_ACCEPT;}});
+    var list=[];while(w.nextNode())list.push(w.currentNode);
+    list.forEach(function(n){var parts=n.nodeValue.split('HE3'),f=document.createDocumentFragment();
+      parts.forEach(function(t,i){if(t)f.appendChild(document.createTextNode(t));if(i<parts.length-1){f.appendChild(document.createTextNode('HE'));var sp=document.createElement('sup');sp.className='he3';sp.textContent='3';f.appendChild(sp);}});
+      n.parentNode.replaceChild(f,n);});
+  }
+  fix(document.body);
+  var busy=false;new MutationObserver(function(ms){if(busy)return;busy=true;ms.forEach(function(m){[].forEach.call(m.addedNodes,function(n){if(n.nodeType===1)fix(n);else if(n.nodeType===3&&n.parentNode)fix(n.parentNode);});});busy=false;}).observe(document.body,{childList:true,subtree:true});
+})();
 </script>
 </body>
 </html>
