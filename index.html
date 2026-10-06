@@ -223,9 +223,10 @@ main section[data-page].active{display:block}
 .board td:last-child{color:var(--muted);white-space:nowrap;width:110px}
 
 /* Gallery film reel + lightbox */
-.reel{position:relative;height:420px;overflow:hidden;perspective:1100px;perspective-origin:50% 45%;margin:8px 0 6px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+.reel{position:relative;height:420px;overflow:hidden;perspective:1100px;perspective-origin:50% 45%;margin:8px 0 6px;cursor:pointer;touch-action:pan-y;user-select:none;-webkit-user-select:none;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
-.reel.drag{cursor:grabbing}
+.reel-state{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);z-index:2;font-size:.75rem;font-weight:700;color:#F0BE3A;background:rgba(14,22,38,.85);padding:3px 12px;border-radius:999px;pointer-events:none;opacity:0;transition:opacity .2s}
+.reel.paused .reel-state{opacity:1}
 .reel-track{position:absolute;inset:0;transform-style:preserve-3d}
 .reel-ev{position:absolute;top:22px;left:0;height:370px;box-sizing:border-box;padding:30px 16px 30px;background:#0E1626;color:#E7ECF3;transform-origin:50% 50%;will-change:transform;backface-visibility:hidden;border-left:2px solid #1d2a42}
 .reel-ev::before,.reel-ev::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 9px,#E9EEF4 9px 21px,transparent 21px 30px);opacity:.85;border-radius:2px}
@@ -235,7 +236,7 @@ main section[data-page].active{display:block}
 .reel-head span{color:#9AA8BC;font-size:.8rem}
 .reel-head time{order:-1;padding:2px 10px;border-radius:999px;background:#F0BE3A;color:#13213B;font-weight:800;font-size:.8rem}
 .reel-row{display:flex;gap:12px}
-.reel-ph{all:unset;box-sizing:border-box;cursor:zoom-in;width:208px;display:block;position:relative}
+.reel-ph{all:unset;box-sizing:border-box;cursor:pointer;width:208px;display:block;position:relative}
 .reel-zoom{position:absolute;right:8px;top:8px;z-index:1;font-style:normal;font-size:.72rem;font-weight:700;padding:3px 8px;border-radius:999px;background:rgba(14,22,38,.78);color:#F0BE3A;opacity:0;transform:translateY(-3px);transition:opacity .2s,transform .2s;pointer-events:none}
 .reel-ph:hover .reel-zoom,.reel-ph:focus-visible .reel-zoom{opacity:1;transform:none}
 @media (hover:none){.reel-zoom{opacity:.9;transform:none}}
@@ -1194,7 +1195,7 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   <div class="wrap">
     
     <div class="reel" id="reel" aria-label="Lab timeline, scrolling film reel"><div class="reel-track" id="reel-track"></div></div>
-    <p class="reel-hint">Hover a photo to pause it and click to enlarge · move the mouse across the reel to speed it up, or drag to scrub</p>
+    <p class="reel-hint">Swipe sideways with two fingers to move the reel · click to pause / resume · double-click a photo to enlarge</p>
 
     <h2 id="gallery-seminar" style="margin-top:56px">Seminar</h2>
     <div class="tbl-wrap"><table class="board"><thead><tr><th>No.</th><th>Speaker and topic</th><th>Date</th></tr></thead>
@@ -2514,12 +2515,12 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   var now=document.createElement('div');now.className='reel-ev reel-now';now.innerHTML='<b>Today</b><span>the reel starts again<br>from 2020</span>';track.appendChild(now);blocks.push(now);
   order.forEach(function(e){var d=document.createElement('div');d.className='reel-ev';
     d.innerHTML='<div class="reel-head"><b>'+esc(e.t)+'</b><span>'+esc(e.p)+'</span><time>'+esc(e.y)+'</time></div><div class="reel-row">'+
-      e.ph.map(function(p){return '<button type="button" class="reel-ph" data-k="'+p.k+'" aria-label="Enlarge: '+esc(p.c)+'"><i class="reel-zoom" aria-hidden="true">⤢ Enlarge</i><img src="assets/gallery/thumb/'+p.i+'.jpg" alt="'+esc(e.t+' – '+p.c)+'" loading="lazy" decoding="async" draggable="false"><span>'+esc(p.c)+'</span></button>';}).join('')+'</div>';
+      e.ph.map(function(p){return '<button type="button" class="reel-ph" data-k="'+p.k+'" aria-label="Press Enter to enlarge: '+esc(p.c)+'"><i class="reel-zoom" aria-hidden="true">⤢ Double-click to enlarge</i><img src="assets/gallery/thumb/'+p.i+'.jpg" alt="'+esc(e.t+' – '+p.c)+'" loading="lazy" decoding="async" draggable="false"><span>'+esc(p.c)+'</span></button>';}).join('')+'</div>';
     track.appendChild(d);blocks.push(d);});
   var pos=[],W=0,GAP=22,vw=0,maxW=0;
   function measure(){if(!reel.clientWidth)return;vw=reel.clientWidth;W=0;maxW=0;blocks.forEach(function(b,i){var w=b.offsetWidth;pos[i]={x:W,w:w};W+=w+GAP;if(w>maxW)maxW=w;});}
   var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var BASE=RM?0:8.4,hov=false,v=BASE,off=0,last=0,drag=null,moved=0;
+  var BASE=RM?0:8.4,VMAX=36,paused=false,v=BASE,off=0,last=0,swipeT=0;
   function layout(){var M=maxW+40,R=W;
     blocks.forEach(function(b,i){var p=pos[i],x=((p.x+off+M)%R+R)%R-M,c=x+p.w/2,u=(c-vw/2)/(vw/2);u=Math.max(-1.6,Math.min(1.6,u));
       b.style.transform='translate3d('+x.toFixed(1)+'px,'+(u*u*14).toFixed(1)+'px,'+(-u*u*170).toFixed(1)+'px) rotateY('+(-u*24).toFixed(2)+'deg)';
@@ -2527,23 +2528,25 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   var inited=false,lastVW=0;
   function tick(t){requestAnimationFrame(tick);if(!reel.offsetParent||!reel.clientWidth){last=t;return;}
     if(!inited){init();inited=true;}else if(reel.clientWidth!==lastVW)measure();lastVW=reel.clientWidth;var dt=Math.min(.05,(t-(last||t))/1000);last=t;
-    if(!drag){var tg=hov?0:BASE;v+=(tg-v)*Math.min(1,dt*(hov?8:1.4));off+=v*dt;}layout();}
-  // moving the mouse over the reel pushes it faster in the direction of the movement
-  var lx=null;
-  reel.addEventListener('pointermove',function(e){if(drag){var dx=e.clientX-drag.x;drag.x=e.clientX;off+=dx;moved+=Math.abs(dx);v=dx*40;return;}
-    if(e.pointerType==='mouse'){if(lx!==null&&!hov){var dx=e.clientX-lx;v=Math.max(-1800,Math.min(1800,v+dx*14));}lx=e.clientX;}});
-  reel.addEventListener('pointerleave',function(){lx=null;hov=false;});
-  // hovering or focusing a photo stops the reel so it is easy to click
-  track.addEventListener('pointerover',function(e){hov=!!e.target.closest('.reel-ph');});
-  track.addEventListener('focusin',function(){hov=true;});track.addEventListener('focusout',function(){hov=false;});
-  reel.addEventListener('pointerdown',function(e){drag={x:e.clientX};moved=0;reel.classList.add('drag');});
-  function up(){if(!drag)return;drag=null;reel.classList.remove('drag');}
-  window.addEventListener('pointerup',up);window.addEventListener('pointercancel',up);
-  reel.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();v-=e.deltaX*8;}},{passive:false});
+    swipeT=Math.max(0,swipeT-dt);if(!swipeT){var tg=paused?0:BASE;v+=(tg-v)*Math.min(1,dt*(paused?6:.8));}off+=v*dt;layout();}
+  function clampV(x){return Math.max(-VMAX,Math.min(VMAX,x));}
+  // only a two-finger swipe moves the reel (touchpad: horizontal wheel; touch screen: two-finger drag); speed is always capped
+  reel.addEventListener('wheel',function(e){var dx=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:(e.shiftKey?e.deltaY:0);if(!dx)return;e.preventDefault();v=clampV(v*.85-dx*.6);swipeT=.25;},{passive:false});
+  var t2=null;
+  reel.addEventListener('touchstart',function(e){t2=e.touches.length===2?(e.touches[0].clientX+e.touches[1].clientX)/2:null;},{passive:true});
+  reel.addEventListener('touchmove',function(e){if(e.touches.length!==2||t2===null)return;e.preventDefault();var cx=(e.touches[0].clientX+e.touches[1].clientX)/2,dx=cx-t2;t2=cx;v=clampV(v*.85+dx*1.2);swipeT=.25;},{passive:false});
+  reel.addEventListener('touchend',function(e){if(e.touches.length<2)t2=null;});
+  // one click = pause / resume, double click on a photo = enlarge
+  var pb=document.createElement('div');pb.className='reel-state';reel.appendChild(pb);
+  function setPaused(p){paused=p;reel.classList.toggle('paused',p);pb.textContent=p?'❚❚ Paused · click to resume':'';}
+  var clickTimer=null,lastPh=null;
   // lightbox
   var dlg=document.getElementById('gal-lb'),img=dlg.querySelector('img'),cap=dlg.querySelector('figcaption'),i=0;
   function show(k){i=(k+flat.length)%flat.length;var f=flat[i];img.src=f.src;img.alt=f.t;cap.innerHTML='';cap.appendChild(document.createTextNode(f.t));var sm=document.createElement('small');sm.textContent=f.d;cap.appendChild(sm);}
-  track.addEventListener('click',function(e){var b=e.target.closest('.reel-ph');if(!b||moved>6)return;show(+b.dataset.k);if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');});
+  reel.addEventListener('click',function(e){var b=e.target.closest('.reel-ph');
+    if(clickTimer&&b&&b===lastPh){clearTimeout(clickTimer);clickTimer=null;setPaused(true);show(+b.dataset.k);if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');return;}
+    if(clickTimer)clearTimeout(clickTimer);lastPh=b;clickTimer=setTimeout(function(){clickTimer=null;setPaused(!paused);},260);});
+  reel.addEventListener('keydown',function(e){var b=e.target.closest&&e.target.closest('.reel-ph');if(b&&e.key==='Enter'){e.preventDefault();setPaused(true);show(+b.dataset.k);dlg.showModal();}});
   dlg.querySelector('.gal-x').onclick=function(){dlg.close()};
   dlg.querySelector('.gal-prev').onclick=function(){show(i-1)};
   dlg.querySelector('.gal-next').onclick=function(){show(i+1)};
