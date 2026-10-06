@@ -2520,7 +2520,7 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   var pos=[],W=0,GAP=22,vw=0,maxW=0;
   function measure(){if(!reel.clientWidth)return;vw=reel.clientWidth;W=0;maxW=0;blocks.forEach(function(b,i){var w=b.offsetWidth;pos[i]={x:W,w:w};W+=w+GAP;if(w>maxW)maxW=w;});}
   var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var BASE=RM?0:8.4,VMAX=36,paused=false,v=BASE,off=0,last=0,swipeT=0;
+  var BASE=RM?0:25.2,VMAX=108,paused=false,v=BASE,off=0,last=0,swipeT=0;
   function layout(){var M=maxW+40,R=W;
     blocks.forEach(function(b,i){var p=pos[i],x=((p.x+off+M)%R+R)%R-M,c=x+p.w/2,u=(c-vw/2)/(vw/2);u=Math.max(-1.6,Math.min(1.6,u));
       b.style.transform='translate3d('+x.toFixed(1)+'px,'+(u*u*14).toFixed(1)+'px,'+(-u*u*170).toFixed(1)+'px) rotateY('+(-u*24).toFixed(2)+'deg)';
@@ -2528,7 +2528,7 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   var inited=false,lastVW=0;
   function tick(t){requestAnimationFrame(tick);if(!reel.offsetParent||!reel.clientWidth){last=t;return;}
     if(!inited){init();inited=true;}else if(reel.clientWidth!==lastVW)measure();lastVW=reel.clientWidth;var dt=Math.min(.05,(t-(last||t))/1000);last=t;
-    swipeT=Math.max(0,swipeT-dt);if(!swipeT){var tg=paused?0:BASE;v+=(tg-v)*Math.min(1,dt*(paused?6:.8));}off+=v*dt;layout();}
+    swipeT=Math.max(0,swipeT-dt);if(!swipeT){var tg=paused?0:BASE;v+=(tg-v)*Math.min(1,dt*(paused?14:.8));}off+=v*dt;layout();}
   function clampV(x){return Math.max(-VMAX,Math.min(VMAX,x));}
   // only a two-finger swipe moves the reel (touchpad: horizontal wheel; touch screen: two-finger drag); speed is always capped
   reel.addEventListener('wheel',function(e){var dx=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:(e.shiftKey?e.deltaY:0);if(!dx)return;e.preventDefault();v=clampV(v*.85-dx*.6);swipeT=.25;},{passive:false});
