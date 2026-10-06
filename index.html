@@ -222,15 +222,28 @@ main section[data-page].active{display:block}
 .board td:first-child{color:var(--muted);width:56px}
 .board td:last-child{color:var(--muted);white-space:nowrap;width:110px}
 
-/* Gallery photos + lightbox */
-.gal-card{all:unset;box-sizing:border-box;cursor:pointer;display:block;color:var(--ink)}
-.gal-card:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:10px}
-.gal-img{position:relative;display:block;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--surface);border:1px solid var(--line)}
-.gal-img img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;transition:transform .35s}
-.gal-card:hover .gal-img img{transform:scale(1.04)}
-.gal-n{position:absolute;right:8px;bottom:8px;background:rgba(19,33,59,.78);color:#fff;font-size:.75rem;padding:3px 8px;border-radius:999px}
-.gal-card b{display:block;margin-top:10px;font-size:.95rem;line-height:1.35}
-.gal-card time{display:block;margin-top:2px;color:var(--muted);font-size:.82rem}
+/* Gallery film reel + lightbox */
+.reel{position:relative;height:420px;overflow:hidden;perspective:1100px;perspective-origin:50% 45%;margin:8px 0 6px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+.reel.drag{cursor:grabbing}
+.reel-track{position:absolute;inset:0;transform-style:preserve-3d}
+.reel-ev{position:absolute;top:22px;left:0;height:370px;box-sizing:border-box;padding:30px 16px 30px;background:#0E1626;color:#E7ECF3;transform-origin:50% 50%;will-change:transform;backface-visibility:hidden;border-left:2px solid #1d2a42}
+.reel-ev::before,.reel-ev::after{content:"";position:absolute;left:0;right:0;height:12px;background:repeating-linear-gradient(90deg,transparent 0 9px,#E9EEF4 9px 21px,transparent 21px 30px);opacity:.85;border-radius:2px}
+.reel-ev::before{top:9px}.reel-ev::after{bottom:9px}
+.reel-head{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:10px;row-gap:2px;margin:2px 2px 12px;width:0;min-width:calc(100% - 4px);min-height:44px}
+.reel-head b{font-size:1.02rem;letter-spacing:.01em;line-height:1.25}
+.reel-head span{color:#9AA8BC;font-size:.8rem}
+.reel-head time{order:-1;padding:2px 10px;border-radius:999px;background:#F0BE3A;color:#13213B;font-weight:800;font-size:.8rem}
+.reel-row{display:flex;gap:12px}
+.reel-ph{all:unset;box-sizing:border-box;cursor:pointer;width:208px;display:block}
+.reel-ph img{display:block;width:208px;height:156px;object-fit:cover;object-position:50% 30%;border-radius:4px;background:#1b2740;transition:transform .3s,filter .3s;-webkit-user-drag:none}
+.reel-ph:hover img{transform:scale(1.04);filter:brightness(1.08)}
+.reel-ph:focus-visible{outline:2px solid #F0BE3A;outline-offset:3px;border-radius:4px}
+.reel-ph span{display:block;margin-top:9px;font-size:.84rem;line-height:1.35;color:#C9D3E0;white-space:normal}
+.reel-now{display:flex;flex-direction:column;justify-content:center;align-items:center;width:150px;text-align:center}
+.reel-now b{font-size:1.4rem;color:#F0BE3A}.reel-now span{color:#9AA8BC;font-size:.8rem;margin-top:6px}
+.reel-hint{text-align:center;color:var(--muted);font-size:.82rem;margin:2px 0 0}
+@media (max-width:640px){.reel{height:340px}.reel-ev{height:300px;padding:28px 12px}.reel-ph,.reel-ph img{width:150px}.reel-ph img{height:112px}.reel-head b{font-size:.95rem}}
 .gal-lb{border:0;padding:0;background:rgba(5,10,20,.9);max-width:100vw;max-height:100vh;width:100vw;height:100%;margin:0}
 .gal-lb::backdrop{background:rgba(5,10,20,.92)}
 .gal-lb[open]{display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -1177,24 +1190,8 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   <div class="sec-title wrap"><h2>Gallery</h2><p>Life in the lab.</p></div>
   <div class="wrap">
     
-    <div class="gallery">
-      <button type="button" class="album gal-card" data-album="0"><span class="gal-img"><img src="assets/gallery/thumb/g22.jpg" alt="Lab dinner" loading="lazy" decoding="async"></span><b>Lab dinner</b><time>2026.10.03</time></button>
-      <button type="button" class="album gal-card" data-album="1"><span class="gal-img"><img src="assets/gallery/thumb/g21.jpg" alt="Research Camp in Materials and Physics" loading="lazy" decoding="async"></span><b>Research Camp in Materials and Physics</b><time>2026</time></button>
-      <button type="button" class="album gal-card" data-album="2"><span class="gal-img"><img src="assets/gallery/thumb/g20.jpg" alt="HE3 Team at the ICMIT 2026 Conference, Hanoi" loading="lazy" decoding="async"></span><b>HE3 Team at the ICMIT 2026 Conference, Hanoi</b><time>2026</time></button>
-      <button type="button" class="album gal-card" data-album="3"><span class="gal-img"><img src="assets/gallery/thumb/g19.jpg" alt="17th HOPE Meeting with Nobel Laureates, Tsukuba, Japan" loading="lazy" decoding="async"><span class="gal-n">3 photos</span></span><b>17th HOPE Meeting with Nobel Laureates, Tsukuba, Japan</b><time>2026.03</time></button>
-      <button type="button" class="album gal-card" data-album="4"><span class="gal-img"><img src="assets/gallery/thumb/g16.jpg" alt="First visit to VinUniversity" loading="lazy" decoding="async"></span><b>First visit to VinUniversity</b><time>2026.01</time></button>
-      <button type="button" class="album gal-card" data-album="5"><span class="gal-img"><img src="assets/gallery/thumb/g15.jpg" alt="Poster presentation at ICONN 2026, Sydney, Australia" loading="lazy" decoding="async"></span><b>Poster presentation at ICONN 2026, Sydney, Australia</b><time>2026</time></button>
-      <button type="button" class="album gal-card" data-album="6"><span class="gal-img"><img src="assets/gallery/thumb/g13.jpg" alt="With Vietnamese colleagues at ICONN 2026, Sydney, Australia" loading="lazy" decoding="async"><span class="gal-n">2 photos</span></span><b>With Vietnamese colleagues at ICONN 2026, Sydney, Australia</b><time>2026</time></button>
-      <button type="button" class="album gal-card" data-album="7"><span class="gal-img"><img src="assets/gallery/thumb/g10.jpg" alt="HE3 Team successfully synthesized its first MXene solution" loading="lazy" decoding="async"><span class="gal-n">3 photos</span></span><b>HE3 Team successfully synthesized its first MXene solution</b><time>[yyyy.mm]</time></button>
-      <button type="button" class="album gal-card" data-album="8"><span class="gal-img"><img src="assets/gallery/thumb/g09.jpg" alt="With Prof. Yury Gogotsi (Drexel University) at ICEAN 2024, Newcastle, Australia" loading="lazy" decoding="async"></span><b>With Prof. Yury Gogotsi (Drexel University) at ICEAN 2024, Newcastle, Australia</b><time>2024</time></button>
-      <button type="button" class="album gal-card" data-album="9"><span class="gal-img"><img src="assets/gallery/thumb/g08.jpg" alt="With Dr. Toan (UTS) at ICEAN 2024, Newcastle, Australia" loading="lazy" decoding="async"></span><b>With Dr. Toan (UTS) at ICEAN 2024, Newcastle, Australia</b><time>2024</time></button>
-      <button type="button" class="album gal-card" data-album="10"><span class="gal-img"><img src="assets/gallery/thumb/g06.jpg" alt="HE3 Lab at IWAMSN 2024, Da Nang" loading="lazy" decoding="async"><span class="gal-n">2 photos</span></span><b>HE3 Lab at IWAMSN 2024, Da Nang</b><time>2024</time></button>
-      <button type="button" class="album gal-card" data-album="11"><span class="gal-img"><img src="assets/gallery/thumb/g05.jpg" alt="Starting as Research Fellow at the University of Newcastle" loading="lazy" decoding="async"></span><b>Starting as Research Fellow at the University of Newcastle</b><time>2024</time></button>
-      <button type="button" class="album gal-card" data-album="12"><span class="gal-img"><img src="assets/gallery/thumb/g04.jpg" alt="HE3 Lab – IUH Team" loading="lazy" decoding="async"></span><b>HE3 Lab – IUH Team</b><time>2024.06</time></button>
-      <button type="button" class="album gal-card" data-album="13"><span class="gal-img"><img src="assets/gallery/thumb/g03.jpg" alt="Visiting Stanford University" loading="lazy" decoding="async"></span><b>Visiting Stanford University</b><time>2022</time></button>
-      <button type="button" class="album gal-card" data-album="14"><span class="gal-img"><img src="assets/gallery/thumb/g02.jpg" alt="Attending the 2022 ACS Fall Meeting, Chicago" loading="lazy" decoding="async"></span><b>Attending the 2022 ACS Fall Meeting, Chicago</b><time>2022.08</time></button>
-      <button type="button" class="album gal-card" data-album="15"><span class="gal-img"><img src="assets/gallery/thumb/g01.jpg" alt="PhD thesis defense at KNUT" loading="lazy" decoding="async"></span><b>PhD thesis defense at KNUT</b><time>2020.05</time></button>
-    </div>
+    <div class="reel" id="reel" aria-label="Lab timeline, scrolling film reel"><div class="reel-track" id="reel-track"></div></div>
+    <p class="reel-hint">Move the mouse over the reel to speed it up, drag to scrub · click a photo to enlarge</p>
 
     <h2 id="gallery-seminar" style="margin-top:56px">Seminar</h2>
     <div class="tbl-wrap"><table class="board"><thead><tr><th>No.</th><th>Speaker and topic</th><th>Date</th></tr></thead>
@@ -2209,7 +2206,7 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
     ev:{title:'Electric vehicles · Lithium-ion',mech:'Li⁺ shuttles between graphite layers and a layered-oxide cathode: the classic rocking-chair intercalation.',ion:[0xF3C548,0xB07A00,.11],an:'graphite',ca:'layered',sep:'porous',L:['Anode · graphite','Liquid electrolyte','Cathode · layered LiMO₂'],anions:1},
     aero:{title:'Electric aviation · Structural battery',mech:'The airframe is the battery: load-bearing carbon fibres double as the negative electrode, a glass-fibre separator in a polymer matrix carries Li⁺, and LiFePO₄-coated fibres form the positive electrode.',ion:[0xF3C548,0xB07A00,.1],an:'cfiber',ca:'lfpfiber',sep:'glassfiber',L:['Anode · carbon fibres','Glass-fibre separator','Cathode · LiFePO₄ fibres'],anions:0,intro:'plane'},
     grid:{title:'Grid storage · Sodium-ion',mech:'Larger Na⁺ ions move between hard carbon and a Prussian-blue framework: abundant, low-cost materials for stationary storage.',ion:[0xF28C28,0x8A3B00,.15],an:'hardcarbon',ca:'prussian',sep:'porous',L:['Anode · hard carbon','Liquid electrolyte','Cathode · Prussian blue'],anions:1},
-    wear:{title:'Wearables & IoT · 3D-printed micro-battery',mech:'Interdigitated Li₄Ti₅O₁₂ and LiFePO₄ electrodes are extruded layer by layer from a fine nozzle: a complete cell only about 1 mm across, small enough to sit on a sensor or a smartwatch strap.',ion:[0xF3C548,0xB07A00,.075],layout:'micro',L:['Anode · printed Li₄Ti₅O₁₂','Gel electrolyte','Cathode · printed LiFePO₄'],anions:0,intro:'coin'}
+    wear:{title:'Wearables & IoT · 3D-printed micro-battery',mech:'Interdigitated Li₄Ti₅O₁₂ and LiFePO₄ electrodes are extruded layer by layer by a 3D printer: a complete cell only about 1 mm across, small enough to sit on a smartwatch strap.',ion:[0xF3C548,0xB07A00,.075],layout:'micro',L:['Anode · printed Li₄Ti₅O₁₂','Gel electrolyte','Cathode · printed LiFePO₄'],anions:0,intro:'coin'}
   };
   var tBox=document.getElementById('chem-title'),mBox=document.getElementById('chem-mech');
   var apps=[].slice.call(document.querySelectorAll('#apps .app'));
@@ -2299,6 +2296,12 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
     var ink=new THREE.Mesh(new THREE.CylinderGeometry(.36,.36,1.0,24),inkA.clone());ink.position.y=1.12;
     var glow=new THREE.Mesh(new THREE.SphereGeometry(.11,12,10),new THREE.MeshBasicMaterial({color:0xF0BE3A}));glow.position.y=.03;
     nz.add(tip);nz.add(barrel);nz.add(ink);nz.add(glow);chemG.add(nz);m.nozzle=nz;m.ink=ink;m.inkA=0x6E7E92;m.inkC=0x8B6FD6;
+    // printer gantry: two posts + crossbar riding along z, carriage follows the nozzle in x
+    var gan=new THREE.Group(),frameM=std(0x3B4A63,{metalness:.6,roughness:.35});
+    [-3.75,3.75].forEach(function(px){var post=new THREE.Mesh(new THREE.BoxGeometry(.16,5.2,.16),frameM);post.position.set(px,.95,0);gan.add(post);});
+    var bar=new THREE.Mesh(new THREE.BoxGeometry(7.66,.16,.2),frameM);gan.add(bar);var carr=new THREE.Mesh(new THREE.BoxGeometry(.7,.42,.42),std(0xF0BE3A,{metalness:.3,roughness:.4,emissive:0x3a2a00}));gan.add(carr);
+    var plab=label('','#F0BE3A',1024,44);plab.scale.set(5.6,.56,1);gan.add(plab);
+    chemG.add(gan);m.gan=gan;m.bar=bar;m.carr=carr;m.plab=plab;m.plabTxt='';
     // scale bar: the whole cell is about 1 mm wide
     var sb=[-3.3,-1.75,2.25,3.3,-1.75,2.25,-3.3,-1.6,2.25,-3.3,-1.9,2.25,3.3,-1.6,2.25,3.3,-1.9,2.25];
     var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(sb,3));chemG.add(new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:0xF0BE3A})));
@@ -2354,22 +2357,36 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
     var pl1=label('Wing skin = structural battery','#F0BE3A',1024,46);pl1.scale.set(5.2,.65,1);pl1.position.set(-.6,1.15,2.4);mm(pl1.material);planeG.add(pl1);
     planeG.scale.setScalar(.98);planeG.rotation.x=.12;planeG.position.x=.45;planeG.userData.P=panel.position.clone().applyEuler(planeG.rotation).multiplyScalar(.98).add(planeG.position);
   })();
-  (function(){var tilt=new THREE.Group();tilt.rotation.x=1.0;coinG.add(tilt);
-    var gold=mm(std(0xD9B46A,{metalness:.25,roughness:.45,emissive:0x5a4214})),rim=mm(std(0xB08A43,{metalness:.85,roughness:.35}));
-    var coin=new THREE.Mesh(new THREE.CylinderGeometry(2.5,2.5,.24,72),gold);tilt.add(coin);
-    var ring=new THREE.Mesh(new THREE.TorusGeometry(2.2,.05,10,72),rim);ring.rotation.x=Math.PI/2;ring.position.y=.13;tilt.add(ring);
-    var star=new THREE.Mesh(new THREE.CircleGeometry(.9,5),rim);star.rotation.x=-Math.PI/2;star.position.set(-.4,.125,-.3);tilt.add(star);
-    var cell=new THREE.Mesh(new THREE.BoxGeometry(.13,.05,.13),mm(std(0x8B6FD6,{emissive:0x6a4fc0})));cell.position.set(1.05,.15,.65);tilt.add(cell);
-    var halo=new THREE.Mesh(new THREE.TorusGeometry(.2,.018,8,36),mm(new THREE.MeshBasicMaterial({color:0xF0BE3A})));halo.rotation.x=Math.PI/2;halo.position.copy(cell.position);tilt.add(halo);coinG.userData.pulse=halo;
-    var c1=label('Coin · Ø ≈ 20 mm',null,640,46);c1.scale.set(3.2,.62,1);c1.position.set(-.6,2.1,.5);mm(c1.material);coinG.add(c1);
-    var c2=label('3D-printed battery ≈ 1 mm  ↓','#F0BE3A',1024,46);c2.scale.set(5,.62,1);c2.position.copy(cell.position).applyEuler(tilt.rotation);c2.position.y+=.75;c2.position.x+=.4;mm(c2.material);coinG.add(c2);
-    coinG.userData.P=cell.position.clone().applyEuler(tilt.rotation);
+  (function(){var tilt=new THREE.Group();tilt.rotation.x=.95;coinG.add(tilt);
+    function rr(w,h,r){var sh=new THREE.Shape(),x=-w/2,y=-h/2;sh.moveTo(x+r,y);sh.lineTo(x+w-r,y);sh.quadraticCurveTo(x+w,y,x+w,y+r);sh.lineTo(x+w,y+h-r);sh.quadraticCurveTo(x+w,y+h,x+w-r,y+h);sh.lineTo(x+r,y+h);sh.quadraticCurveTo(x,y+h,x,y+h-r);sh.lineTo(x,y+r);sh.quadraticCurveTo(x,y,x+r,y);return sh;}
+    var alu=mm(std(0xC9D2DC,{metalness:.55,roughness:.3,emissive:0x1a2028})),band=mm(std(0x34405A,{roughness:.75,emissive:0x0a0f1a}));
+    var cg2=new THREE.ExtrudeGeometry(rr(2.0,2.4,.5),{depth:.38,bevelEnabled:true,bevelThickness:.07,bevelSize:.07,bevelSegments:4,curveSegments:16});cg2.rotateX(-Math.PI/2);
+    var cas=new THREE.Mesh(cg2,alu);tilt.add(cas);
+    // watch face drawn on a canvas
+    var fc=document.createElement('canvas');fc.width=256;fc.height=312;var x=fc.getContext('2d');
+    x.fillStyle='#000';x.beginPath();if(x.roundRect)x.roundRect(0,0,256,312,58);else x.rect(0,0,256,312);x.fill();
+    [['#FF375F',78],['#9CFF3A',64],['#3ACBFF',50]].forEach(function(r,i){x.strokeStyle=r[0];x.globalAlpha=.25;x.lineWidth=11;x.beginPath();x.arc(128,196,r[1],0,Math.PI*2);x.stroke();x.globalAlpha=1;x.beginPath();x.arc(128,196,r[1],-Math.PI/2,-Math.PI/2+Math.PI*2*[.82,.64,.9][i]);x.stroke();});
+    x.fillStyle='#fff';x.font='700 54px system-ui, sans-serif';x.textAlign='center';x.fillText('10:09',128,82);
+    x.fillStyle='#F0BE3A';x.font='600 20px system-ui, sans-serif';x.fillText('TUE 6',128,108);
+    var ft=new THREE.CanvasTexture(fc);var scr=new THREE.Mesh(new THREE.PlaneGeometry(1.78,2.17),mm(new THREE.MeshBasicMaterial({map:ft,transparent:true})));scr.rotation.x=-Math.PI/2;scr.position.y=.47;tilt.add(scr);
+    var crown=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.16,20),alu);crown.rotation.z=Math.PI/2;crown.position.set(1.1,.2,-.35);tilt.add(crown);
+    var bg=new THREE.BoxGeometry(1.5,.13,2.1);
+    var bT=new THREE.Mesh(bg,band);bT.position.set(0,.02,-2.15);bT.rotation.x=-.2;tilt.add(bT);
+    var bB=new THREE.Mesh(bg,band);bB.position.set(0,.02,2.15);bB.rotation.x=.2;tilt.add(bB);
+    var holes=[];for(var i=0;i<5;i++)holes.push([0,.07,-.1+i*.22,-Math.PI/2,0,0]);var hm2=inst(new THREE.CircleGeometry(.045,10),mm(new THREE.MeshBasicMaterial({color:0x111722})),holes,true);bB.add(hm2);
+    // the tiny printed cell sits on the strap
+    var cell=new THREE.Mesh(new THREE.BoxGeometry(.13,.05,.13),mm(std(0x8B6FD6,{emissive:0x6a4fc0})));cell.position.set(.45,.09,-.55);bB.add(cell);
+    var halo=new THREE.Mesh(new THREE.TorusGeometry(.2,.018,8,36),mm(new THREE.MeshBasicMaterial({color:0xF0BE3A})));halo.rotation.x=Math.PI/2;halo.position.copy(cell.position);bB.add(halo);coinG.userData.pulse=halo;
+    coinG.updateMatrixWorld(true);var cp=new THREE.Vector3();cell.getWorldPosition(cp);
+    var c1=label('Smartwatch · case ≈ 40 mm',null,860,46);c1.scale.set(4.2,.62,1);c1.position.set(-.3,2.75,.3);mm(c1.material);coinG.add(c1);
+    var c2=label('3D-printed battery ≈ 1 mm  ↓','#F0BE3A',1024,46);c2.scale.set(5,.62,1);c2.position.copy(cp);c2.position.y+=.7;c2.position.x+=.8;mm(c2.material);coinG.add(c2);
+    coinG.userData.P=cp;
   })();
-  var HOLD=2.6,ZOOM=1.5,introT0=performance.now(),PR_SEG=.065;
+  var HOLD=2.6,ZOOM=1.5,introT0=performance.now(),PR_SEG=.2;
   function introLen(){return (CHEM[current].intro&&!RM)?HOLD+ZOOM:0;}
   function applyChem(k){
     var c=CHEM[k];clearChem();var lay=c.layout||'box';
-    cellG.visible=lay==='box';tubeBox.visible=lay==='box';tubeMicro.visible=lay==='micro';path=lay==='micro'?pathMicro:pathBox;
+    cellG.visible=lay==='box';tubeBox.visible=lay==='box';tubeMicro.visible=lay==='micro';boxM.visible=true;bl.visible=true;els.forEach(function(e){e.m.visible=true;});path=lay==='micro'?pathMicro:pathBox;
     elBox.scale.x=k==='aero'?6.3/2.6:1;
     if(lay==='micro')buildMicro();else{B[c.an]();B[c.ca]();B[c.sep]();}
     lim.color.setHex(c.ion[0]);lim.emissive.setHex(c.ion[1]);
@@ -2408,9 +2425,14 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
     for(var i=0;i<n;i++){var sg=m.seg[i],me=m.fil[sg[0]][sg[1]],p=done?1:cl((pt-i*PR_SEG)/PR_SEG);me.visible=p>0;me.scale.z=Math.max(.001,p);}
     var nz=m.nozzle;
     if(!done&&pt>=0){var i=Math.min(n-1,Math.floor(pt/PR_SEG)),sg=m.seg[i],p=cl((pt-i*PR_SEG)/PR_SEG),anode=sg[0]%2===0,z=anode?-1.55+p*FLEN:1.55-p*FLEN;
-      nz.visible=true;nz.position.set(FX[sg[0]],FY0+sg[1]*FP+FR*.6,z);m.ink.material.color.setHex(anode?m.inkA:m.inkC);m.ink.scale.y=1-.6*(i/n);m.ink.position.y=1.12-.3*(i/n);}
-    else if(done){var lift=cl((pt-n*PR_SEG)/.8);nz.visible=lift<1&&!RM;nz.position.y=FY0+NL*FP+lift*3;}
-    else nz.visible=false;
+      nz.visible=true;nz.position.set(FX[sg[0]],FY0+sg[1]*FP+FR*.6,z);m.ink.material.color.setHex(anode?m.inkA:m.inkC);m.ink.scale.y=1-.6*(i/n);m.ink.position.y=1.12-.3*(i/n);
+      var tx=anode?'3D printer · anode ink (Li₄Ti₅O₁₂)':'3D printer · cathode ink (LiFePO₄)';if(tx!==m.plabTxt){m.plabTxt=tx;setL(m.plab,tx);}}
+    else if(done){var lift=cl((pt-n*PR_SEG)/1.2);nz.visible=lift<1&&!RM;nz.position.y=FY0+NL*FP+lift*3;}
+    else{nz.visible=false;}
+    var showG=!done||(!RM&&cl((pt-n*PR_SEG)/1.2)<1);m.gan.visible=showG;
+    if(m.gan.visible){var yb=nz.visible?nz.position.y:FY0;m.gan.position.set(0,0,nz.position.z);m.bar.position.y=yb+2.2;m.carr.position.set(nz.position.x,yb+2.2,0);m.plab.position.set(0,yb+2.75,0);
+      if(pt<0){m.bar.position.y=FY0+2.2;m.carr.position.set(FX[0],FY0+2.2,0);}}
+    var wired=done&&(RM||cl((pt-n*PR_SEG)/1.2)>=1);tubeMicro.visible=wired;boxM.visible=wired;bl.visible=wired;els.forEach(function(e){e.m.visible=wired;});
     m.gel.material.opacity=done?.13*cl((pt-n*PR_SEG)/.8+(RM?1:0)):0;
     return done;
   }
@@ -2474,15 +2496,42 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
 </dialog>
 <script>
 (function(){
-  var A=[{"t": "Lab dinner", "d": "2026.10.03", "p": ["assets/gallery/full/g22.jpg"]}, {"t": "Research Camp in Materials and Physics", "d": "2026", "p": ["assets/gallery/full/g21.jpg"]}, {"t": "HE3 Team at the ICMIT 2026 Conference, Hanoi", "d": "2026", "p": ["assets/gallery/full/g20.jpg"]}, {"t": "17th HOPE Meeting with Nobel Laureates, Tsukuba, Japan", "d": "2026.03", "p": ["assets/gallery/full/g19.jpg", "assets/gallery/full/g17.jpg", "assets/gallery/full/g18.jpg"]}, {"t": "First visit to VinUniversity", "d": "2026.01", "p": ["assets/gallery/full/g16.jpg"]}, {"t": "Poster presentation at ICONN 2026, Sydney, Australia", "d": "2026", "p": ["assets/gallery/full/g15.jpg"]}, {"t": "With Vietnamese colleagues at ICONN 2026, Sydney, Australia", "d": "2026", "p": ["assets/gallery/full/g13.jpg", "assets/gallery/full/g14.jpg"]}, {"t": "HE3 Team successfully synthesized its first MXene solution", "d": "[yyyy.mm]", "p": ["assets/gallery/full/g10.jpg", "assets/gallery/full/g11.jpg", "assets/gallery/full/g12.jpg"]}, {"t": "With Prof. Yury Gogotsi (Drexel University) at ICEAN 2024, Newcastle, Australia", "d": "2024", "p": ["assets/gallery/full/g09.jpg"]}, {"t": "With Dr. Toan (UTS) at ICEAN 2024, Newcastle, Australia", "d": "2024", "p": ["assets/gallery/full/g08.jpg"]}, {"t": "HE3 Lab at IWAMSN 2024, Da Nang", "d": "2024", "p": ["assets/gallery/full/g06.jpg", "assets/gallery/full/g07.jpg"]}, {"t": "Starting as Research Fellow at the University of Newcastle", "d": "2024", "p": ["assets/gallery/full/g05.jpg"]}, {"t": "HE3 Lab – IUH Team", "d": "2024.06", "p": ["assets/gallery/full/g04.jpg"]}, {"t": "Visiting Stanford University", "d": "2022", "p": ["assets/gallery/full/g03.jpg"]}, {"t": "Attending the 2022 ACS Fall Meeting, Chicago", "d": "2022.08", "p": ["assets/gallery/full/g02.jpg"]}, {"t": "PhD thesis defense at KNUT", "d": "2020.05", "p": ["assets/gallery/full/g01.jpg"]}];
-  var flat=[];A.forEach(function(a){a.p.forEach(function(p,j){flat.push({src:p,t:a.t,d:a.d,j:j+1,n:a.p.length})})});
-  var start=[],c=0;A.forEach(function(a){start.push(c);c+=a.p.length});
+  var EV=[{"t": "PhD thesis defense", "p": "KNUT, Korea", "y": "2020", "ph": [{"i": "g01", "c": "Thesis defense"}]}, {"t": "ACS Fall Meeting", "p": "Chicago, USA", "y": "2022", "ph": [{"i": "g02", "c": "Poster session"}]}, {"t": "Stanford University", "p": "California, USA", "y": "2022", "ph": [{"i": "g03", "c": "Campus visit"}]}, {"t": "HE3 Lab – IUH Team", "p": "", "y": "2024", "ph": [{"i": "g04", "c": "Team photo"}]}, {"t": "University of Newcastle", "p": "Australia", "y": "2024", "ph": [{"i": "g05", "c": "Starting as Research Fellow"}]}, {"t": "IWAMSN", "p": "Da Nang", "y": "2024", "ph": [{"i": "g06", "c": "HE3 Lab team"}, {"i": "g07", "c": "Closing ceremony"}]}, {"t": "ICEAN", "p": "Newcastle, Australia", "y": "2024", "ph": [{"i": "g09", "c": "With Prof. Yury Gogotsi (Drexel)"}, {"i": "g08", "c": "With Dr. Toan (UTS)"}]}, {"t": "First MXene solution", "p": "HE3 Team", "y": "[yyyy]", "ph": [{"i": "g10", "c": "In the lab"}, {"i": "g11", "c": "In the lab"}, {"i": "g12", "c": "Our first MXene solution"}]}, {"t": "ICONN", "p": "Sydney, Australia", "y": "2026", "ph": [{"i": "g15", "c": "Poster presentation"}, {"i": "g13", "c": "With Vietnamese colleagues"}, {"i": "g14", "c": "With Vietnamese colleagues"}]}, {"t": "VinUniversity", "p": "Hanoi", "y": "2026", "ph": [{"i": "g16", "c": "First visit"}]}, {"t": "17th HOPE Meeting", "p": "Tsukuba, Japan", "y": "2026", "ph": [{"i": "g19", "c": "With a Nobel Laureate"}, {"i": "g17", "c": "Poster presentation"}, {"i": "g18", "c": "Dinner with participants"}]}, {"t": "ICMIT", "p": "Hanoi", "y": "2026", "ph": [{"i": "g20", "c": "HE3 Team"}]}, {"t": "Research Camp in Materials & Physics", "p": "", "y": "2026", "ph": [{"i": "g21", "c": "Panel discussion"}]}, {"t": "Lab dinner", "p": "HE3 Lab", "y": "2026", "ph": [{"i": "g22", "c": "3 Oct 2026"}]}];
+  var reel=document.getElementById('reel'),track=document.getElementById('reel-track');if(!reel)return;
+  var flat=[];EV.forEach(function(e){e.ph.forEach(function(p,j){p.k=flat.length;flat.push({src:'assets/gallery/full/'+p.i+'.jpg',t:e.t+(e.y.charAt(0)==='['?'':' '+e.y),d:p.c+(e.ph.length>1?' · '+(j+1)+'/'+e.ph.length:'')});});});
+  function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  // newest on the left: with the reel moving left -> right, events enter the view in chronological order and end at "Today"
+  var order=EV.slice().reverse(),blocks=[];
+  var now=document.createElement('div');now.className='reel-ev reel-now';now.innerHTML='<b>Today</b><span>the reel starts again<br>from 2020</span>';track.appendChild(now);blocks.push(now);
+  order.forEach(function(e){var d=document.createElement('div');d.className='reel-ev';
+    d.innerHTML='<div class="reel-head"><b>'+esc(e.t)+'</b><span>'+esc(e.p)+'</span><time>'+esc(e.y)+'</time></div><div class="reel-row">'+
+      e.ph.map(function(p){return '<button type="button" class="reel-ph" data-k="'+p.k+'"><img src="assets/gallery/thumb/'+p.i+'.jpg" alt="'+esc(e.t+' – '+p.c)+'" loading="lazy" decoding="async" draggable="false"><span>'+esc(p.c)+'</span></button>';}).join('')+'</div>';
+    track.appendChild(d);blocks.push(d);});
+  var pos=[],W=0,GAP=22,vw=0,maxW=0;
+  function measure(){if(!reel.clientWidth)return;vw=reel.clientWidth;W=0;maxW=0;blocks.forEach(function(b,i){var w=b.offsetWidth;pos[i]={x:W,w:w};W+=w+GAP;if(w>maxW)maxW=w;});}
+  var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var BASE=RM?0:42,v=BASE,off=0,last=0,drag=null,moved=0;
+  function layout(){var M=maxW+40,R=W;
+    blocks.forEach(function(b,i){var p=pos[i],x=((p.x+off+M)%R+R)%R-M,c=x+p.w/2,u=(c-vw/2)/(vw/2);u=Math.max(-1.6,Math.min(1.6,u));
+      b.style.transform='translate3d('+x.toFixed(1)+'px,'+(u*u*14).toFixed(1)+'px,'+(-u*u*170).toFixed(1)+'px) rotateY('+(-u*24).toFixed(2)+'deg)';
+      b.style.visibility=(x>vw+40||x+p.w<-40)?'hidden':'visible';});}
+  var inited=false,lastVW=0;
+  function tick(t){requestAnimationFrame(tick);if(!reel.offsetParent||!reel.clientWidth){last=t;return;}
+    if(!inited){init();inited=true;}else if(reel.clientWidth!==lastVW)measure();lastVW=reel.clientWidth;var dt=Math.min(.05,(t-(last||t))/1000);last=t;
+    if(!drag){v+=(BASE-v)*Math.min(1,dt*1.4);off+=v*dt;}layout();}
+  // moving the mouse over the reel pushes it faster in the direction of the movement
+  var lx=null;
+  reel.addEventListener('pointermove',function(e){if(drag){var dx=e.clientX-drag.x;drag.x=e.clientX;off+=dx;moved+=Math.abs(dx);v=dx*40;return;}
+    if(e.pointerType==='mouse'){if(lx!==null){var dx=e.clientX-lx;v=Math.max(-1800,Math.min(1800,v+dx*14));}lx=e.clientX;}});
+  reel.addEventListener('pointerleave',function(){lx=null;});
+  reel.addEventListener('pointerdown',function(e){drag={x:e.clientX};moved=0;reel.classList.add('drag');});
+  function up(){if(!drag)return;drag=null;reel.classList.remove('drag');}
+  window.addEventListener('pointerup',up);window.addEventListener('pointercancel',up);
+  reel.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();v-=e.deltaX*8;}},{passive:false});
+  // lightbox
   var dlg=document.getElementById('gal-lb'),img=dlg.querySelector('img'),cap=dlg.querySelector('figcaption'),i=0;
-  function show(k){i=(k+flat.length)%flat.length;var f=flat[i];img.src=f.src;img.alt=f.t;
-    cap.innerHTML='';cap.appendChild(document.createTextNode(f.t));var sm=document.createElement('small');
-    sm.textContent=f.d+(f.n>1?' · '+f.j+'/'+f.n:'');cap.appendChild(sm);}
-  document.querySelectorAll('.gal-card').forEach(function(b){b.addEventListener('click',function(){
-    show(start[+b.dataset.album]);if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');});});
+  function show(k){i=(k+flat.length)%flat.length;var f=flat[i];img.src=f.src;img.alt=f.t;cap.innerHTML='';cap.appendChild(document.createTextNode(f.t));var sm=document.createElement('small');sm.textContent=f.d;cap.appendChild(sm);}
+  track.addEventListener('click',function(e){var b=e.target.closest('.reel-ph');if(!b||moved>6)return;show(+b.dataset.k);if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');});
   dlg.querySelector('.gal-x').onclick=function(){dlg.close()};
   dlg.querySelector('.gal-prev').onclick=function(){show(i-1)};
   dlg.querySelector('.gal-next').onclick=function(){show(i+1)};
@@ -2490,6 +2539,10 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   dlg.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
   var x0=null;dlg.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
   dlg.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)show(dx<0?i+1:i-1);x0=null});
+  function init(){measure();var L=pos[pos.length-1];off=vw-(L.x+L.w)-30;}
+  window.addEventListener('resize',function(){measure();});
+  var imgs=[].slice.call(track.querySelectorAll('img'));imgs.forEach(function(im){im.addEventListener('load',measure,{once:true});});
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
