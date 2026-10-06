@@ -2520,7 +2520,7 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   var pos=[],W=0,GAP=22,vw=0,maxW=0;
   function measure(){if(!reel.clientWidth)return;vw=reel.clientWidth;W=0;maxW=0;blocks.forEach(function(b,i){var w=b.offsetWidth;pos[i]={x:W,w:w};W+=w+GAP;if(w>maxW)maxW=w;});}
   var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var BASE=RM?0:25.2,VMAX=108,paused=false,v=BASE,off=0,last=0,swipeT=0;
+  var BASE=RM?0:226.8,VMAX=972,paused=false,v=BASE,off=0,last=0,swipeT=0;
   function layout(){var M=maxW+40,R=W;
     blocks.forEach(function(b,i){var p=pos[i],x=((p.x+off+M)%R+R)%R-M,c=x+p.w/2,u=(c-vw/2)/(vw/2);u=Math.max(-1.6,Math.min(1.6,u));
       b.style.transform='translate3d('+x.toFixed(1)+'px,'+(u*u*14).toFixed(1)+'px,'+(-u*u*170).toFixed(1)+'px) rotateY('+(-u*24).toFixed(2)+'deg)';
@@ -2545,7 +2545,10 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   function show(k){i=(k+flat.length)%flat.length;var f=flat[i];img.src=f.src;img.alt=f.t;cap.innerHTML='';cap.appendChild(document.createTextNode(f.t));var sm=document.createElement('small');sm.textContent=f.d;cap.appendChild(sm);}
   reel.addEventListener('click',function(e){var b=e.target.closest('.reel-ph');
     if(clickTimer&&b&&b===lastPh){clearTimeout(clickTimer);clickTimer=null;setPaused(true);show(+b.dataset.k);if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');return;}
-    if(clickTimer)clearTimeout(clickTimer);lastPh=b;clickTimer=setTimeout(function(){clickTimer=null;setPaused(!paused);},260);});
+    if(clickTimer)clearTimeout(clickTimer);lastPh=b;
+    // running: stop at once (so a fast-moving photo can still be double-clicked); paused: resume unless a second click follows
+    if(!paused){setPaused(true);clickTimer=setTimeout(function(){clickTimer=null;},320);}
+    else clickTimer=setTimeout(function(){clickTimer=null;setPaused(false);},320);});
   reel.addEventListener('keydown',function(e){var b=e.target.closest&&e.target.closest('.reel-ph');if(b&&e.key==='Enter'){e.preventDefault();setPaused(true);show(+b.dataset.k);dlg.showModal();}});
   dlg.querySelector('.gal-x').onclick=function(){dlg.close()};
   dlg.querySelector('.gal-prev').onclick=function(){show(i-1)};
