@@ -957,8 +957,8 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
         <p class="apps-hint">Choose an application to see its battery chemistry</p>
         <div class="apps" id="apps">
           <div class="app" role="button" tabindex="0" data-chem="ev"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 22v-6l5-7h20l7 7h4a2 2 0 0 1 2 2v4z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M13 9l-3 7h28" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="14" cy="23" r="4" fill="currentColor"/><circle cx="35" cy="23" r="4" fill="currentColor"/><path d="M24 11l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Electric vehicles</span></div>
-          <div class="app" role="button" tabindex="0" data-chem="phone"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="8" y="5" width="18" height="24" rx="3" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="29" y="9" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M26 23h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="17" cy="25" r="1.4" fill="currentColor"/></svg><span>Phones &amp; laptops</span></div>
-          <div class="app" role="button" tabindex="0" data-chem="grid"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M6 15 17 6l11 9v13H6z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><rect x="31" y="12" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M35 12v-3h4v3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M38 15l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grid &amp; home storage</span></div>
+          <div class="app" role="button" tabindex="0" data-chem="aero"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M44 16c0-1.6-1.8-2.6-3.6-2.6H29L20.5 4h-4.2l4 9.4H10.5L6.8 9.2H3.6l1.8 6.8-1.8 6.8h3.2l3.7-4.2h9.8l-4 9.4h4.2L29 18.6h11.4c1.8 0 3.6-1 3.6-2.6z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M34 11.5l-2 3.4h3l-2 3.6" fill="none" stroke="var(--e2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" transform="translate(-8 0)"/></svg><span>Electric aviation</span></div>
+          <div class="app" role="button" tabindex="0" data-chem="grid"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M17 3 9 29M17 3l8 26M11.5 11h11M10 19h14M12.3 11l10 8M21.7 11l-10 8M8 7h18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="31" y="12" width="12" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M35 12v-3h4v3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M38 15l-3 5h4l-3 5" fill="none" stroke="var(--e2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Grid storage</span></div>
           <div class="app" role="button" tabindex="0" data-chem="wear"><svg viewBox="0 0 48 32" aria-hidden="true"><rect x="17" y="4" width="14" height="24" rx="7" fill="none" stroke="currentColor" stroke-width="2.4"/><rect x="21" y="10" width="6" height="12" rx="2" fill="currentColor"/><path d="M8 16h6M34 16h6M10 10l4 3M38 10l-4 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Wearables &amp; IoT</span></div>
         </div>
       </figure>
@@ -2207,9 +2207,9 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   var host=document.getElementById('cell3d'),svg=document.getElementById('cell');
   var CHEM={
     ev:{title:'Electric vehicles · Lithium-ion',mech:'Li⁺ shuttles between graphite layers and a layered-oxide cathode: the classic rocking-chair intercalation.',ion:[0xF3C548,0xB07A00,.11],an:'graphite',ca:'layered',sep:'porous',L:['Anode · graphite','Liquid electrolyte','Cathode · layered LiMO₂'],anions:1},
-    phone:{title:'Phones & laptops · Solid-state lithium-metal',mech:'Li⁺ crosses a ceramic solid electrolyte and plates or strips as lithium metal — high energy density, no flammable liquid.',ion:[0xF3C548,0xB07A00,.1],an:'limetal',ca:'layered',sep:'solid',L:['Anode · lithium metal','Solid electrolyte (garnet)','Cathode · layered LiCoO₂'],anions:0},
-    grid:{title:'Grid & home storage · Sodium-ion',mech:'Larger Na⁺ ions move between hard carbon and a Prussian-blue framework: abundant, low-cost materials for stationary storage.',ion:[0xF28C28,0x8A3B00,.15],an:'hardcarbon',ca:'prussian',sep:'porous',L:['Anode · hard carbon','Liquid electrolyte','Cathode · Prussian blue'],anions:1},
-    wear:{title:'Wearables & IoT · Aqueous zinc-ion',mech:'Zn²⁺ travels through a water-based electrolyte between a zinc anode and a tunnel-structured MnO₂ cathode: intrinsically safe and flexible.',ion:[0x5FD3E6,0x0E6F80,.12],an:'zinc',ca:'mno2',sep:'aqueous',L:['Anode · zinc metal','Aqueous electrolyte','Cathode · MnO₂ tunnels'],anions:1}
+    aero:{title:'Electric aviation · Structural battery',mech:'The airframe is the battery: load-bearing carbon fibres double as the negative electrode, a glass-fibre separator in a polymer matrix carries Li⁺, and LiFePO₄-coated fibres form the positive electrode.',ion:[0xF3C548,0xB07A00,.1],an:'cfiber',ca:'lfpfiber',sep:'glassfiber',L:['Anode · carbon fibres','Glass-fibre separator','Cathode · LiFePO₄ fibres'],anions:0,intro:'plane'},
+    grid:{title:'Grid storage · Sodium-ion',mech:'Larger Na⁺ ions move between hard carbon and a Prussian-blue framework: abundant, low-cost materials for stationary storage.',ion:[0xF28C28,0x8A3B00,.15],an:'hardcarbon',ca:'prussian',sep:'porous',L:['Anode · hard carbon','Liquid electrolyte','Cathode · Prussian blue'],anions:1},
+    wear:{title:'Wearables & IoT · 3D-printed micro-battery',mech:'Interdigitated Li₄Ti₅O₁₂ and LiFePO₄ electrodes are extruded layer by layer from a fine nozzle: a complete cell only about 1 mm across, small enough to sit on a sensor or a smartwatch strap.',ion:[0xF3C548,0xB07A00,.075],layout:'micro',L:['Anode · printed Li₄Ti₅O₁₂','Gel electrolyte','Cathode · printed LiFePO₄'],anions:0,intro:'coin'}
   };
   var tBox=document.getElementById('chem-title'),mBox=document.getElementById('chem-mech');
   var apps=[].slice.call(document.querySelectorAll('#apps .app'));
@@ -2229,85 +2229,157 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   scene.add(new THREE.HemisphereLight(0xe6efff,0x18213a,.95));
   var dl=new THREE.DirectionalLight(0xffffff,.85);dl.position.set(5,9,7);scene.add(dl);
   var pl=new THREE.PointLight(0xf0be3a,.6,18);pl.position.set(0,1.5,4.5);scene.add(pl);
-  var root=new THREE.Group();root.scale.setScalar(.92);scene.add(root);
+  var stage=new THREE.Group();scene.add(stage);
+  var root=new THREE.Group();root.scale.setScalar(.92);stage.add(root);
   function std(c,o){return new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.5,metalness:.2},o||{}));}
   var M=new THREE.Matrix4(),Q=new THREE.Quaternion(),S=new THREE.Vector3(1,1,1),P=new THREE.Vector3(),Eu=new THREE.Euler();
   function inst(geo,mat,list,rot){var m=new THREE.InstancedMesh(geo,mat,list.length);list.forEach(function(p,k){P.set(p[0],p[1],p[2]);if(rot){Eu.set(p[3]||0,p[4]||0,p[5]||0);Q.setFromEuler(Eu);}else Q.identity();S.set(p[6]||1,p[7]||1,p[8]||1);M.compose(P,Q,S);m.setMatrixAt(k,M);});return m;}
-  // static: casing, collectors
+  // static cell (box layout): casing, electrolyte volume, collectors
+  var cellG=new THREE.Group();root.add(cellG);
   var cg=new THREE.BoxGeometry(6.6,4.4,3.4);
-  root.add(new THREE.Mesh(cg,new THREE.MeshPhysicalMaterial({color:0x7fb6e0,transparent:true,opacity:.07,roughness:.05,depthWrite:false})));
-  root.add(new THREE.LineSegments(new THREE.EdgesGeometry(cg),new THREE.LineBasicMaterial({color:0x9cc4e8,transparent:true,opacity:.6})));
+  cellG.add(new THREE.Mesh(cg,new THREE.MeshPhysicalMaterial({color:0x7fb6e0,transparent:true,opacity:.07,roughness:.05,depthWrite:false})));
+  cellG.add(new THREE.LineSegments(new THREE.EdgesGeometry(cg),new THREE.LineBasicMaterial({color:0x9cc4e8,transparent:true,opacity:.6})));
   var elMat=new THREE.MeshBasicMaterial({color:0x2F6690,transparent:true,opacity:.13,depthWrite:false});
-  root.add(new THREE.Mesh(new THREE.BoxGeometry(2.6,4.2,3.2),elMat));
-  var cu=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xc8834a,{metalness:.45,roughness:.35,emissive:0x3a1c08,transparent:true,opacity:.8}));cu.position.x=-3.18;root.add(cu);
-  var al=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xd0d7df,{metalness:.4,roughness:.3,emissive:0x2a2f36,transparent:true,opacity:.55,depthWrite:false}));al.position.x=3.18;root.add(al);
+  var elBox=new THREE.Mesh(new THREE.BoxGeometry(2.6,4.2,3.2),elMat);cellG.add(elBox);
+  var cu=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xc8834a,{metalness:.45,roughness:.35,emissive:0x3a1c08,transparent:true,opacity:.8}));cu.position.x=-3.18;cellG.add(cu);
+  var al=new THREE.Mesh(new THREE.BoxGeometry(.12,4.25,3.25),std(0xd0d7df,{metalness:.4,roughness:.3,emissive:0x2a2f36,transparent:true,opacity:.55,depthWrite:false}));al.position.x=3.18;cellG.add(al);
   var LY=[];for(var y=-1.8;y<=1.81;y+=.45)LY.push(+y.toFixed(2));
   // chemistry-specific group
-  var chemG=new THREE.Group();root.add(chemG);var plated=null,aS=[],cS=[];
-  function clearChem(){while(chemG.children.length){var o=chemG.children.pop();if(o.geometry)o.geometry.dispose();if(o.material)o.material.dispose();}plated=null;}
+  var chemG=new THREE.Group();root.add(chemG);var plated=null,aS=[],cS=[],pair=false,micro=null;
+  function disposeTree(o){o.traverse(function(n){if(n.geometry)n.geometry.dispose();if(n.material){if(n.material.map)n.material.map.dispose();n.material.dispose();}});}
+  function clearChem(){while(chemG.children.length){var o=chemG.children.pop();disposeTree(o);}plated=null;micro=null;pair=false;}
   function slotsBetween(xs,dy){var out=[];for(var k=0;k<LY.length-1;k++){var ym=(LY[k]+LY[k+1])/2+(dy||0);xs.forEach(function(x,ix){[-.95,0,.95].forEach(function(z){out.push([x,ym,z+(ix%2)*.3]);});});}return out;}
   var B={
     graphite:function(){var gp=[];LY.forEach(function(y){for(var j=0;j<11;j++)for(var i=0;i<7;i++){var x=-3.0+i*.24+(j%2)*.12,z=-1.38+j*.276;if(x<-1.42)gp.push([x,y,z]);}});
       chemG.add(inst(new THREE.CylinderGeometry(.135,.135,.06,6),std(0x7193ad,{roughness:.55}),gp));aS=slotsBetween([-2.75,-2.25,-1.78]);},
-    limetal:function(){var m=new THREE.Mesh(new THREE.BoxGeometry(.9,4.1,3.1),std(0xC3CCD6,{metalness:.55,roughness:.25}));m.position.x=-2.65;chemG.add(m);
-      plated=new THREE.Mesh(new THREE.BoxGeometry(1,4.1,3.1),std(0xE6ECF2,{metalness:.5,roughness:.2,emissive:0x2a3340}));plated.position.x=-2.2;chemG.add(plated);
-      aS=[];for(var y=-1.7;y<=1.71;y+=.42)for(var z=-1.2;z<=1.21;z+=.6)aS.push([-2.05+Math.random()*.25,y,z]);},
     hardcarbon:function(){var l=[];for(var i=0;i<170;i++){var x=-3.0+Math.random()*1.55,y=-1.95+Math.random()*3.9,z=-1.4+Math.random()*2.8;l.push([x,y,z,Math.random()*3,Math.random()*3,Math.random()*3]);}
       chemG.add(inst(new THREE.BoxGeometry(.42,.035,.22),std(0x48525F,{roughness:.7}),l,true));aS=slotsBetween([-2.7,-2.2,-1.75]);},
-    zinc:function(){var m=new THREE.Mesh(new THREE.BoxGeometry(.8,4.1,3.1),std(0x9AA6B5,{metalness:.6,roughness:.35}));m.position.x=-2.7;chemG.add(m);
-      plated=new THREE.Mesh(new THREE.BoxGeometry(1,4.1,3.1),std(0xB8C4D2,{metalness:.5,roughness:.3}));plated.position.x=-2.3;chemG.add(plated);
-      var hx=[];for(var y=-1.8;y<=1.81;y+=.3)for(var z=-1.35;z<=1.36;z+=.3)hx.push([-2.28,y,z,0,0,Math.PI/2]);chemG.add(inst(new THREE.CylinderGeometry(.11,.11,.03,6),std(0xA9B5C4,{metalness:.6}),hx,true));
-      aS=[];for(var y=-1.7;y<=1.71;y+=.42)for(var z=-1.2;z<=1.21;z+=.6)aS.push([-2.1+Math.random()*.25,y,z]);},
+    // structural battery: carbon fibres (load-bearing + negative electrode) running along the laminate
+    cfiber:function(){var p=[];aS=[];var row=0;for(var y=-1.9;y<=1.91;y+=.32,row++)for(var x=-2.95;x<=-0.9;x+=.32){var xx=x+(row%2)*.16;p.push([xx,y,0,Math.PI/2,0,0]);[-.95,0,.95].forEach(function(z){aS.push([xx+.15,y+.15,z]);});}
+      chemG.add(inst(new THREE.CylinderGeometry(.125,.125,3.15,12),std(0x262a31,{metalness:.55,roughness:.3,emissive:0x05070a}),p,true));},
     layered:function(){LY.forEach(function(y){var s=new THREE.Mesh(new THREE.BoxGeometry(1.6,.07,3.05),std(0x5d6a84,{metalness:.35}));s.position.set(2.32,y,0);chemG.add(s);});
       var op=[];LY.forEach(function(y){for(var i=0;i<8;i++)for(var j=0;j<10;j++)op.push([1.62+i*.2,y+.07,-1.35+j*.3]);});
       chemG.add(inst(new THREE.OctahedronGeometry(.085),std(0x7fd1b4,{emissive:0x1d4d40,roughness:.4}),op));cS=slotsBetween([1.75,2.3,2.8],.02);},
-    prussian:function(){var pts=[],lines=[];var xs=[1.55,1.95,2.35,2.75],ys=[],zs=[];for(var y=-1.8;y<=1.81;y+=.45)ys.push(y);for(var z=-1.35;z<=1.36;z+=.45)zs.push(z);
+    prussian:function(){var pts=[];var xs=[1.55,1.95,2.35,2.75],ys=[],zs=[];for(var y=-1.8;y<=1.81;y+=.45)ys.push(y);for(var z=-1.35;z<=1.36;z+=.45)zs.push(z);
       xs.forEach(function(x){ys.forEach(function(y){zs.forEach(function(z){pts.push([x,y,z]);});});});
       chemG.add(inst(new THREE.BoxGeometry(.11,.11,.11),std(0x2F5FB0,{emissive:0x0c2250,metalness:.4}),pts));
       var v=[];xs.forEach(function(x,i){ys.forEach(function(y,j){zs.forEach(function(z,k){if(i<xs.length-1)v.push(x,y,z,xs[i+1],y,z);if(j<ys.length-1)v.push(x,y,z,x,ys[j+1],z);if(k<zs.length-1)v.push(x,y,z,x,y,zs[k+1]);});});});
       var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(v,3));chemG.add(new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:0x6FA3D6,transparent:true,opacity:.7})));
       cS=[];for(var i=0;i<xs.length-1;i++)for(var j=0;j<ys.length-1;j++)for(var k=0;k<zs.length-1;k+=2)cS.push([(xs[i]+xs[i+1])/2,(ys[j]+ys[j+1])/2,(zs[k]+zs[k+1])/2]);},
-    mno2:function(){var op=[];for(var x=1.55;x<=2.9;x+=.34)for(var y=-1.85;y<=1.86;y+=.42){[-1.35,-1.05,-.15,.15,1.05,1.35].forEach(function(z){op.push([x,y,z]);});if(Math.round((y+1.85)/.36)%2===0)[-.75,-.45,.45,.75].forEach(function(z){op.push([x,y,z]);});}
-      chemG.add(inst(new THREE.OctahedronGeometry(.075),std(0x6B4A36,{emissive:0x1a0d05,roughness:.55}),op));
-      cS=[];for(var x=1.6;x<=2.85;x+=.42)for(var y=-1.65;y<=1.66;y+=.72)[-.6,.6].forEach(function(z){cS.push([x,y,z]);});},
+    // structural battery: carbon fibres coated with LiFePO4
+    lfpfiber:function(){var p=[];cS=[];var row=0;for(var y=-1.9;y<=1.91;y+=.34,row++)for(var x=0.75;x<=2.95;x+=.34){var xx=x+(row%2)*.17;if(xx>3.0)continue;p.push([xx,y,0,Math.PI/2,0,0]);[-.95,0,.95].forEach(function(z){cS.push([xx-.17,y+.16,z]);});}
+      chemG.add(inst(new THREE.CylinderGeometry(.085,.085,3.17,10),std(0x23262c,{metalness:.55,roughness:.3}),p,true));
+      chemG.add(inst(new THREE.CylinderGeometry(.155,.155,3.1,14),std(0x8B6FD6,{emissive:0x2a1a55,roughness:.55,transparent:true,opacity:.62}),p,true));},
     porous:function(c){var sep=new THREE.Mesh(new THREE.BoxGeometry(.05,4.15,3.15),std(0xf0be3a,{transparent:true,opacity:.42,emissive:0x5a4300}));chemG.add(sep);
       var d=[];for(var gy=-1.9;gy<=1.9;gy+=.3)for(var gz=-1.45;gz<=1.45;gz+=.3)d.push([.03,gy,gz,0,Math.PI/2,0]);chemG.add(inst(new THREE.CircleGeometry(.05,10),new THREE.MeshBasicMaterial({color:0x1a2a44,transparent:true,opacity:.55,side:THREE.DoubleSide}),d,true));elMat.color.setHex(0x2F6690);elMat.opacity=.13;},
-    solid:function(){var g=[];for(var i=0;i<260;i++)g.push([-.45+Math.random()*.9,-2+Math.random()*4,-1.5+Math.random()*3]);
-      chemG.add(inst(new THREE.IcosahedronGeometry(.13,0),std(0xE8D9B5,{transparent:true,opacity:.85,roughness:.6}),g));elMat.opacity=.04;},
-    aqueous:function(){var sep=new THREE.Mesh(new THREE.BoxGeometry(.06,4.15,3.15),std(0xF4F6F8,{transparent:true,opacity:.35}));chemG.add(sep);
-      var o=[],h=[];for(var i=0;i<46;i++){var x=-1.15+Math.random()*2.3,y=-1.9+Math.random()*3.8,z=-1.4+Math.random()*2.8,a=Math.random()*6;o.push([x,y,z]);h.push([x+.09*Math.cos(a),y+.07,z+.09*Math.sin(a)]);h.push([x-.09*Math.cos(a),y+.07,z-.09*Math.sin(a)]);}
-      chemG.add(inst(new THREE.SphereGeometry(.055,10,8),std(0xE04A3F),o));chemG.add(inst(new THREE.SphereGeometry(.035,8,6),std(0xFFFFFF),h));elMat.color.setHex(0x3FA7D6);elMat.opacity=.2;}
+    // woven glass-fibre mat in a structural polymer electrolyte
+    glassfiber:function(){var slab=new THREE.Mesh(new THREE.BoxGeometry(.42,4.15,3.15),std(0xcfe9f7,{transparent:true,opacity:.22,roughness:.1,depthWrite:false}));chemG.add(slab);
+      var wz=[],wy=[],k=0;for(var y=-1.95;y<=1.96;y+=.22,k++)wz.push([(k%2?.1:-.1),y,0,Math.PI/2,0,0]);k=0;for(var z=-1.45;z<=1.46;z+=.26,k++)wy.push([(k%2?-.1:.1),0,z]);
+      var gm=std(0xe9f6ff,{emissive:0x22404f,roughness:.25,transparent:true,opacity:.85});
+      chemG.add(inst(new THREE.CylinderGeometry(.035,.035,3.1,6),gm,wz,true));chemG.add(inst(new THREE.CylinderGeometry(.035,.035,4.1,6),gm.clone(),wy,true));
+      elMat.color.setHex(0x9AA6B5);elMat.opacity=.1;}
   };
+  // ---------- 3D-printed interdigitated micro-battery ----------
+  var FX=[-2.7,-1.8,-0.9,0,0.9,1.8,2.7],NL=8,FR=.19,FP=.3,FY0=-1.49+.19,FLEN=2.8;
+  function buildMicro(){
+    var m={fil:[],seg:[],nozzle:null,gel:null,done:false};
+    var sub=new THREE.Mesh(new THREE.BoxGeometry(6.8,.14,3.9),std(0xdfe6ee,{transparent:true,opacity:.5,roughness:.12,metalness:.05}));sub.position.y=-1.63;chemG.add(sub);
+    var gold=std(0xD4A64A,{metalness:.8,roughness:.3,emissive:0x2a1d00});
+    var ba=new THREE.Mesh(new THREE.BoxGeometry(6.1,.07,.34),gold);ba.position.set(-.1,-1.525,-1.62);chemG.add(ba);
+    var bc=new THREE.Mesh(new THREE.BoxGeometry(5.2,.07,.34),gold.clone());bc.position.set(.55,-1.525,1.62);chemG.add(bc);
+    var inkA=std(0x6E7E92,{roughness:.6,emissive:0x0d1219}),inkC=std(0x8B6FD6,{roughness:.55,emissive:0x2a1a55});
+    var geo=new THREE.CylinderGeometry(FR,FR,FLEN,14);geo.translate(0,FLEN/2,0);geo.rotateX(Math.PI/2);
+    FX.forEach(function(x,f){var anode=f%2===0;m.fil[f]=[];for(var l=0;l<NL;l++){var me=new THREE.Mesh(geo,anode?inkA:inkC);me.position.set(x,FY0+l*FP,anode?-1.55:1.55);if(!anode)me.rotation.y=Math.PI;me.scale.z=.001;me.visible=false;chemG.add(me);m.fil[f][l]=me;}});
+    // print order: all anode layers with ink A, then cathode with ink C
+    [0,1].forEach(function(ink){for(var l=0;l<NL;l++)FX.forEach(function(x,f){if(f%2===ink)m.seg.push([f,l]);});});
+    var gel=new THREE.Mesh(new THREE.BoxGeometry(6.2,2.55,3.0),new THREE.MeshBasicMaterial({color:0x5FD3E6,transparent:true,opacity:0,depthWrite:false}));gel.position.y=-.25;chemG.add(gel);m.gel=gel;
+    // extrusion nozzle (syringe barrel + tapered tip)
+    var nz=new THREE.Group(),tip=new THREE.Mesh(new THREE.CylinderGeometry(.2,.06,.55,18),std(0xC0C8D2,{metalness:.8,roughness:.25}));tip.position.y=.3;
+    var barrel=new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,1.5,24),std(0xE8EEF5,{transparent:true,opacity:.55,roughness:.1}));barrel.position.y=1.32;
+    var ink=new THREE.Mesh(new THREE.CylinderGeometry(.36,.36,1.0,24),inkA.clone());ink.position.y=1.12;
+    var glow=new THREE.Mesh(new THREE.SphereGeometry(.11,12,10),new THREE.MeshBasicMaterial({color:0xF0BE3A}));glow.position.y=.03;
+    nz.add(tip);nz.add(barrel);nz.add(ink);nz.add(glow);chemG.add(nz);m.nozzle=nz;m.ink=ink;m.inkA=0x6E7E92;m.inkC=0x8B6FD6;
+    // scale bar: the whole cell is about 1 mm wide
+    var sb=[-3.3,-1.75,2.25,3.3,-1.75,2.25,-3.3,-1.6,2.25,-3.3,-1.9,2.25,3.3,-1.6,2.25,3.3,-1.9,2.25];
+    var g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(sb,3));chemG.add(new THREE.LineSegments(g,new THREE.LineBasicMaterial({color:0xF0BE3A})));
+    var sl=label('≈ 1 mm · smaller than a grain of rice','#F0BE3A',1024,44);sl.scale.set(6,.6,1);sl.position.set(0,-2.3,2.25);chemG.add(sl);
+    // ion slots: paired across each anode | cathode gap
+    aS=[];cS=[];for(var j=0;j<FX.length-1;j++){var xa=j%2===0?FX[j]:FX[j+1],xc=j%2===0?FX[j+1]:FX[j],sg=xc>xa?1:-1;
+      [1,3,5].forEach(function(l){[-.8,0,.8].forEach(function(z){var yy=FY0+l*FP;aS.push([xa+sg*.24,yy,z]);cS.push([xc-sg*.24,yy,z]);});});}
+    pair=true;micro=m;
+  }
   // ions
   var N=26,ions=[],lig=new THREE.SphereGeometry(1,20,14),hg=new THREE.SphereGeometry(1.8,16,12);
   var lim=std(0xF3C548,{emissive:0xB07A00,emissiveIntensity:.9,metalness:.3,roughness:.3}),hm=new THREE.MeshBasicMaterial({color:0xF0BE3A,transparent:true,opacity:.18,depthWrite:false});
   for(var i=0;i<N;i++){var g=new THREE.Group(),core=new THREE.Mesh(lig,lim),h=new THREE.Mesh(hg,hm.clone());g.add(core);g.add(h);root.add(g);ions.push({g:g,h:h,o:(i*17)%N,ph:i,k:i});}
   var an=[],am=std(0xd2557f,{emissive:0x5a1028});
   for(var i=0;i<14;i++){var m=new THREE.Mesh(new THREE.SphereGeometry(.09,16,12),am);root.add(m);an.push({m:m,x:-1+((i*37)%21)/10,y:-1.7+((i*53)%35)/10,z:-1.2+((i*29)%25)/10,p:i});}
-  // circuit
-  var path=new THREE.CurvePath();
-  [[-3.18,2.15,0],[-3.18,3.35,0],[3.18,3.35,0],[3.18,2.15,0]].reduce(function(a,b){path.add(new THREE.LineCurve3(new THREE.Vector3(a[0],a[1],a[2]),new THREE.Vector3(b[0],b[1],b[2])));return b;});
-  root.add(new THREE.Mesh(new THREE.TubeGeometry(path,120,.045,8,false),std(0x9fb6cf,{metalness:.7,roughness:.3})));
+  // external circuit: one path for the stacked cell, one for the printed micro-cell
+  function mkPath(pts){var p=new THREE.CurvePath();pts.reduce(function(a,b){p.add(new THREE.LineCurve3(new THREE.Vector3(a[0],a[1],a[2]),new THREE.Vector3(b[0],b[1],b[2])));return b;});return p;}
+  var pathBox=mkPath([[-3.18,2.15,0],[-3.18,3.35,0],[3.18,3.35,0],[3.18,2.15,0]]);
+  var pathMicro=mkPath([[-3.15,-1.5,-1.62],[-3.4,-1.5,-1.62],[-3.4,3.35,-1.62],[-3.4,3.35,0],[3.4,3.35,0],[3.4,3.35,1.62],[3.4,-1.5,1.62],[3.15,-1.5,1.62]]);
+  var wireM=std(0x9fb6cf,{metalness:.7,roughness:.3});
+  var tubeBox=new THREE.Mesh(new THREE.TubeGeometry(pathBox,120,.045,8,false),wireM),tubeMicro=new THREE.Mesh(new THREE.TubeGeometry(pathMicro,240,.045,8,false),wireM);
+  root.add(tubeBox);root.add(tubeMicro);var path=pathBox;
   var els=[],em=new THREE.MeshBasicMaterial({color:0x5BE0FF});for(var i=0;i<16;i++){var e=new THREE.Mesh(new THREE.SphereGeometry(.075,14,10),em);root.add(e);els.push({m:e,u:i/16});}
   // labels
   function label(txt,col,w,fs){var c=document.createElement('canvas');c.width=w||512;c.height=128;var x=c.getContext('2d');var t=new THREE.CanvasTexture(c);t.anisotropy=4;
     var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false,depthTest:false}));s.scale.set(c.width/128*.5,.5,1);s.userData={c:c,x:x,t:t,col:col||'#E8EEF5',fs:fs||46};setL(s,txt);return s;}
   function setL(s,txt,col){var u=s.userData,x=u.x;x.clearRect(0,0,u.c.width,128);x.font='700 '+u.fs+'px Manrope, system-ui, sans-serif';x.fillStyle=col||u.col;x.textAlign='center';x.textBaseline='middle';x.fillText(txt,u.c.width/2,64);u.t.needsUpdate=true;}
   function put(s,x,y,z){s.position.set(x,y,z);root.add(s);return s;}
-  var lA=put(label('',null,640),-2.25,2.62,1.7),lS=put(label('','#F0BE3A',720,40),0,-2.6,1.7),lC=put(label('',null,720),2.3,2.62,1.7);
-  lS.scale.set(2.8,.5,1);lA.scale.set(2.5,.5,1);lC.scale.set(2.8,.5,1);
-  put(label('−','#fff',128,80),-3.75,0,1.75);put(label('+','#fff',128,80),3.75,0,1.75);
+  var lA=put(label('',null,720),-2.25,2.62,1.7),lS=put(label('','#F0BE3A',720,40),0,-2.6,1.7),lC=put(label('',null,860),2.3,2.62,1.7);
+  lS.scale.set(2.8,.5,1);lA.scale.set(2.8,.5,1);lC.scale.set(3.36,.5,1);
+  var lMinus=put(label('−','#fff',128,80),-3.75,0,1.75),lPlus=put(label('+','#fff',128,80),3.75,0,1.75);
   var boxM=new THREE.Mesh(new THREE.BoxGeometry(3.2,.7,.3),std(0x13213B,{metalness:.2,emissive:0x0a1222}));boxM.position.set(0,3.35,0);root.add(boxM);
   var bl=label('','#F0BE3A',1024,52);bl.scale.set(3.6,.45,1);put(bl,0,3.36,.3);
-  var ionL=label('Li⁺','#F3C548',256,60);ionL.scale.set(1,.5,1);
+  var LPOS={box:[[-2.25,2.62,1.7],[0,-2.6,1.7],[2.3,2.62,1.7],[-3.75,0,1.75],[3.75,0,1.75]],micro:[[-2.9,1.45,-1.9],[3.2,0.55,2.1],[1.4,1.6,2.2],[-3.85,-1.3,-1.62],[3.85,-1.3,1.62]]};
+  // ---------- "zoom in" intros: an aircraft whose wing skin is the battery, and a coin carrying the tiny printed cell ----------
+  var macro=new THREE.Group();stage.add(macro);macro.visible=false;var macroMats=[];
+  function mm(mat){mat.transparent=true;mat.userData.o=mat.opacity;macroMats.push(mat);return mat;}
+  var planeG=new THREE.Group(),coinG=new THREE.Group();macro.add(planeG);macro.add(coinG);
+  (function(){var white=mm(std(0xE8EEF5,{metalness:.25,roughness:.35,side:THREE.DoubleSide})),grey=mm(std(0x9AA6B5,{metalness:.5,roughness:.3}));
+    var f=new THREE.Mesh(new THREE.CylinderGeometry(.42,.42,6,28),white);f.rotation.z=Math.PI/2;planeG.add(f);
+    var nose=new THREE.Mesh(new THREE.SphereGeometry(.42,24,16),white);nose.scale.set(1.9,1,1);nose.position.x=3;planeG.add(nose);
+    var tail=new THREE.Mesh(new THREE.ConeGeometry(.42,1.7,28),white);tail.rotation.z=Math.PI/2;tail.position.x=-3.85;planeG.add(tail);
+    function wing(pts,depth){var sh=new THREE.Shape();sh.moveTo(pts[0][0],pts[0][1]);for(var i=1;i<pts.length;i++)sh.lineTo(pts[i][0],pts[i][1]);var g=new THREE.ExtrudeGeometry(sh,{depth:depth,bevelEnabled:false});return g;}
+    var wg=wing([[1.0,0],[-.6,0],[-1.9,3.9],[-1.15,3.9]],.09);wg.rotateX(Math.PI/2);
+    var wR=new THREE.Mesh(wg,white);wR.position.y=-.12;planeG.add(wR);var wL=new THREE.Mesh(wg,white);wL.scale.z=-1;wL.position.y=-.03;planeG.add(wL);
+    var hg2=wing([[-3.2,0],[-3.9,0],[-4.55,1.35],[-4.15,1.35]],.06);hg2.rotateX(Math.PI/2);var hR=new THREE.Mesh(hg2,white);hR.position.y=.12;planeG.add(hR);var hL=new THREE.Mesh(hg2,white);hL.scale.z=-1;hL.position.y=.18;planeG.add(hL);
+    var fin=new THREE.Mesh(wing([[-3.1,.3],[-4.3,.3],[-4.7,1.75],[-4.15,1.75]],.07),white);fin.position.z=-.035;planeG.add(fin);
+    [1.35,-1.35].forEach(function(z){var en=new THREE.Mesh(new THREE.CylinderGeometry(.22,.19,.95,18),grey);en.rotation.z=Math.PI/2;en.position.set(.35,-.38,z);planeG.add(en);});
+    var win=[];for(var i=0;i<14;i++)win.push([2.3-i*.36,.16,.41]);planeG.add(inst(new THREE.SphereGeometry(.05,8,6),mm(new THREE.MeshBasicMaterial({color:0x13213B})),win));
+    // highlighted carbon-fibre wing panel = structural battery
+    var panel=new THREE.Mesh(new THREE.BoxGeometry(.85,.05,1.2),mm(std(0x262a31,{metalness:.6,roughness:.25,emissive:0x3a2a00})));panel.position.set(-.75,-.095,2.2);panel.rotation.y=.32;planeG.add(panel);
+    var pe=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(.9,.08,1.25)),mm(new THREE.LineBasicMaterial({color:0xF0BE3A})));pe.position.copy(panel.position);pe.rotation.copy(panel.rotation);planeG.add(pe);planeG.userData.pulse=pe;
+    var pl1=label('Wing skin = structural battery','#F0BE3A',1024,46);pl1.scale.set(5.2,.65,1);pl1.position.set(-.6,1.15,2.4);mm(pl1.material);planeG.add(pl1);
+    planeG.scale.setScalar(.98);planeG.rotation.x=.12;planeG.position.x=.45;planeG.userData.P=panel.position.clone().applyEuler(planeG.rotation).multiplyScalar(.98).add(planeG.position);
+  })();
+  (function(){var tilt=new THREE.Group();tilt.rotation.x=1.0;coinG.add(tilt);
+    var gold=mm(std(0xD9B46A,{metalness:.25,roughness:.45,emissive:0x5a4214})),rim=mm(std(0xB08A43,{metalness:.85,roughness:.35}));
+    var coin=new THREE.Mesh(new THREE.CylinderGeometry(2.5,2.5,.24,72),gold);tilt.add(coin);
+    var ring=new THREE.Mesh(new THREE.TorusGeometry(2.2,.05,10,72),rim);ring.rotation.x=Math.PI/2;ring.position.y=.13;tilt.add(ring);
+    var star=new THREE.Mesh(new THREE.CircleGeometry(.9,5),rim);star.rotation.x=-Math.PI/2;star.position.set(-.4,.125,-.3);tilt.add(star);
+    var cell=new THREE.Mesh(new THREE.BoxGeometry(.13,.05,.13),mm(std(0x8B6FD6,{emissive:0x6a4fc0})));cell.position.set(1.05,.15,.65);tilt.add(cell);
+    var halo=new THREE.Mesh(new THREE.TorusGeometry(.2,.018,8,36),mm(new THREE.MeshBasicMaterial({color:0xF0BE3A})));halo.rotation.x=Math.PI/2;halo.position.copy(cell.position);tilt.add(halo);coinG.userData.pulse=halo;
+    var c1=label('Coin · Ø ≈ 20 mm',null,640,46);c1.scale.set(3.2,.62,1);c1.position.set(-.6,2.1,.5);mm(c1.material);coinG.add(c1);
+    var c2=label('3D-printed battery ≈ 1 mm  ↓','#F0BE3A',1024,46);c2.scale.set(5,.62,1);c2.position.copy(cell.position).applyEuler(tilt.rotation);c2.position.y+=.75;c2.position.x+=.4;mm(c2.material);coinG.add(c2);
+    coinG.userData.P=cell.position.clone().applyEuler(tilt.rotation);
+  })();
+  var HOLD=2.6,ZOOM=1.5,introT0=performance.now(),PR_SEG=.065;
+  function introLen(){return (CHEM[current].intro&&!RM)?HOLD+ZOOM:0;}
   function applyChem(k){
-    var c=CHEM[k];clearChem();B[c.an]();B[c.ca]();B[c.sep]();
+    var c=CHEM[k];clearChem();var lay=c.layout||'box';
+    cellG.visible=lay==='box';tubeBox.visible=lay==='box';tubeMicro.visible=lay==='micro';path=lay==='micro'?pathMicro:pathBox;
+    elBox.scale.x=k==='aero'?6.3/2.6:1;
+    if(lay==='micro')buildMicro();else{B[c.an]();B[c.ca]();B[c.sep]();}
     lim.color.setHex(c.ion[0]);lim.emissive.setHex(c.ion[1]);
-    ions.forEach(function(o,i){o.a=aS[(i*7)%aS.length];o.c=cS[(i*11)%cS.length];o.g.scale.setScalar(c.ion[2]);o.h.material.color.setHex(c.ion[0]);});
+    ions.forEach(function(o,i){var j=(i*7)%aS.length;o.a=aS[j];o.c=pair?cS[j]:cS[(i*11)%cS.length];o.g.scale.setScalar(c.ion[2]);o.h.material.color.setHex(c.ion[0]);});
     an.forEach(function(a){a.m.visible=!!c.anions;});
+    var lp=LPOS[lay];[lA,lS,lC,lMinus,lPlus].forEach(function(s,i){s.position.set(lp[i][0],lp[i][1],lp[i][2]);});
     setL(lA,c.L[0]);setL(lS,c.L[1]);setL(lC,c.L[2]);mode='';
+    planeG.visible=c.intro==='plane';coinG.visible=c.intro==='coin';introT0=performance.now();
   }
-  onChem=applyChem;applyChem(current);
+  onChem=applyChem;
   // interaction
   var baseY=-.42,baseX=.08,drag=null;
   renderer.domElement.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,by:baseY,bx:baseX};renderer.domElement.setPointerCapture(e.pointerId);});
@@ -2316,29 +2388,55 @@ sup.he3{font-size:.62em;line-height:0;vertical-align:super;margin-left:.02em}
   function size(){var w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
   window.addEventListener('resize',size);size();
   var socS=0,prevSoc=0,mode='',t0=performance.now(),visible=true;
+  applyChem(current);
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{}).observe(host);
   function sm(t){return t*t*(3-2*t);}
-  var LOADS={ev:'Load · electric motor',phone:'Load · phone & laptop',grid:'Load · home & grid',wear:'Load · wearable sensor'};
+  function cl(t){return Math.max(0,Math.min(1,t));}
+  var LOADS={ev:'Load · electric motor',aero:'Load · electric propulsion',grid:'Load · power grid',wear:'Load · wearable sensor'};
+  var V0=new THREE.Vector3(),V1=new THREE.Vector3();
+  function intro(it){
+    var c=CHEM[current],L=introLen();
+    if(!L||it>=L){macro.visible=false;root.visible=true;root.scale.setScalar(.92);root.position.set(0,0,0);return;}
+    var g=c.intro==='plane'?planeG:coinG,Pm=g.userData.P,k=it<HOLD?0:sm(cl((it-HOLD)/ZOOM)),s=1+k*k*9;
+    macro.visible=true;V0.copy(Pm).multiplyScalar(1-k);macro.scale.setScalar(s);macro.position.copy(V0).addScaledVector(Pm,-s);
+    var a=1-sm(cl((k-.35)/.5));macroMats.forEach(function(mt){mt.opacity=mt.userData.o*a;});
+    var pu=g.userData.pulse;if(pu){var q=1+.18*Math.sin(it*6);pu.scale.set(q,1,q);}
+    root.visible=k>.05;root.scale.setScalar(.92*(.04+.96*k));root.position.copy(V0);
+  }
+  function printStep(pt){
+    var m=micro;if(!m)return true;var n=m.seg.length,done=RM||pt>=n*PR_SEG+.2;
+    for(var i=0;i<n;i++){var sg=m.seg[i],me=m.fil[sg[0]][sg[1]],p=done?1:cl((pt-i*PR_SEG)/PR_SEG);me.visible=p>0;me.scale.z=Math.max(.001,p);}
+    var nz=m.nozzle;
+    if(!done&&pt>=0){var i=Math.min(n-1,Math.floor(pt/PR_SEG)),sg=m.seg[i],p=cl((pt-i*PR_SEG)/PR_SEG),anode=sg[0]%2===0,z=anode?-1.55+p*FLEN:1.55-p*FLEN;
+      nz.visible=true;nz.position.set(FX[sg[0]],FY0+sg[1]*FP+FR*.6,z);m.ink.material.color.setHex(anode?m.inkA:m.inkC);m.ink.scale.y=1-.6*(i/n);m.ink.position.y=1.12-.3*(i/n);}
+    else if(done){var lift=cl((pt-n*PR_SEG)/.8);nz.visible=lift<1&&!RM;nz.position.y=FY0+NL*FP+lift*3;}
+    else nz.visible=false;
+    m.gel.material.opacity=done?.13*cl((pt-n*PR_SEG)/.8+(RM?1:0)):0;
+    return done;
+  }
   function frame(now){
     requestAnimationFrame(frame);
     if(!visible||!host.offsetParent)return;
     if(host.clientWidth&&renderer.domElement.width!==Math.round(host.clientWidth*renderer.getPixelRatio()))size();
-    var tt=(now-t0)/1000,m=svg?svg.getAttribute('data-mode'):'charge';
+    var tt=(now-t0)/1000,it=(now-introT0)/1000,m=svg?svg.getAttribute('data-mode'):'charge';
     if(m!==mode){mode=m;setL(bl,mode==='discharge'?LOADS[current]:'Power source · charging',mode==='discharge'?'#5BE0FF':'#F0BE3A');}
+    intro(it);
+    var ready=true;if(micro)ready=printStep(it-introLen()-.25);
     var sv=document.getElementById('soc-val'),soc=sv?parseFloat(sv.textContent)/100:0;
     socS+=(soc-socS)*.08;var moving=Math.abs(socS-prevSoc)>.0004;prevSoc=socS;
-    if(plated){var th=.12+.55*socS;plated.scale.x=th;plated.position.x=(current==='phone'?-2.2:-2.3)+th/2;}
+    if(plated){var th=.12+.55*socS;plated.scale.x=th;plated.position.x=plated.userData.x0+th/2;}
     ions.forEach(function(o){
+      o.g.visible=ready;
       var t=Math.max(0,Math.min(1,socS*N-o.o)),k=sm(t),A=o.a,C=o.c;
       var x=C[0]+(A[0]-C[0])*k,y=C[1]+(A[1]-C[1])*k,z=C[2]+(A[2]-C[2])*k,bump=Math.sin(Math.PI*t);
-      y+=bump*.35*Math.sin(o.ph);z+=bump*.5*Math.cos(o.ph*1.7);
+      y+=bump*(pair?.12:.35)*Math.sin(o.ph);z+=bump*(pair?.2:.5)*Math.cos(o.ph*1.7);
       o.g.position.set(x,y,z);o.h.material.opacity=t>0&&t<1?.38:.14;
     });
     an.forEach(function(a){a.m.position.set(a.x+Math.sin(tt*1.2+a.p)*.06,a.y+Math.cos(tt+a.p)*.06,a.z+Math.sin(tt*.8+a.p*2)*.06);});
     var dir=mode==='discharge'?1:-1;
-    els.forEach(function(e){if(moving&&!RM)e.u=(e.u+dir*.0035+1)%1;e.m.position.copy(path.getPointAt(e.u));});
-    em.color.setHex(moving?0x5BE0FF:0x3a6f80);
-    root.rotation.y=baseY+(RM||drag?0:Math.sin(tt*.25)*.22);root.rotation.x=baseX;
+    els.forEach(function(e){if(moving&&!RM&&ready)e.u=(e.u+dir*(path===pathMicro?.002:.0035)+1)%1;e.m.position.copy(path.getPointAt(e.u));});
+    em.color.setHex(moving&&ready?0x5BE0FF:0x3a6f80);
+    stage.rotation.y=baseY+(RM||drag?0:Math.sin(tt*.25)*.22);stage.rotation.x=baseX;
     renderer.render(scene,cam);
   }
   requestAnimationFrame(frame);
